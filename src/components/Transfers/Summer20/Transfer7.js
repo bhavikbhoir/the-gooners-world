@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
-import Emi from '/Users/bhvkb/the-gooners-world/src/assets/martinez.jpg';
+import Emi from '/the-gooners-world/src/assets/martinez.jpg';
 
 export default class Transfer7 extends Component {
     render() {

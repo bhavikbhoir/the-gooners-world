@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
 import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
-import Emi from '/Users/bhvkb/the-gooners-world/src/assets/emi.jpg';
+import Emi from '/the-gooners-world/src/assets/emi.jpg';
 
 export default class Transfer6 extends Component {
     render() {

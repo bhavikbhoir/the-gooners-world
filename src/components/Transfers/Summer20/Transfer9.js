@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
-import LT from '/Users/bhvkb/the-gooners-world/src/assets/lt.jpg';
+import LT from '/the-gooners-world/src/assets/lt.jpg';
 import { FaHeart } from 'react-icons/fa';
 
 export default class Transfer9 extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
 import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
-import Signings from '/Users/bhvkb/the-gooners-world/src/assets/signings.jpg';
+import Signings from '/the-gooners-world/src/assets/signings.jpg';
 
 export default class Transfer1 extends Component {
     render() {

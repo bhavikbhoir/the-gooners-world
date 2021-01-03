@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
-import Auba from '/Users/bhvkb/the-gooners-world/src/assets/auba-pfa.jpg';
+import Auba from '/the-gooners-world/src/assets/auba-pfa.jpg';
 
 export default class News11 extends Component {
     render() {

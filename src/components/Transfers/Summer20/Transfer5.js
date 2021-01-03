@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
 import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
-import Hector from '/Users/bhvkb/the-gooners-world/src/assets/hector.jpg';
+import Hector from '/the-gooners-world/src/assets/hector.jpg';
 
 export default class Transfer5 extends Component {
     render() {

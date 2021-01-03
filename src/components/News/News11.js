@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
-import Hector from '/Users/bhvkb/the-gooners-world/src/assets/hector-green.jpg';
+import Hector from '/the-gooners-world/src/assets/hector-green.jpg';
 import { FaHeart } from 'react-icons/fa';
 
 

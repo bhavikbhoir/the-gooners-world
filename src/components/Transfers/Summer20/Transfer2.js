@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
 import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
-import Holding from '/Users/bhvkb/the-gooners-world/src/assets/holding.jpg';
+import Holding from '/the-gooners-world/src/assets/holding.jpg';
 
 export default class Transfer2 extends Component {
     render() {

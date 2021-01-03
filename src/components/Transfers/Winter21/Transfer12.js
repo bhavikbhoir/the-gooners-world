@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card } from 'react-bootstrap'
-import isco from '/Users/bhvkb/the-gooners-world/src/assets/isco.jpg';
+import isco from '/the-gooners-world/src/assets/isco.jpg';
 
 export default class Transfer12 extends Component {
     render() {

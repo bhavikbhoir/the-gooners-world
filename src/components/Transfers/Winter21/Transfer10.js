@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card } from 'react-bootstrap'
-import Kola from '/Users/bhvkb/the-gooners-world/src/assets/kola.jpg';
+import Kola from '/the-gooners-world/src/assets/kola.jpg';
 
 export default class Transfer10 extends Component {
     render() {

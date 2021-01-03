@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
 import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
-import Aouar from '/Users/bhvkb/the-gooners-world/src/assets/aouar.jpg';
+import Aouar from '/the-gooners-world/src/assets/aouar.jpg';
 
 export default class Transfer4 extends Component {
     render() {

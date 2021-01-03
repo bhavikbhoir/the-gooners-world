@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Card, CardColumns } from 'react-bootstrap'
-import Luiz from '/Users/bhvkb/the-gooners-world/src/assets/luiz.jpg';
+import Luiz from '/the-gooners-world/src/assets/luiz.jpg';
 
 export default class News11 extends Component {
     render() {
