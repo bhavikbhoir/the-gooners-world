@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  width: auto;
+  height: 100%;
+  font-family: "agency-gothic-ct-cond-tt",sans-serif;
+}
+.container{
+  padding: 1rem 0;
+}
+.content{
+  margin-bottom: 1rem;
+}

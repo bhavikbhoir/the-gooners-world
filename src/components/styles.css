@@ -1,0 +1,240 @@
+.header{
+    border-bottom: 3px solid red;
+}
+img{
+    width: 128px;
+    height: 128px;
+}
+.quote{
+    padding: 1rem 0;
+}
+.content{
+    height: 450px;
+    width: auto;
+    background-image: url("../assets/stadium.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: slategrey;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    /* -webkit-align-content: center;
+        -ms-flex-line-pack: center;
+    align-content: center;     */
+    -webkit-align-content: flex-end;
+        -ms-flex-line-pack: flex-end;
+    align-content: flex-end; 
+}
+.content .message{
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+.message h2{
+    margin: 0.5rem 0;
+}
+.container .row{
+    margin: 0;
+}
+.transfers, .news, .trending, .fixtures, .breaking, .stats{
+    text-align: left;
+}
+.col-lg-6 div, .breaking .col-lg-6 div, .breaking .col-lg-7 div{
+    width: auto!important;
+}
+.trending .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-left: 0;
+}
+.trending h3, .transfers h3, .news h3, .fixtures h3, .breaking h3, .stats h3{
+    padding: 1rem 0;
+}
+.transfers .nav-item{
+    width: 50%;
+}
+.transfers .nav-link{
+    color: #113476;
+}
+.transfers .nav-link.active{
+    color: #ffffff;
+    background-color: #113476;
+}
+.transfers .tab-content {
+    margin: 1rem 0;
+}
+.fixtures img{
+    width: 100%;
+    height: 100%;
+}
+.fixtures caption{
+    padding-bottom: 0;
+    width: auto;
+}
+.fixtures .details{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+.fixtures .highlights{
+    display: flex;
+    justify-content: left;
+    margin: 1rem 0;
+    /* margin-top: -1rem; */
+    padding: 0;
+}
+#celebrate{
+    display: inline-table;
+}
+.card img{
+    height: auto;
+}
+#kit svg{
+    color: #113476;
+    margin-bottom: 0.5rem;
+}
+#green svg{
+    color: green;
+}
+.carousel-item{
+    height: 300px;
+}
+.stats .stat1 {
+    background:#42464f;
+    color: azure;
+    background-image: url('../assets/Stat1.jpg');
+    background-size: cover;
+    background-blend-mode: overlay;
+    padding: 5rem 10rem;
+}
+.stats .stat2 {
+    background: #565555;
+    color: azure;
+    background-image: url('../assets/Stat2.jpg');
+    background-size: cover;
+    background-blend-mode: overlay;
+    padding: 5rem 10rem;
+}
+.social h2{
+    padding: 1rem 0;
+}
+.footer{
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    border-top: 3px solid red;
+    padding: 1rem 0;
+}
+.footer p{
+    margin: 0;
+}
+.footer svg{
+    font-size: 25px;
+    margin-bottom: 0.5rem;
+}
+.footer ul{
+    margin-left: -2em;
+    margin: 0 0 0 -2em;
+}
+.footer li{
+    list-style: none;
+    display: inline-block;
+}
+.footer li a{
+    font-size: 18px;
+    margin: 0 0.5rem;;
+}
+#twitter a{
+    margin: 0.5rem 0;
+}
+/* .Bubble{
+    display: none!important;
+} */
+#insta{
+    text-align: center;
+}
+#insta-btn{
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+/* .Button:hover .Bubble{
+    display: block!important;
+} */
+#insta a{
+    color: white;
+    width: fit-content;
+}
+#insta button{
+    color: white;
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    border-radius: 4px;
+    padding: 1px 10px 1px 9px;
+    border: none;
+    margin: 0.5rem 0;
+}
+#twitter button{
+    border-radius: 4px;
+    padding: 1px 10px 1px 9px;
+    border: none;
+    background-color: #1da1f2;
+    color: white;
+    margin: 0.5rem 0;
+}
+#twitter a{
+    color: white;
+}
+.btn-danger svg{
+    margin-top: -2px;
+}
+.card-footer {
+    background-color: #99824c;
+}
+.text-muted {
+    color: #ffffff!important;
+}
+@media screen and (min-width: 577px){
+    .fixtures #large-fixtures{
+        display: flex;
+    }
+    .fixtures #mobile-fixtures{
+        display: none;
+    }
+}
+@media screen and (max-width: 576px){
+    .fixtures #large-fixtures{
+        display: none;
+    }
+    .fixtures #mobile-fixtures{
+        display: flex;
+        /* text-align: center; */
+    }
+    .container{
+        padding: 0;
+    }
+    .transfers, .news, .trending, .fixtures, .breaking, .stats{
+        margin: 0 1rem;
+    }
+    .trending .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+        padding: 0;
+    }
+}
+@media screen and (max-width: 991px){
+    .fixtures .details{
+        display: flex;
+        justify-content: left;
+        margin-bottom: 1rem;
+    }
+}
