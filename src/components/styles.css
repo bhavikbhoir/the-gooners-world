@@ -157,11 +157,18 @@ img{
 #twitter a{
     margin: 0.5rem 0;
 }
+#twitter {
+    text-align: left;
+}
+.twitter-timeline {
+    border: 1px solid rgb(219, 219, 219)!important;
+    border-radius: 3px;
+}
 /* .Bubble{
     display: none!important;
 } */
 #insta{
-    text-align: center;
+    text-align: left;
 }
 #insta-btn{
     width: 100%;
