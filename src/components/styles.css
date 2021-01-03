@@ -169,6 +169,7 @@ img{
 } */
 #insta{
     text-align: left;
+    margin-right: -1px; /*to avoid inst-col cut*/
 }
 #insta-btn{
     width: 100%;
