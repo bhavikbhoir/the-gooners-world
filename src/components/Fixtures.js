@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import ReactPlayer from "react-player";
 import {FaHeart, FaInfo, FaInfoCircle, FaPlay} from 'react-icons/fa'
 import { Row, Col, Card, CardColumns, Button } from 'react-bootstrap'
-import WBAARS from '../assets/WBAARS.jpg';
+import ARSMAN from '../assets/ARSMAN.jpg';
 
 export default class Fixtures extends Component {
     btnClick() {
-        window.open("https://www.youtube.com/watch?v=sNRfEAqfFEI&ab_channel=Arsenal");
+        window.open("https://youtu.be/hiP_UNzaPLo");
     }
     detailsbtnClick() {
         window.open("https://www.fctables.com/teams/arsenal-180231/");
@@ -40,31 +40,27 @@ export default class Fixtures extends Component {
 
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Arsenal in red hot form! 🔴⚪️</b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Points shared at The Emirates. 🔴⚪️</b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>WEST BROM 0 - 4 ARSENAL</b>
+                            <b>ARSENAL 0 - 0 MANCHESTER UNITED</b>
                             <br/>
                             <br/>
-                            With the snow pouring down on The Hawthorns, we were making all the running, but were indebted to Bernd Leno for a key save to deny Matt Phillips.
+                            We had to settle for a point in a game of few clear-cut chances against Manchester United on Saturday evening.
                             <br/>
                             <br/>
-                            It proved a crucial moment as, less than two minutes later, we took the lead as the excellent Kieran Tierney raced past Darnell Furlong, before checking back and curling a pinpoint right-footed shot into the top corner.
+                            Both sides had their moments - and we came closest when Alex Lacazette hit the bar with a superb free kick – but neither were able to strike a decisive blow.
                             <br/>
-                            <br/>                            
-                            The second was more of a team effort as Saka combined brilliantly with Lacazette and the influential Smith Rowe around the box, before converting the latter’s low cross.
+                            <br/>                          
+                            The big news prior to kick off was the absence of Bukayo Saka, Kieran Tierney and Pierre-Emerick Aubameyang from our teamsheet, but we soon settled into the game.
                             <br/>
-                            <br/>
-                            Lacazette scored the third after some good work from Saka.
-                            <br/>
-                            <br/>
-                            Moments later he had his second of the night as a quick counter ended in Tierney picking out Lacazette to fire into the roof of the net from close range.
+                            <br/>   
+                            Martin Odegaard came on towards the end for his debut, but the biggest chance remaining in the game came for the visitors a minute from the end when Cavani put it wide from close range.
                             <br/>
                             <br/>
-                            The Gooners World Family voted <b>Tierney</b> as the Man of the Match! 
+                            The Gooners World Family voted David Luiz as their Man of the Match!
                             <br/>
                             <br/>
-                            <br/>
-                            <i>We host Newcastle United next in the Premier League.</i>
+                            <i>We play Wolves in our next Premier League game.</i>
                         </p>
                     </Col>
                     <Col lg={6} md={12} sm={12} id="celebrate">
@@ -72,8 +68,8 @@ export default class Fixtures extends Component {
                         style={{width: "auto"}}
                         url="https://www.youtube.com/watch?v=0sbBijhhvQ0?autoplay=1"
                     /> */}
-                    <img src={WBAARS} alt="Nketiah and team celebrate Arsenal's winner ."/>
-                    <caption>Holding and Mari celebrate Kieran Tierney’s (left) strike (Source: Arsenal.com)</caption>
+                    <img src={ARSMAN} alt="Lacazette in action against Manchester United."/>
+                    <caption>Lacazette in action against Manchester United. (Source: Arsenal.com)</caption>
                     </Col>
                     <Col className="highlights">                    
                     <Button variant="danger" onClick={this.btnClick}><FaPlay /> Watch Highlights</Button>

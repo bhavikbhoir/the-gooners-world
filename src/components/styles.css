@@ -12,6 +12,9 @@ img{
 .quote{
     padding: 1rem 0;
 }
+p{
+    font-size: 1rem!important;
+}
 .content{
     height: 450px;
     width: auto;
