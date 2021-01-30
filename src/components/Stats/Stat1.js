@@ -12,7 +12,7 @@ export default class Stat01 extends Component {
                             Arsenal have scored in all 25 of their #PL meetings with West Brom, the best 100% scoring record by one side against an opponent in the competition’s history.
                         </h5>
                         <h6><b>Source:</b> @premierleague</h6>
-                        <p className="text-muted">January 2, 2021</p>
+                        <p className="text-muted">January 02, 2021</p>
                     </Container>
                 </Jumbotron>
             </div>

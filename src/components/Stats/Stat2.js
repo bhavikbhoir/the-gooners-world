@@ -13,7 +13,7 @@ export default class Stat02 extends Component {
                         </h5>
                         <br/>
                         <h6><b>Source:</b> @VBET_uk</h6>
-                        <p className="text-muted">January 2, 2021</p>
+                        <p className="text-muted">January 02, 2021</p>
                     </Container>
                 </Jumbotron>
             </div>

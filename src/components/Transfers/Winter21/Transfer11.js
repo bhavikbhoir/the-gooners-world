@@ -23,7 +23,7 @@ export default class Transfer11 extends Component {
                             There were no issues from players returning from international matches.</Card.Text> */}
                             </Card.Text>
                         </Card.Body>
-                        <Card.Footer className="text-muted">Jan 2, 2021</Card.Footer>
+                        <Card.Footer className="text-muted">Jan 02, 2021</Card.Footer>
                         </Card>
             </div>
         )
