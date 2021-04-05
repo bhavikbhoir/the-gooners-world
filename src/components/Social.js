@@ -26,7 +26,7 @@ export default class Social extends Component {
                         <TwitterTimelineEmbed
                         sourceType="profile"
                         screenName="thegoonersworld"
-                        options={{height: 905}}
+                        options={{height: 913}}
                         />
                     </Col>
                     <Col id="insta">

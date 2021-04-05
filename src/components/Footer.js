@@ -16,7 +16,7 @@ export default class Footer extends Component {
                     <InstagramButton username={"thegoonersworld"} />
                     </li>
                 </ul> */}
-                <p>Created with passion <span style={{color: "red"}}>#COYG</span></p><IoIosFootball /> 
+                <p>CREATED WITH PASSION! <span style={{color: "red"}}>#COYG</span></p><IoIosFootball /> 
             </div>
         )
     }

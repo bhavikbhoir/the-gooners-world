@@ -19,6 +19,9 @@ import Transfer14 from './Winter21/Transfer14';
 import Transfer15 from './Winter21/Transfer15';
 import Transfer16 from './Winter21/Transfer16';
 import Transfer17 from './Winter21/Transfer17';
+import Transfer15a from './Winter21/Transfer15a';
+import Transfer19 from './Winter21/Transfer19';
+import Transfer20 from './Winter21/Transfer20';
 
 function ControlledTabs() {
 
@@ -47,12 +50,19 @@ const handleless = () => {
             <Tab eventKey="winter" title="Winter Updates ❄️">
                 <Row>
                     <CardColumns>
+                        <Transfer20 />
+                        <Transfer19 />
                         <Transfer17 />
-                        <Transfer16 />
-                        <Transfer15 />
                     </CardColumns>
                 </Row>
                 <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>
+                <Row style={{display: display}}>
+                    <CardColumns>
+                        <Transfer16 />
+                        <Transfer15a />
+                        <Transfer15 />
+                    </CardColumns>
+                </Row>
                 <Row style={{display: display}}>
                     <CardColumns>
                         <Transfer14 />
