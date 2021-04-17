@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import ReactPlayer from "react-player";
 import {FaHeart, FaInfo, FaInfoCircle, FaPlay} from 'react-icons/fa'
 import { Row, Col, Card, CardColumns, Button } from 'react-bootstrap'
-import ARSLIV from '../assets/ARSLIV.jpg';
+import SLVARS from '../assets/SLVARS.jpg';
 
 export default class Fixtures extends Component {
     btnClick() {
-        window.open("https://youtu.be/smeMUWQ6cjA");
+        window.open("https://youtu.be/TKH8sPIN970");
     }
     detailsbtnClick() {
         window.open("https://www.fctables.com/teams/arsenal-180231/");
@@ -40,27 +40,27 @@ export default class Fixtures extends Component {
 
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Defeat at the hands of Liverpool 🔴⚪️</b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Hello Semi Finals 🔴⚪️</b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>ARSENAL 0 - 3 LIVERPOOL</b>
+                            <b>SLAVIA PRAGUE 0 - 4 ARSENAL (1-5 AGG)</b>
                             <br/>
                             <br/>
-                            We slumped to a second consecutive defeat at the Emirates, and in truth can have few complaints about the result.
+                            A mesmeric spell of three goals in six first-half minutes laid the platform for a commanding victory in Prague, and sent us through to the semi-final of the Europa League once again.
                             <br/>
                             <br/>
-                            Champions Liverpool put us under pressure for most of the 90 minutes, while up front it was a frustrating evening for our forwards, who had very little to work with all game.
+                            After a quiet opening 15 minutes, we stepped up through the gears to rip Slavia apart on their own turf, making the disappointment of last week's late equaliser in the first leg at the Emirates a distant memory.
                             <br/>
                             <br/> 
-                            We held the visitors at bay for the first half, but once Diogo Jota was brought on, Liverpool moved up a gear and ran out comfortable winners.
+                            Nicolas Pepe, Alexandre Lacazette and Bukayo Saka all found the net in the first-half flurry, and Lacazette added extra gloss to the evening late on.
                             <br/>
                             <br/>                         
-                            The result leaves us stranded in ninth place, as attention once again turns to the Europa League this midweek.
+                            We are through to the last four of the Europa League for the third time in the past four seasons, where we will face Villarreal over two legs.
                             {/* <br/>
                             <br/>   
                             But the rest of the game was essentially about our efforts to find an equaliser and ended in a defeat. */}
                             <br/>
                             <br/>
-                            <i>We host Slavia Prague in our next Europa League clash.</i>
+                            <i>We host Fulham in our next Premier League clash.</i>
                         </p>
                     </Col>
                     <Col lg={6} md={12} sm={12} id="celebrate">
@@ -68,8 +68,8 @@ export default class Fixtures extends Component {
                         style={{width: "auto"}}
                         url="https://www.youtube.com/watch?v=0sbBijhhvQ0?autoplay=1"
                     /> */}
-                    <img src={ARSLIV} alt="Aubameyang in action against Liverpool."/>
-                    <caption>Aubameyang in action against Liverpool. (Source: Arsenal.com)</caption>
+                    <img src={SLVARS} alt="Gunners celebrate their dominating victory against Slavia Prague."/>
+                    <caption>Gunners celebrate their dominating victory against Slavia Prague. (Source: Arsenal.com)</caption>
                     </Col>
                     <Col className="highlights">                    
                     <Button variant="danger" onClick={this.btnClick}><FaPlay /> Watch Highlights</Button>

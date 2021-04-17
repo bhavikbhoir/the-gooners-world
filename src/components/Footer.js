@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { FaTwitter, FaInstagram, FaFootballBall } from 'react-icons/fa'
+import { FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa'
 import {IoIosFootball } from 'react-icons/io';
-import InstagramButton from  "react-instagram-button";
-
 export default class Footer extends Component {
     render() {
         return (
@@ -16,7 +14,16 @@ export default class Footer extends Component {
                     <InstagramButton username={"thegoonersworld"} />
                     </li>
                 </ul> */}
-                <p>CREATED WITH PASSION! <span style={{color: "red"}}>#COYG</span></p><IoIosFootball /> 
+                <div>
+                    <p>CREATED WITH PASSION! <span style={{color: "red"}}>#COYG</span><IoIosFootball /></p> 
+                </div>
+                <div className="contact">
+                    <FaEnvelope style={{color: "#0F9D58"}}/> <a href="mailto:	thegoonersworld@gmail.com">thegoonersworld@gmail.com</a>
+                    <br/>
+                    <FaTwitter style={{color: "rgb(29, 161, 242)"}} /> <a href="https://twitter.com/TheGoonersWorld">@TheGoonersWorld</a>
+                    <br/>
+                    <FaInstagram style={{color: "#C13584"}} /> <a href="https://www.instagram.com/thegoonersworld/">@thegoonersworld</a>
+                </div>
             </div>
         )
     }
