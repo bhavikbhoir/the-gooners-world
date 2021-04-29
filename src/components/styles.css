@@ -115,6 +115,9 @@ p{
     /* margin-top: -1rem; */
     padding: 0;
 }
+.pl-vote {
+    color:#99824c;
+}
 #celebrate{
     display: inline-table;
 }

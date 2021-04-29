@@ -12,6 +12,9 @@ import News9 from './News9';
 import News14 from './News14';
 import News15 from './News15';
 import News16 from './News16';
+import News17 from './News17';
+import News18 from './News18';
+import News19 from './News19';
 
 export default class News extends Component {
 
@@ -41,12 +44,19 @@ export default class News extends Component {
                 <h3>Latest News 🗞️</h3>
                 <Row>
                     <CardColumns>
+                        <News19 />
+                        <News18 />
+                        <News17 />
+                    </CardColumns>
+                </Row>
+                <Button variant="danger" onClick={this.handlemore} style={{display: this.state.morebtn}}>More News ⬇</Button>
+                <Row style={{display: this.state.display}}>
+                    <CardColumns>
                         <News16 />
                         <News15 />
                         <News14 />
                     </CardColumns>
                 </Row>
-                <Button variant="danger" onClick={this.handlemore} style={{display: this.state.morebtn}}>More News ⬇</Button>
                 <Row style={{display: this.state.display}}>
                     <CardColumns>
                         <News9 />
