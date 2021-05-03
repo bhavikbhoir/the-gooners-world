@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import ReactPlayer from "react-player";
 import {FaHeart, FaInfo, FaInfoCircle, FaPlay} from 'react-icons/fa'
 import { Row, Col, Card, CardColumns, Button } from 'react-bootstrap'
-import ARSEVE from '../assets/ARSEVE.jpg';
+import NEWARS from '../assets/NEWARS.jpg';
 
 export default class Fixtures extends Component {
     btnClick() {
-        window.open("https://youtu.be/Yo0fMPPMhz8");
+        window.open("https://youtu.be/HJynUQ2yqBI");
     }
     detailsbtnClick() {
         window.open("https://www.fctables.com/teams/arsenal-180231/");
@@ -40,27 +40,28 @@ export default class Fixtures extends Component {
 
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Disappointment against the Toffees 🔴⚪️</b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Comfortable win at St James' Park 🔴⚪️</b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>ARSENAL 0 - 1 EVERTON</b>
+                            <b>NEWCASTLE 0 - 2 ARSENAL</b>
                             <br/>
                             <br/>
-                            A second half Bernd Leno own goal condemned us to a home defeat against Everton on Friday night.
+                            Goals in each half helped us get back to winning ways in a dominant performance at St James' Park.
                             <br/>
                             <br/>
-                            Mikel Arteta made six changes from the side that drew with Fulham last time out, the most notable of which saw Eddie Nketiah lead the line with both Alex Lacazette and Pierre-Emerick Aubameyang ruled out.
+                            The first goal was scored by Elneny on five minutes which was our fastest in the Premier League so far this season.
+                            We've seen the Egyptian score some great goals in European football, but this was his first in the league - on his 66th appearance in the competition.
                             <br/>
                             <br/> 
-                            In the second half, we’d been awarded a penalty when Dani Ceballos was tripped in the box by Richarlison, but Nicolas Pepe was adjudged to be millimetres offside and it was chalked off by VAR.
+                            Our second goal came courtesy of Captain Auba who finished off a great cross from Gabriel Martinelli.
                             <br/>
                             <br/>                         
-                            With less than 15 minutes remaining, the visitors hit us on the break as Richarlison got past Granit Xhaka in the box and hit a low cross that hit Leno and went through his legs and in.
+                            The hosts were down to 10 men in the final minutes of the game after Defender Fabian Schar received a straight red for his challenge on Gabi.
                             {/* <br/>
                             <br/>   
                             But the rest of the game was essentially about our efforts to find an equaliser and ended in a defeat. */}
                             <br/>
                             <br/>
-                            <i>We play Villarreal next in the first leg of our Europa League clash.</i>
+                            <i>We play Villarreal next in the second leg of our Europa League clash.</i>
                         </p>
                     </Col>
                     <Col lg={6} md={12} sm={12} id="celebrate">
@@ -68,8 +69,8 @@ export default class Fixtures extends Component {
                         style={{width: "auto"}}
                         url="https://www.youtube.com/watch?v=0sbBijhhvQ0?autoplay=1"
                     /> */}
-                    <img src={ARSEVE} alt="Rob Holding in action against Everton."/>
-                    <caption>Rob Holding in action against Everton. (Source: Arsenal.com)</caption>
+                    <img src={NEWARS} alt="Gabriel Martinelli in action against Newcastle."/>
+                    <caption>Gabriel Martinelli in action against Newcastle. (Source: Arsenal.com)</caption>
                     </Col>
                     <Col className="highlights">                    
                     <Button variant="danger" onClick={this.btnClick}><FaPlay /> Watch Highlights</Button>
