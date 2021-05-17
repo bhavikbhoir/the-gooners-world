@@ -2,14 +2,12 @@ import React, { Component } from 'react'
 import ReactPlayer from "react-player";
 import {FaHeart, FaHourglass, FaHourglassEnd, FaPen} from 'react-icons/fa'
 import { Row, Col, Card, CardColumns } from 'react-bootstrap'
-import News2 from './News/News2';
 
-export default class Breaking extends Component {
+export default class Breaking1 extends Component {
     render() {
         return (
             <div className="breaking">
-                <h3>Breaking 🔥</h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>#WelcomeAlex</b></h5>
+                <h3 style={{margin:"0.5rem 0"}}>#WelcomeAlex</h3>
                 <Row>                  
                     <Col lg={7} md={7} sm={12}>
                     <ReactPlayer
@@ -35,6 +33,9 @@ export default class Breaking extends Component {
                             The new shirt colours are intended to represent the lights and atmosphere that illuminate Emirates Stadium during a night match. The shirt pattern was created from a custom set of tie dye prints. */}
                         </p>
                     </Col>  
+                    <Col className="card-footer">
+                        <span>Jan 22, 2021</span>
+                    </Col>
                 </Row>                    
             </div>
         )

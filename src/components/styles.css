@@ -1,6 +1,16 @@
+.navbar {
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+.navbar button {
+    border: none;
+}
 .navbar-nav {
     width: 100%;
     display: block;
+}
+.navbar-nav .row {
+    margin: 0;
 }
 .navbar-nav svg{
     margin-top: -4px;
@@ -130,6 +140,23 @@ p{
 }
 #green svg{
     color: green;
+}
+.news-center .card-columns {
+    column-count: 1;
+}
+.news-center .card {
+    display: flex;
+    flex-direction: row;
+}
+.news-center .card-text {
+    font-size: 14px!important;
+}
+.news-center .card img {
+    height: 50%;
+    width: 50%;
+}
+.news-center .card-footer:last-child {
+    position: absolute;
 }
 .carousel-item{
     height: 300px;
@@ -351,6 +378,39 @@ p{
         display: none;
     }
 }
+@media screen and (min-width: 1280px){
+    .fixtures #large-table{
+        display: flex;
+    }
+    .fixtures #small-table, .fixtures #ipad-table, .fixtures #mid-table{
+        display: none;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1279px){
+    .fixtures #mid-table{
+        display: flex;
+    }
+    .fixtures #small-table, .fixtures #ipad-table, .fixtures #large-table{
+        display: none;
+    }
+}
+@media screen and (min-width: 764px) and (max-width: 1023px){
+    .fixtures #ipad-table{
+        display: flex;
+    }
+    .fixtures #small-table, .fixtures #mid-table, .fixtures #large-table{
+        display: none;
+    }
+}
+@media screen and (max-width: 763px){
+    .fixtures #large-table, .fixtures #ipad-table, .fixtures #mid-table{
+        display: none;
+    }
+    .fixtures #small-table{
+        display: flex;
+        /* text-align: center; */
+    }
+}
 @media screen and (max-width: 576px){
     .fixtures #large-fixtures{
         display: none;
@@ -377,6 +437,13 @@ p{
     .footer .contact {
         display: block;
         text-align: center;
+    }
+    .news-center .card {
+        flex-direction: column;
+    }
+    .news-center .card img {
+        height: 50%;
+        width: 100%;
     }
 }
 @media screen and (max-width: 991px){
