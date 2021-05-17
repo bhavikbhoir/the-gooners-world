@@ -15,71 +15,68 @@ import News16 from './News16';
 import News17 from './News17';
 import News18 from './News18';
 import News19 from './News19';
+import News20 from './News20';
 
-export default class News extends Component {
+export default function News(props) {
+    const [display, setDisplay] = React.useState('none');
+    const [morebtn, setMorebtn] = React.useState('block');
+    const [lessbtn, setLessbtn] = React.useState('none');
 
-    constructor () {
-        super();
-        this.state = {
-            display: 'none',
-            morebtn: 'block',
-            lessbtn: 'none'
+    const handlemore = () => {
+        setDisplay('block');
+        setMorebtn('none');
+        setLessbtn('block');
     }
-}
-
-    handlemore = () => {
-        this.setState({display: 'block'});
-        this.setState({morebtn: 'none'})
-        this.setState({lessbtn: 'block'})
+    const handleless = () => {
+        setDisplay('none');
+        setMorebtn('block');
+        setLessbtn('none');
     }
-    handleless = () => {
-        this.setState({display: 'none'});
-        this.setState({morebtn: 'block'});
-        this.setState({lessbtn: 'none'})
-    }
-
-    render() {
+    
+    React.useEffect(()=>{
+        props.origin == "center" ? setDisplay('block') : setDisplay('none')
+    })
         return (
             <div className="news">
                 <h3>Latest News 🗞️</h3>
                 <Row>
                     <CardColumns>
+                        <News20 />
                         <News19 />
                         <News18 />
-                        <News17 />
                     </CardColumns>
                 </Row>
-                <Button variant="danger" onClick={this.handlemore} style={{display: this.state.morebtn}}>More News ⬇</Button>
-                <Row style={{display: this.state.display}}>
+                {props.origin != "center" && <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>} 
+                <Row style={{display: display}}>
                     <CardColumns>
+                        <News17 />
                         <News16 />
                         <News15 />
-                        <News14 />
                     </CardColumns>
                 </Row>
-                <Row style={{display: this.state.display}}>
+                <Row style={{display: display}}>
                     <CardColumns>
+                        <News14 />
                         <News9 />
                         <News8 />
-                        <News7 />
                     </CardColumns>
                 </Row>
-                <Row style={{display: this.state.display}}>
+                <Row style={{display: display}}>
                     <CardColumns>
+                        <News7 />
                         <News3 />
                         <News2 />
-                        <News1 />
                     </CardColumns>
                 </Row>
-                <Row style={{display: this.state.display}}>
+                <Row style={{display: display}}>
                     <CardColumns>
+                        <News1 />
                         <News13 />
                         <News12 />
                         <News11 />
                     </CardColumns>
                 </Row>
-                <Button variant="danger" onClick={this.handleless} style={{display: this.state.lessbtn}}>Less News ⬆</Button>
+                {props.origin != "center" && <Button variant="danger" onClick={handleless} style={{display: lessbtn}}>Less News ⬆</Button>}
             </div>
         )
-    }
 }

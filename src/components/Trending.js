@@ -3,41 +3,34 @@ import ReactPlayer from "react-player";
 import {FaHeart, FaHourglass, FaHourglassEnd} from 'react-icons/fa'
 import { Row, Col, Card, CardColumns } from 'react-bootstrap'
 import News2 from './News/News2';
-import TH14 from '../../src/assets/TH14.jpg'
-
+import kit from '../../src/assets/2122Away.jpg'
 export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
                 <h3>Trending 📈</h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>The King gets inducted in the PL Hall of Fame! 🤴🏼</b></h5>
+                <h5 id="kit" style={{marginBottom:"1rem"}}><b>The Cannon returns! 💛</b></h5>
                 <Row>
-                    <Col lg={7} md={7} sm={12}>
+                    <Col lg={6} md={6} sm={12}>
                     {/* <ReactPlayer
                         style={{width: "auto"}}
                         url="https://www.youtube.com/watch?v=0sbBijhhvQ0?autoplay=1"
                     /> */}
-                    <img src={TH14} alt="The King gets inducted in the PL Hall of Fame! (Source: @premierleague)" style={{width: "100%", height: "100%"}}/>
+                    <img src={kit} alt="Kieran Tierney dos the new away jersey." style={{width: "100%", height: "100%"}}/>
                     </Col>
-                    <Col lg={5} md={5} sm={12}>
+                    <Col lg={6} md={6} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>Congratulations to Thierry Henry, who is one of the first two players to be named in the official Premier League Hall of Fame. </b>
+                            <b>Arsenal launch their new away kit ahead of the 2021/22 season.</b>
                             <br/>
                             <br/>
-                            Our legend has been inducted alongside the league's leading scorer, Alan Shearer, after winning a record four Premier League Golden Boot awards during his eight-year stay in north London.
+                            50 years on from our momentous 1970/71 league and FA Cup double, we’re proud to present a new away kit inspired by the strip worn by our heroes.
                             <br/>
                             <br/>
-                            Henry scored a club-record 175 Premier League goals in 258 appearances for us, and netted more than 20 league goals in five consecutive seasons between 2001 and 2006 while 
-                            winning the Premier League title twice and was a key member of our Invincibles team, who went unbeaten during the 2003/04 season. 
-                            {/* The new strip will be worn on the pitch for the first time when we kick off the Premier League season against Fulham on Saturday.*/}
+                            The new kit will be worn for the first time by Arsenal Women in their Vitality Women's FA Cup tie against Crystal Palace on Sunday, May 16. 
+                            The men’s team will also wear the new kit in their final away fixture of the season – also against Crystal Palace – on Wednesday, May 19.
                             <br/>
                             <br/>
-                            Seven more former Gunners - Tony Adams, Dennis Bergkamp, Sol Campbell, Ashley Cole, Robin van Persie, Patrick Vieira and Ian Wright
-                             have been shortlisted for the Premier League's Hall of Fame.
-                            <br/>
-                            <br/>
-                            Fans can vote for their favourite <span><a className="pl-vote" href="https://www.premierleague.com/hall-of-fame" target="_blank"><b>here</b></a></span>. The voting closes at 6pm (UK time) on May 9.
-                            {/*The new shirt colours are intended to represent the lights and atmosphere that illuminate Emirates Stadium during a night match. The shirt pattern was created from a custom set of tie dye prints. */}
+                            The new kit is available to buy exclusively until May 20 at Arsenal Direct, our flagship Armoury store and official adidas stores.
                         </p>
                     </Col>
                 </Row>
