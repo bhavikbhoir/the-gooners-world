@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import ReactPlayer from "react-player";
-import {FaHandPointRight, FaHeart, FaHourglass, FaHourglassEnd, FaPen} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import TweetEmbed from 'react-tweet-embed'
 export default class Breaking extends Component {
     render() {
         return (
             <div className="breaking">
-                <h3>Breaking 🔥</h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>Super Drama!😱 #NoSuperLeague</b></h5>
+                <h3>Breaking <span role="img" aria-label="breaking news icon"> 🔥</span></h3>
+                <h5 id="kit" style={{marginBottom:"1rem"}}><b>Super Drama!<span role="img" aria-label="super league reaction icon"> 😱</span> #NoSuperLeague</b></h5>
                 <Row>                  
                     <Col lg={5} md={12} sm={12} className="pt-0 pr-1 pl-1 breaking-asset">
                     {/* <ReactPlayer
@@ -19,9 +17,6 @@ export default class Breaking extends Component {
                     </Col>
                     <Col lg={7} md={12} sm={12} className="breaking-content">
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            {/* <b>The Super League Drama</b> */}
-                            
-                            {/* <br/> */}
                             April 19-20, 2021 will probably go down as the most dramatic 48 hours of Arsenal History and Football History in general.
                             <br/>
                             <br/>

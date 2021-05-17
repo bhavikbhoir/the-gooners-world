@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Aouar from '/the-gooners-world/src/assets/aouar.jpg';
 
 export default class Transfer4 extends Component {
@@ -10,7 +9,7 @@ export default class Transfer4 extends Component {
              <Card>
                         <Card.Img variant="top" src={Aouar}/>
                         <Card.Body>
-                            <Card.Title>Aouar latest transfer update 🔴🔵</Card.Title>
+                            <Card.Title>Aouar latest transfer update <span role="img" aria-label="red blue icon">🔴🔵</span></Card.Title>
                             <Card.Text>
                             Lyon and Arsenal are currently locked in talks over the structure of the deal. 
                             <br />

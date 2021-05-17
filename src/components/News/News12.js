@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Auba from '/the-gooners-world/src/assets/auba-pfa.jpg';
 
 export default class News11 extends Component {
@@ -9,7 +9,7 @@ export default class News11 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Auba}/>
                         <Card.Body>
-                            <Card.Title>Auba named in the PFA team of the year! 🏆</Card.Title>
+                            <Card.Title>Auba named in the PFA team of the year! <span role="img" aria-label="trophy icon">🏆</span></Card.Title>
                             <Card.Text>
                             Arsenal Captain Aubameyang named in the PFA Premier League Team of the Year 2019/2020.
                             <br/>

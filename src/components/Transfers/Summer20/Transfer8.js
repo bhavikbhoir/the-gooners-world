@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Emi from '/the-gooners-world/src/assets/emi-sold.jpg';
 import { FaHeart } from 'react-icons/fa';
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Mikel from '/the-gooners-world/src/assets/mikel.jpg';
 
 export default class News3 extends Component {
@@ -10,7 +9,7 @@ export default class News3 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Mikel} />
                         <Card.Body>
-                            <Card.Title>Mikel - The Manager! 👔</Card.Title>
+                            <Card.Title>Mikel - The Manager!<span role="img" aria-label="manager icon"> 👔</span></Card.Title>
                             <Card.Text>
                             Mikel Arteta's job title has changed from head coach to first-team manager.
                             <br/>

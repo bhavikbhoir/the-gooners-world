@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
+import { FaHeart } from 'react-icons/fa'
 import Kit from '/the-gooners-world/src/assets/third-kit.jpg';
 
 export default class News2 extends Component {

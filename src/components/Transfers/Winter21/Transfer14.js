@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import mesut from '/the-gooners-world/src/assets/mesut.jpg';
 
 export default class Transfer13 extends Component {
@@ -9,7 +9,7 @@ export default class Transfer13 extends Component {
                 <Card>
                         <Card.Img variant="top" src={mesut} />
                         <Card.Body>
-                            <Card.Title>End of the road for Mesut? 💔</Card.Title>
+                            <Card.Title>End of the road for Mesut? <span role="img" aria-label="heartbreak icon">💔</span></Card.Title>
                             <Card.Text>
                             It looks like Mesut Özil's Arsenal career is going to meet a sad ending!
                             <br/>

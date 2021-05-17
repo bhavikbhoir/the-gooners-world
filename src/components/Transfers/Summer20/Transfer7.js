@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Emi from '/the-gooners-world/src/assets/martinez.jpg';
 
 export default class Transfer7 extends Component {
@@ -9,7 +9,7 @@ export default class Transfer7 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Emi} />
                         <Card.Body>
-                            <Card.Title>Bid accepted for Emi Martinez!🧤</Card.Title>
+                            <Card.Title>Bid accepted for Emi Martinez!<span role="img" aria-label="glove icon"> 🧤</span></Card.Title>
                             <Card.Text>
                             Arsenal have accepted an offer from Aston Villa for goalkeeper Emiliano Martinez.
                             <br/>

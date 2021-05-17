@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import KTNews from '/the-gooners-world/src/assets/KTNews.jpg';
 
 export default class News16 extends Component {

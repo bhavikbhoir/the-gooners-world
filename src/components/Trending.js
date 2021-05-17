@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import ReactPlayer from "react-player";
-import {FaHeart, FaHourglass, FaHourglassEnd} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns } from 'react-bootstrap'
-import News2 from './News/News2';
+import { Row, Col } from 'react-bootstrap'
 import kit from '../../src/assets/2122Away.jpg'
 export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
-                <h3>Trending 📈</h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>The Cannon returns! 💛</b></h5>
+                <h3>Trending<span role="img" aria-label="trending icon"> 📈</span></h3>
+                <h5 id="kit" style={{marginBottom:"1rem"}}><b>The Cannon returns! <span role="img" aria-label="yellow heart icon"> 💛</span></b></h5>
                 <Row>
                     <Col lg={6} md={6} sm={12}>
                     {/* <ReactPlayer

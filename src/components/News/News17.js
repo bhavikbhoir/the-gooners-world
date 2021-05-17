@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import img from '/the-gooners-world/src/assets/News17.jpg';
 
 export default class News17 extends Component {
@@ -9,7 +9,7 @@ export default class News17 extends Component {
                 <Card>
                         <Card.Img variant="top" src={img}/>
                         <Card.Body>
-                            <Card.Title>Balogun Signs! 📝</Card.Title>
+                            <Card.Title>Balogun Signs! <span role="img" aria-label="contract icon">📝</span></Card.Title>
                             <Card.Text>
                             Folarin Balogun has committed his future to us by signing a new long-term contract with the club. 
                             <br/>

@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import { Row, Card, CardColumns, Button } from 'react-bootstrap';
+import { Row, CardColumns, Button } from 'react-bootstrap';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import Transfer6 from './Summer20/Transfer6';
@@ -111,8 +111,8 @@ export default class Transfers extends Component {
     render() {
         return (
             <div className="transfers">
-                <h3>Latest Transfer updates 🔁</h3>
-                <h5>The Winter Transfer Window is now Open! 👀</h5>
+                <h3>Latest Transfer updates<span role="img" aria-label="transfer updates icon"> 🔁</span></h3>
+                <h5>The Winter Transfer Window is now Open!<span role="img" aria-label="window open icon"> 👀</span></h5>
                 <ControlledTabs/>
             </div>
         )

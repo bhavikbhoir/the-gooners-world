@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import willy from '/the-gooners-world/src/assets/willy.jpg';
 
 export default class Transfer13 extends Component {

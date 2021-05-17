@@ -5,15 +5,6 @@ export default class Footer extends Component {
     render() {
         return (
             <div className="footer">
-                {/* <p>Follow Us!</p> */}
-                {/* <ul>
-                    <li>
-                    <a href="https://twitter.com/TheGoonersWorld?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @TheGoonersWorld</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </li>
-                    <li>
-                    <InstagramButton username={"thegoonersworld"} />
-                    </li>
-                </ul> */}
                 <div>
                     <p>CREATED WITH PASSION! <span style={{color: "red"}}>#COYG</span><IoIosFootball /></p> 
                 </div>

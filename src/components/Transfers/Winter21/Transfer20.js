@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import musti from '/the-gooners-world/src/assets/musti.jpg';
 
 export default class Transfer20 extends Component {

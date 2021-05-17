@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Jule from '/the-gooners-world/src/assets/jule.jpg';
 
 export default class Transfer3 extends Component {

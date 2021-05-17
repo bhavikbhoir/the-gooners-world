@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Brandt from '/the-gooners-world/src/assets/brandt.jpg';
 
 export default class Transfer11 extends Component {
@@ -9,7 +9,7 @@ export default class Transfer11 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Brandt} />
                         <Card.Body>
-                            <Card.Title>Zorc rubishes Julian Brandt-Arsenal rumours! 🟡⚫️</Card.Title>
+                            <Card.Title>Zorc rubishes Julian Brandt-Arsenal rumours! <span role="img" aria-label="dortmund icon">🟡⚫️</span></Card.Title>
                             <Card.Text>
                             Borussia Dortmund sport director Zorc about Julian Brandt-Arsenal rumours: “No one has contacted us. There is nothing on the table at the moment from Arsenal“.
                             <br/>

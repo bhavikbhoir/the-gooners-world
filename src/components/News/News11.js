@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Hector from '/the-gooners-world/src/assets/hector-green.jpg';
 import { FaHeart } from 'react-icons/fa';
-
-
 export default class News11 extends Component {
     render() {
         return (
@@ -11,7 +9,7 @@ export default class News11 extends Component {
                 <Card id="green">
                         <Card.Img variant="top" src={Hector}/>
                         <Card.Body>
-                            <Card.Title>Hector 🤝 Forest Green Rovers FC</Card.Title>
+                            <Card.Title>Hector <span role="img" aria-label="handshake icon">🤝</span> Forest Green Rovers FC</Card.Title>
                             <Card.Text>
                             Arsenal defender Hector Bellerin has become the second-largest shareholder in League Two side Forest Green Rovers, recognised by FIFA & the United Nations as the world’s greenest football club. <FaHeart /> <br />
                             <br />
