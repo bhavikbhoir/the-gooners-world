@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactPlayer from "react-player";
-import {FaHeart, FaHourglass, FaHourglassEnd, FaPen} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 export default class Breaking1 extends Component {
     render() {

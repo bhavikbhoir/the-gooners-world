@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import ReactPlayer from "react-player";
-import {FaHeart, FaInfo, FaInfoCircle, FaPlay} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns, Button } from 'react-bootstrap'
+import {FaPlay} from 'react-icons/fa'
+import { Row, Col, Button } from 'react-bootstrap'
 import NEWARS from '../../assets/NEWARS.jpg';
 
 export default class Fixtures10 extends Component {
@@ -16,7 +15,7 @@ export default class Fixtures10 extends Component {
             <div className="fixtures">
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Comfortable win at St James' Park 🔴⚪️</b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Comfortable win at St James' Park<span role="img" aria-label="red-white icon"> 🔴⚪️</span></b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
                             <b>NEWCASTLE 0 - 2 ARSENAL</b>
                             <br/>

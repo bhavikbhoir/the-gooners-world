@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import '../components/styles.css';
-import logo from '../assets/logo.png';
 import { Row, Col } from 'react-bootstrap';
 import FCT from '../assets/FCTables.jpg';
-import FWP from '../assets/FWP.jpg';
-import cover from '../assets/about_cover.jpg';
 import { FaEnvelope, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export default class About extends Component {

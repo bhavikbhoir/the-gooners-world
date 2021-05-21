@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import kit from '../../src/assets/2122Away.jpg'
+import kit from '../../../assets/2122Away.jpg'
 export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
-                <h3>Trending 📈</h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>The Cannon returns! 💛</b></h5>
+                <h3 id="kit" style={{marginBottom:"1rem"}}>The Cannon returns! <span role="img" aria-label="Yellow heart">💛</span></h3>
                 <Row>
                     <Col lg={6} md={6} sm={12}>
                     {/* <ReactPlayer

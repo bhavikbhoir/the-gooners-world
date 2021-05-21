@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import ReactPlayer from "react-player";
-import {FaHeart, FaHourglass, FaHourglassEnd} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import TH14 from '../../../assets/TH14.jpg'
 
 export default class Trending4 extends Component {
     render() {
         return (
             <div className="trending">
-                <h3 id="kit" style={{marginBottom:"1rem"}}>The King gets inducted in the PL Hall of Fame! 🤴🏼</h3>
+                <h3 id="kit" style={{marginBottom:"1rem"}}>The King gets inducted in the PL Hall of Fame! <span role="img" aria-label="king icon">🤴🏼</span></h3>
                 <Row>
                     <Col lg={7} md={7} sm={12}>
                     {/* <ReactPlayer
@@ -34,7 +32,7 @@ export default class Trending4 extends Component {
                              have been shortlisted for the Premier League's Hall of Fame.
                             <br/>
                             <br/>
-                            Fans can vote for their favourite <span><a className="pl-vote" href="https://www.premierleague.com/hall-of-fame" target="_blank"><b>here</b></a></span>. The voting closes at 6pm (UK time) on May 9.
+                            Fans can vote for their favourite <span><a className="pl-vote" href="https://www.premierleague.com/hall-of-fame" target="_blank" rel="noopener noreferrer"><b>here</b></a></span>. The voting closes at 6pm (UK time) on May 9.
                             {/*The new shirt colours are intended to represent the lights and atmosphere that illuminate Emirates Stadium during a night match. The shirt pattern was created from a custom set of tie dye prints. */}
                         </p>
                     </Col>

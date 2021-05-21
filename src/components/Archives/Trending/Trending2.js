@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import ReactPlayer from "react-player";
-import {FaHeart, FaHourglass, FaHourglassEnd} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 export default class Trending2 extends Component {
     render() {
         return (
             <div className="trending">
-                <h3 id="kit" style={{margin:"0.5rem 0"}}>Thank You, Mesut! <span style={{color: "#f00000", fontSize: "2.5rem"}}>♥️</span></h3>
+                <h3 id="kit" style={{margin:"0.5rem 0"}}>Thank You, Mesut! <span role="img" aria-label="Thank you Mesut!" style={{color: "#f00000", fontSize: "2.5rem"}}>♥️</span></h3>
                 <Row>                   
                     <Col lg={6} md={6} sm={12}>
                     <ReactPlayer

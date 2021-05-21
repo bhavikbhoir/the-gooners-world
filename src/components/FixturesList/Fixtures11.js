@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import ReactPlayer from "react-player";
-import {FaHeart, FaInfo, FaInfoCircle, FaPlay} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns, Button } from 'react-bootstrap'
+import {FaPlay} from 'react-icons/fa'
+import { Row, Col, Button } from 'react-bootstrap'
 import ARSVIL from '../../assets/ARSVIL.jpg';
 
 export default class Fixtures11 extends Component {
@@ -16,7 +15,7 @@ export default class Fixtures11 extends Component {
             <div className="fixtures">
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Heartbreak in Europe 💔</b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Heartbreak in Europe <span role="img" aria-label="heartbreak icon">💔</span></b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
                             <b>ARSENAL 0 - 0 VILLAREAL (AGG. 1-2)</b>
                             <br/>

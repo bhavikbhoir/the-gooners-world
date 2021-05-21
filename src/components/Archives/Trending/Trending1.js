@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactPlayer from "react-player";
-import {FaHeart, FaHourglass, FaHourglassEnd} from 'react-icons/fa'
-import { Row, Col, Card, CardColumns } from 'react-bootstrap'
+import {FaHeart } from 'react-icons/fa'
+import { Row, Col } from 'react-bootstrap'
 
 export default class Trending1 extends Component {
     render() {
@@ -17,7 +17,7 @@ export default class Trending1 extends Component {
                     </Col>
                     <Col lg={4} md={4} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>This is Family.💪</b>
+                            <b>This is Family.<span role="img" aria-label="Strong icon">💪</span></b>
                             <br/>
                             Introducing the new 2020/21 Third jersey.
                             <br/>

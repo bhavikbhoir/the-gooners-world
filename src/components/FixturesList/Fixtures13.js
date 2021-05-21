@@ -15,7 +15,7 @@ export default class Fixtures13 extends Component {
             <div className="fixtures">
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Derby Delight for the Gunners 🔴⚪️</b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Derby Delight for the Gunners<span role="img" aria-label="red-white icon"> 🔴⚪️</span></b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
                             <b>CHELSEA 0 - 1 ARSENAL</b>
                             <br/>

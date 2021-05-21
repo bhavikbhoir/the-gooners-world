@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import {Row, Col, Container} from 'react-bootstrap';
-// import styled from 'styled-components';
+import React from 'react';
+import {Row, Col} from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Navbar from 'react-bootstrap/Navbar'
-import { FaArchive, FaBook, FaCertificate, FaFootballBall, FaFutbol, FaHome, FaIdBadge, FaInfo, FaLightbulb, FaNewspaper, FaPencilAlt, FaRProject, FaSketch, FaStar, FaQuestionCircle } from 'react-icons/fa';
+import { FaArchive, FaFutbol, FaHome, FaNewspaper, FaQuestionCircle } from 'react-icons/fa';
 
 function Navigation(){
 const[activeKey, setActiveKey] = React.useState("/")
