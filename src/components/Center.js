@@ -10,6 +10,7 @@ import Fixtures11 from './FixturesList/Fixtures11';
 import Fixtures10 from './FixturesList/Fixtures10';
 import Fixtures9 from './FixturesList/Fixtures9';
 import Fixtures12 from './FixturesList/Fixtures12';
+import Fixtures13 from './FixturesList/Fixtures13';
 
 export default class Center extends Component {
     btnClick() {
@@ -60,10 +61,9 @@ export default class Center extends Component {
 
                 {/* Previous games */}
                 <h3>Previous Games</h3>
+                <Fixtures13 />
                 <Fixtures12 />
                 <Fixtures11 />
-                <Fixtures10 />
-                {/* <Fixtures9 /> */}
                     
             </div>
         )
