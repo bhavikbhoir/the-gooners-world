@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Kola from '/the-gooners-world/src/assets/kola.jpg';
 
 export default class Transfer10 extends Component {
@@ -9,7 +9,7 @@ export default class Transfer10 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Kola} />
                         <Card.Body>
-                            <Card.Title>Kolasinac joins Schalke! 🔵</Card.Title>
+                            <Card.Title>Kolasinac joins Schalke!<span role="img" aria-label="schalke icon"> 🔵</span></Card.Title>
                             <Card.Text>
                             Sead Kolasinac has agreed to join Bundesliga side Schalke on loan for the remainder of the season
                             <br/>

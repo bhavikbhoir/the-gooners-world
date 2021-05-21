@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Holding from '/the-gooners-world/src/assets/holding.jpg';
 
 export default class Transfer2 extends Component {
@@ -10,7 +9,7 @@ export default class Transfer2 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Holding}/>
                         <Card.Body>
-                            <Card.Title>Rob Holding to stay at Arsenal 🔴</Card.Title>
+                            <Card.Title>Rob Holding to stay at Arsenal <span role="img" aria-label="red icon">🔴</span></Card.Title>
                             <Card.Text>
                             Rob Holding set to stay at Arsenal after impressing Mikel Arteta in the recent games. Newcastle were interested in bringing him in on a loan deal but that won't happen now.
                             <br />

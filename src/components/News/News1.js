@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Auba from '/the-gooners-world/src/assets/auba.jpg';
 
 export default class News1 extends Component {
@@ -10,7 +9,7 @@ export default class News1 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Auba}/>
                         <Card.Body>
-                            <Card.Title>Aubameyang set to sign new Arsenal deal! 📝</Card.Title>
+                            <Card.Title>Aubameyang set to sign new Arsenal deal!<span role="img" aria-label="contract icon"> 📝</span></Card.Title>
                             <Card.Text>
                             Pierre-Emerick Aubameyang to end speculation over Arsenal future by signing new 3yr contract, which will enable him to become best-paid #AFC player. Arteta intervention key & relations with 31yo + father fundamental to getting deal over line.
                             <br />

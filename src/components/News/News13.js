@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Luiz from '/the-gooners-world/src/assets/luiz.jpg';
 
 export default class News11 extends Component {
@@ -9,7 +9,7 @@ export default class News11 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Luiz}/>
                         <Card.Body>
-                            <Card.Title>David Luiz Injured!? 🤕</Card.Title>
+                            <Card.Title>David Luiz Injured!? <span role="img" aria-label="injury icon">🤕</span></Card.Title>
                             <Card.Text>
                             Arsenal Defender David Luiz a doubt for Arsenal's season opener this weekend  with neck injury that could rule him out for an extended period. Depends how responds to treatment but very delicate + likely to be a late decision on Brazilian centre-back.
                             <br/>

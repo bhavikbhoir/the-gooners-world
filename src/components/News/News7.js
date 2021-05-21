@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Luiz from '/the-gooners-world/src/assets/luiz-white.jpg';
 
 export default class News7 extends Component {
@@ -9,7 +9,7 @@ export default class News7 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Luiz} />
                         <Card.Body>
-                            <Card.Title>Luiz to miss season opener ❌</Card.Title>
+                            <Card.Title>Luiz to miss season opener <span role="img" aria-label="cross icon">❌</span></Card.Title>
                             <Card.Text>
                             Here is the latest team news update from our medical team ahead of Saturday’s match at Fulham.
                             <br/>

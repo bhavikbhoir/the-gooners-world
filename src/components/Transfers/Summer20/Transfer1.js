@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Signings from '/the-gooners-world/src/assets/signings.jpg';
 
 export default class Transfer1 extends Component {
@@ -10,7 +9,7 @@ export default class Transfer1 extends Component {
                 <Card>
                         <Card.Img variant="top" src={Signings}/>
                         <Card.Body>
-                            <Card.Title>Arsenal signings so far!✍️⬇️</Card.Title>
+                            <Card.Title>Arsenal signings so far!<span role="img" aria-label="signings icon"> ✍️⬇️</span></Card.Title>
                             <Card.Text>
                                 <ul style={{listStyle: "none", marginLeft: "-2.4rem"}}>
                                     <li>Willian (Free)</li>

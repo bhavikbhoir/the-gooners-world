@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {FaHourglassStart} from 'react-icons/fa';
-
 export default class Content extends Component {
     render() {
         return (

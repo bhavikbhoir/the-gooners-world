@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import mesut from '/the-gooners-world/src/assets/ByeMesut.jpg';
 
 export default class Transfer17 extends Component {
@@ -9,7 +9,7 @@ export default class Transfer17 extends Component {
                 <Card>
                         <Card.Img variant="top" src={mesut} />
                         <Card.Body>
-                            <Card.Title>Mesut Özil joins Fenerbahce 💔</Card.Title>
+                            <Card.Title>Mesut Özil joins Fenerbahce <span role="img" aria-label="heartbreak icon">💔</span></Card.Title>
                             <Card.Text>
                             Mesut Ozil has joined Turkish Super Lig side Fenerbahce in a permanent transfer.
                             <br/>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import papa from '/the-gooners-world/src/assets/papa.jpg';
 
 export default class Transfer15 extends Component {

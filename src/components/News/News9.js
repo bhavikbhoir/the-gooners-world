@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import RH from '/the-gooners-world/src/assets/RH.jpg';
 
 export default class News9 extends Component {
@@ -9,7 +9,7 @@ export default class News9 extends Component {
                 <Card>
                         <Card.Img variant="top" src={RH} />
                         <Card.Body>
-                            <Card.Title>Rob Holding to commit his future to The Gunners! 🔜</Card.Title>
+                            <Card.Title>Rob Holding to commit his future to The Gunners! <span role="img" aria-label="soon icon">🔜</span></Card.Title>
                             <Card.Text>
                             Rob Holding is close to agreeing a new long-term contract at Arsenal.
                             <br/>

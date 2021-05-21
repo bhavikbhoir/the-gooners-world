@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Row, Card, CardColumns, Button } from 'react-bootstrap'
+import React from 'react'
+import { Row, CardColumns, Button } from 'react-bootstrap'
 import News1 from './News1';
 import News2 from './News2';
 import News3 from './News3';
@@ -32,13 +32,10 @@ export default function News(props) {
         setMorebtn('block');
         setLessbtn('none');
     }
-    
-    React.useEffect(()=>{
-        props.origin == "center" ? setDisplay('block') : setDisplay('none')
-    })
+
         return (
             <div className="news">
-                <h3>Latest News 🗞️</h3>
+                <h3>Latest News <span role="img" aria-label="news icon"> 🗞️</span></h3>
                 <Row>
                     <CardColumns>
                         <News20 />
@@ -46,7 +43,7 @@ export default function News(props) {
                         <News18 />
                     </CardColumns>
                 </Row>
-                {props.origin != "center" && <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>} 
+                {props.origin !== "center" && <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>} 
                 <Row style={{display: display}}>
                     <CardColumns>
                         <News17 />
@@ -76,7 +73,7 @@ export default function News(props) {
                         <News11 />
                     </CardColumns>
                 </Row>
-                {props.origin != "center" && <Button variant="danger" onClick={handleless} style={{display: lessbtn}}>Less News ⬆</Button>}
+                {props.origin !== "center" && <Button variant="danger" onClick={handleless} style={{display: lessbtn}}>Less News ⬆</Button>}
             </div>
         )
 }

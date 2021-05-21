@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Card, CardColumns } from 'react-bootstrap'
-import { FaNewspaper, FaHeart, FaSmile } from 'react-icons/fa'
+import { Card } from 'react-bootstrap'
 import Hector from '/the-gooners-world/src/assets/hector.jpg';
 
 export default class Transfer5 extends Component {
@@ -10,7 +9,7 @@ export default class Transfer5 extends Component {
              <Card>
                         <Card.Img variant="top" src={Hector} />
                         <Card.Body>
-                            <Card.Title>Hector Bellerin is staying at Arsenal! 💪❤️</Card.Title>
+                            <Card.Title>Hector Bellerin is staying at Arsenal! <span role="img" aria-label="heart icon">💪❤️</span></Card.Title>
                             <Card.Text>
                             Arsenal have turned down last PSG bid to sign Bellerin on loan - Florenzi is coming to PSG. 
                             <br />
