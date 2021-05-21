@@ -7,7 +7,7 @@ export default class News11 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Auba}/>
+                        <Card.Img variant="top" src={Auba} alt="Auba named in the PFA team of the year!"/>
                         <Card.Body>
                             <Card.Title>Auba named in the PFA team of the year! <span role="img" aria-label="trophy icon">🏆</span></Card.Title>
                             <Card.Text>

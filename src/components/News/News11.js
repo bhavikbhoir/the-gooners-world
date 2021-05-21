@@ -7,7 +7,7 @@ export default class News11 extends Component {
         return (
             <div>
                 <Card id="green">
-                        <Card.Img variant="top" src={Hector}/>
+                        <Card.Img variant="top" src={Hector} alt="Bellerin partners with Forest Green Rovers FC"/>
                         <Card.Body>
                             <Card.Title>Hector <span role="img" aria-label="handshake icon">🤝</span> Forest Green Rovers FC</Card.Title>
                             <Card.Text>

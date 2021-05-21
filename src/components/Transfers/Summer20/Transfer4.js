@@ -7,7 +7,7 @@ export default class Transfer4 extends Component {
         return (
             <div>
              <Card>
-                        <Card.Img variant="top" src={Aouar}/>
+                        <Card.Img variant="top" src={Aouar} alt="Aouar latest transfer update " />
                         <Card.Body>
                             <Card.Title>Aouar latest transfer update <span role="img" aria-label="red blue icon">🔴🔵</span></Card.Title>
                             <Card.Text>

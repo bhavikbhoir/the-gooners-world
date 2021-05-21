@@ -7,7 +7,7 @@ export default class Transfer13 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={willy} />
+                        <Card.Img variant="top" src={willy} alt="Saliba joins Nice!" />
                         <Card.Body>
                             <Card.Title>Saliba joins Nice!</Card.Title>
                             <Card.Text>

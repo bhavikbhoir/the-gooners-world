@@ -7,7 +7,7 @@ export default class News14 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={AubaNews}/>
+                        <Card.Img variant="top" src={AubaNews} alt="Auba dropped from the line-up."/>
                         <Card.Body>
                             <Card.Title>Why was Aubameyang dropped?</Card.Title>
                             <Card.Text>

@@ -7,7 +7,7 @@ export default class News11 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Luiz}/>
+                        <Card.Img variant="top" src={Luiz} alt="Luiz injured."/>
                         <Card.Body>
                             <Card.Title>David Luiz Injured!? <span role="img" aria-label="injury icon">🤕</span></Card.Title>
                             <Card.Text>
