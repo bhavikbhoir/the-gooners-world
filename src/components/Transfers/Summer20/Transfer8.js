@@ -8,7 +8,7 @@ export default class Transfer8 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Emi} />
+                        <Card.Img variant="top" src={Emi} alt="Thank your Emi!" />
                         <Card.Body>
                             <Card.Title>Thank your Emi! <FaHeart /></Card.Title>
                             <Card.Text>

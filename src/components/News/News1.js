@@ -7,7 +7,7 @@ export default class News1 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Auba}/>
+                        <Card.Img variant="top" src={Auba} alt="Aubameyang set to sign new Arsenal deal!" />
                         <Card.Body>
                             <Card.Title>Aubameyang set to sign new Arsenal deal!<span role="img" aria-label="contract icon"> 📝</span></Card.Title>
                             <Card.Text>

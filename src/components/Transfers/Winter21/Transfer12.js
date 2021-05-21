@@ -7,7 +7,7 @@ export default class Transfer12 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={isco} />
+                        <Card.Img variant="top" src={isco} alt="Isco to Arsenal?" />
                         <Card.Body>
                             <Card.Title>Isco to Arsenal?</Card.Title>
                             <Card.Text>

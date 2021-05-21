@@ -7,7 +7,7 @@ export default class News19 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={img}/>
+                        <Card.Img variant="top" src={img} alt="Lacazette back for the semis"/>
                         <Card.Body>
                             <Card.Title>Back in time for the Semis!</Card.Title>
                             <Card.Text>

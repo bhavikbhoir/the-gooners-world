@@ -7,7 +7,7 @@ export default class News9 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={RH} />
+                        <Card.Img variant="top" src={RH} alt="Rob Holding to commit his future to The Gunners!"/>
                         <Card.Body>
                             <Card.Title>Rob Holding to commit his future to The Gunners! <span role="img" aria-label="soon icon">🔜</span></Card.Title>
                             <Card.Text>

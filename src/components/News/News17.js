@@ -7,7 +7,7 @@ export default class News17 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={img}/>
+                        <Card.Img variant="top" src={img} alt="Balogun Signs!"/>
                         <Card.Body>
                             <Card.Title>Balogun Signs! <span role="img" aria-label="contract icon">📝</span></Card.Title>
                             <Card.Text>

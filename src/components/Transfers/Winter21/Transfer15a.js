@@ -7,7 +7,7 @@ export default class Transfer15a extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={ryan} />
+                        <Card.Img variant="top" src={ryan} alt="Mat Ryan signs for Arsenal" />
                         <Card.Body>
                             <Card.Title>Mat Ryan signs for Arsenal</Card.Title>
                             <Card.Text>

@@ -7,7 +7,7 @@ export default class News16 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={KTNews}/>
+                        <Card.Img variant="top" src={KTNews} alt="Kieran Tierney injured."/>
                         <Card.Body>
                             <Card.Title>Tierney out for the season.</Card.Title>
                             <Card.Text>

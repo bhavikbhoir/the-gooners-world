@@ -7,7 +7,7 @@ export default class Transfer2 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Holding}/>
+                        <Card.Img variant="top" src={Holding} alt="Rob Holding to stay at Arsenal" />
                         <Card.Body>
                             <Card.Title>Rob Holding to stay at Arsenal <span role="img" aria-label="red icon">🔴</span></Card.Title>
                             <Card.Text>

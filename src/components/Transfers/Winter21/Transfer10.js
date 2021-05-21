@@ -7,7 +7,7 @@ export default class Transfer10 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Kola} />
+                        <Card.Img variant="top" src={Kola} alt="Kolasinac joins Schalke!" />
                         <Card.Body>
                             <Card.Title>Kolasinac joins Schalke!<span role="img" aria-label="schalke icon"> 🔵</span></Card.Title>
                             <Card.Text>

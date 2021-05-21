@@ -7,7 +7,7 @@ export default class Transfer9 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={LT} />
+                        <Card.Img variant="top" src={LT} alt="Torreira to Atletico Madrid?" />
                         <Card.Body>
                             <Card.Title>Torreira to Atletico Madrid?</Card.Title>
                             <Card.Text>

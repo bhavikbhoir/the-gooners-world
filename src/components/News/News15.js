@@ -7,7 +7,7 @@ export default class News15 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={LuizNews}/>
+                        <Card.Img variant="top" src={LuizNews} alt="Luiz & Tierney Injury update."/>
                         <Card.Body>
                             <Card.Title>Update on Luiz & Tierney.</Card.Title>
                             <Card.Text>
