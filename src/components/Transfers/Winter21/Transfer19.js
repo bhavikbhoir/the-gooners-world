@@ -7,7 +7,7 @@ export default class Transfer18 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={sokratis} />
+                        <Card.Img variant="top" src={sokratis} alt="Sokratis joins Olympiacos" />
                         <Card.Body>
                             <Card.Title>Sokratis joins Olympiacos</Card.Title>
                             <Card.Text>

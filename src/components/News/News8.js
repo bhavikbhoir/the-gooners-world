@@ -7,7 +7,7 @@ export default class News8 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={KT} />
+                        <Card.Img variant="top" src={KT} alt="Kieran Tierney is Okay!" />
                         <Card.Body>
                             <Card.Title>Kieran Tierney is Okay!</Card.Title>
                             <Card.Text>

@@ -3,17 +3,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/Header';
-import Content from './components/Content';
 import Footer from './components/Footer';
-import Social from './components/Social';
 import { Container } from 'react-bootstrap';
-import Quote from './components/Quote';
-import NEWS from './components/News/NEWS';
-import TRANSFER from './components/Transfers/TRANSFER';
-import Trending from './components/Trending';
-import Fixtures from './components/Fixtures';
-import Breaking from './components/Breaking';
-import Stat from './components/Stats/Stat';
 import Home from './components/Home';
 import Center from './components/Center';
 import Archive from './components/Archive';
@@ -25,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Navigation /> */}
+      <Navigation />
       <Container className="p-0">
         <Router>
             <Switch>

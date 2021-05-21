@@ -7,7 +7,7 @@ export default class Transfer3 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Jule}/>
+                        <Card.Img variant="top" src={Jule} alt="Tyreece John-Jules joins Doncaster Rovers on loan!" />
                         <Card.Body>
                             <Card.Title>Tyreece John-Jules joins Doncaster Rovers on loan!</Card.Title>
                             <Card.Text>

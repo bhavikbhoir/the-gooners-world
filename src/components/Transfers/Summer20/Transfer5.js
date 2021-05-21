@@ -7,7 +7,7 @@ export default class Transfer5 extends Component {
         return (
             <div>
              <Card>
-                        <Card.Img variant="top" src={Hector} />
+                        <Card.Img variant="top" src={Hector} alt="Hector Bellerin is staying at Arsenal!" />
                         <Card.Body>
                             <Card.Title>Hector Bellerin is staying at Arsenal! <span role="img" aria-label="heart icon">💪❤️</span></Card.Title>
                             <Card.Text>

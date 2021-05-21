@@ -7,7 +7,7 @@ export default class News3 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Mikel} />
+                        <Card.Img variant="top" src={Mikel} alt="Mikel - The Manager!" />
                         <Card.Body>
                             <Card.Title>Mikel - The Manager!<span role="img" aria-label="manager icon"> 👔</span></Card.Title>
                             <Card.Text>

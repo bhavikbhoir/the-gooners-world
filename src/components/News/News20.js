@@ -7,7 +7,7 @@ export default class News20 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={img}/>
+                        <Card.Img variant="top" src={img} alt="Luiz to leave Arsenal"/>
                         <Card.Body>
                             <Card.Title>Luiz to leave Arsenal!</Card.Title>
                             <Card.Text>

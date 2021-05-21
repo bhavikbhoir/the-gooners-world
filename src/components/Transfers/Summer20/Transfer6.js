@@ -7,7 +7,7 @@ export default class Transfer6 extends Component {
         return (
             <div>
             <Card>
-                        <Card.Img variant="top" src={Emi} />
+                        <Card.Img variant="top" src={Emi} alt="Emi Martinez to leave Arsenal." />
                         <Card.Body>
                             <Card.Title>Emi Martinez to leave Arsenal. <span role="img" aria-label="heartbreak icon"> 💔</span></Card.Title>
                             <Card.Text>

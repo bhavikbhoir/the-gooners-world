@@ -7,7 +7,7 @@ export default class Transfer11 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Brandt} />
+                        <Card.Img variant="top" src={Brandt} alt="Zorc rubishes Julian Brandt-Arsenal rumours!" />
                         <Card.Body>
                             <Card.Title>Zorc rubishes Julian Brandt-Arsenal rumours! <span role="img" aria-label="dortmund icon">🟡⚫️</span></Card.Title>
                             <Card.Text>

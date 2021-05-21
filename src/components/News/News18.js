@@ -7,7 +7,7 @@ export default class News18 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={LFA}/>
+                        <Card.Img variant="top" src={LFA} alt="Bukayo Saka named LFA Young Player of the Year 2021" />
                         <Card.Body>
                             <Card.Title>Bukayo Saka named LFA Young Player of the Year 2021! 🌶</Card.Title>
                             <Card.Text>

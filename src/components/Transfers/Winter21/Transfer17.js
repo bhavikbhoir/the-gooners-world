@@ -7,7 +7,7 @@ export default class Transfer17 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={mesut} />
+                        <Card.Img variant="top" src={mesut} alt="Mesut Özil joins Fenerbahce" />
                         <Card.Body>
                             <Card.Title>Mesut Özil joins Fenerbahce <span role="img" aria-label="heartbreak icon">💔</span></Card.Title>
                             <Card.Text>

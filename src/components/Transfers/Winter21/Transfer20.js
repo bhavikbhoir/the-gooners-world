@@ -7,7 +7,7 @@ export default class Transfer20 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={musti} />
+                        <Card.Img variant="top" src={musti} alt="A busy Deadline day." />
                         <Card.Body>
                             <Card.Title>A busy Deadline day.</Card.Title>
                             <Card.Text>

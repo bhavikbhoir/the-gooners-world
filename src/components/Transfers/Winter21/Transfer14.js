@@ -7,7 +7,7 @@ export default class Transfer13 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={mesut} />
+                        <Card.Img variant="top" src={mesut} alt="End of the road for Mesut?" />
                         <Card.Body>
                             <Card.Title>End of the road for Mesut? <span role="img" aria-label="heartbreak icon">💔</span></Card.Title>
                             <Card.Text>

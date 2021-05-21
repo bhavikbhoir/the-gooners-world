@@ -7,7 +7,7 @@ export default class Transfer7 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={Emi} />
+                        <Card.Img variant="top" src={Emi} alt="Bid accepted for Emi Martinez!" />
                         <Card.Body>
                             <Card.Title>Bid accepted for Emi Martinez!<span role="img" aria-label="glove icon"> 🧤</span></Card.Title>
                             <Card.Text>
