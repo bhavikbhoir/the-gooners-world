@@ -17,6 +17,7 @@ import News18 from './News18';
 import News19 from './News19';
 import News20 from './News20';
 import News21 from './News21';
+import News22 from './News22';
 
 export default function News(props) {
     const [display, setDisplay] = React.useState('none');
@@ -39,35 +40,36 @@ export default function News(props) {
                 <h3>Latest News <span role="img" aria-label="news icon"> 🗞️</span></h3>
                 <Row>
                     <CardColumns>
+                        <News22 />
                         <News21 />
                         <News20 />
-                        <News19 />
                     </CardColumns>
                 </Row>
                 {props.origin !== "center" && <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>} 
                 <Row style={{display: display}}>
                     <CardColumns>
+                        <News19 />
                         <News18 />
                         <News17 />
-                        <News16 />
                     </CardColumns>
                 </Row>
                 <Row style={{display: display}}>
                     <CardColumns>
+                        <News16 />
                         <News15 />
                         <News14 />
-                        <News9 />
                     </CardColumns>
                 </Row>
                 <Row style={{display: display}}>
                     <CardColumns>
+                        <News9 />
                         <News8 />
                         <News7 />
-                        <News3 />
                     </CardColumns>
                 </Row>
                 <Row style={{display: display}}>
                     <CardColumns>
+                        <News3 />
                         <News2 />
                         <News1 />
                         <News13 />
