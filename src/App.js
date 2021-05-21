@@ -22,11 +22,11 @@ function App() {
         <Quote />
         <Content />
         <Fixtures />
+        <Trending />
+        <Breaking />
+        <NEWS />
         <Stat />
         <TRANSFER />
-        <Breaking />
-        <Trending />
-        <NEWS />
         <Social />
       </Container>
       <Footer />
