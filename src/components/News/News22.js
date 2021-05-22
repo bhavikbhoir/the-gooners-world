@@ -11,7 +11,7 @@ export default class News22 extends Component {
                         <Card.Body>
                             <Card.Title>Hibernian <span role="img" aria-label="handshake icon">🤝</span> Arsenal!</Card.Title>
                             <Card.Text>
-                            Scottish Cup finalists Hinernian FC announces pre-season friendly with the Gunners!
+                            Scottish Cup finalists Hibernian FC announces pre-season friendly with the Gunners!
                             <br/>
                             <br/>
                             The match will take place on 13 July at Easter Road. The match will kick off at 6pm (UK Time).
