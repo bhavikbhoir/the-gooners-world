@@ -7,9 +7,9 @@ export default class News21 extends Component {
         return (
             <div>
                 <Card>
-                        <Card.Img variant="top" src={img} alt="Willian rumoured to leave in Summer"/>
+                        <Card.Img variant="top" src={img} alt="Willian rumored to leave in Summer"/>
                         <Card.Body>
-                            <Card.Title>Willian rumoured to leave in Summer!</Card.Title>
+                            <Card.Title>Willian rumored to leave in Summer!</Card.Title>
                             <Card.Text>
                             After David Luiz, fellow Brazilian Willian is expected to leave Arsenal this summer.
                             <br/>
