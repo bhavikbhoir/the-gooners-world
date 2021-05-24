@@ -6,7 +6,7 @@ export default class Trending3 extends Component {
     render() {
         return (
             <div className="trending">
-                <h3 id="kit" style={{margin:"1rem 0"}}>Arsenal drop new limited edition kit! <span role="img" aria-label="black heart icon">🖤</span></h3>
+                <h3 id="kit">Arsenal drop new limited edition kit! <span role="img" aria-label="black heart icon">🖤</span></h3>
                 <Row>
                     <Col lg={8} md={8} sm={12}>
                     {/* <ReactPlayer

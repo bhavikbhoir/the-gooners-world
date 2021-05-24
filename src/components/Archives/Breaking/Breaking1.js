@@ -6,7 +6,7 @@ export default class Breaking1 extends Component {
     render() {
         return (
             <div className="breaking">
-                <h3 style={{margin:"0.5rem 0"}}>#WelcomeAlex</h3>
+                <h3>#WelcomeAlex</h3>
                 <Row>                  
                     <Col lg={7} md={7} sm={12}>
                     <ReactPlayer

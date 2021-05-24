@@ -5,13 +5,9 @@ export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
-                <h3 id="kit" style={{marginBottom:"1rem"}}>The Cannon returns! <span role="img" aria-label="Yellow heart">💛</span></h3>
+                <h3 id="kit">The Cannon returns! <span role="img" aria-label="Yellow heart">💛</span></h3>
                 <Row>
                     <Col lg={6} md={6} sm={12}>
-                    {/* <ReactPlayer
-                        style={{width: "auto"}}
-                        url="https://www.youtube.com/watch?v=0sbBijhhvQ0?autoplay=1"
-                    /> */}
                     <img src={kit} alt="Kieran Tierney dos the new away jersey." style={{width: "100%", height: "100%"}}/>
                     </Col>
                     <Col lg={6} md={6} sm={12}>
@@ -28,6 +24,9 @@ export default class Trending extends Component {
                             <br/>
                             The new kit is available to buy exclusively until May 20 at Arsenal Direct, our flagship Armoury store and official adidas stores.
                         </p>
+                    </Col>
+                    <Col className="card-footer">
+                        <span>May 20, 2021</span>
                     </Col>
                 </Row>
             </div>

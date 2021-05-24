@@ -9,7 +9,7 @@ export default class Breaking extends Component {
         return (
             <div className="breaking">
                 <h3>Breaking 🔥</h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>#WelcomeØdegaard</b></h5>
+                <h5 id="kit"><b>#WelcomeØdegaard</b></h5>
                 <Row>                  
                     <Col lg={7} md={7} sm={12}>
                     <ReactPlayer

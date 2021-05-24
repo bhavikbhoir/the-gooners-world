@@ -6,7 +6,7 @@ export default class Trending4 extends Component {
     render() {
         return (
             <div className="trending">
-                <h3 id="kit" style={{marginBottom:"1rem"}}>The King gets inducted in the PL Hall of Fame! <span role="img" aria-label="king icon">🤴🏼</span></h3>
+                <h3 id="kit">The King gets inducted in the PL Hall of Fame! <span role="img" aria-label="king icon">🤴🏼</span></h3>
                 <Row>
                     <Col lg={7} md={7} sm={12}>
                     {/* <ReactPlayer

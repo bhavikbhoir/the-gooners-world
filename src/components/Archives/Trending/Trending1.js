@@ -7,7 +7,7 @@ export default class Trending1 extends Component {
     render() {
         return (
             <div className="trending">
-                <h3 id="kit" style={{margin:"0.5rem 0"}}>Arsenal drop their third kit for the season 2020/21! <FaHeart /></h3>
+                <h3 id="kit">Arsenal drop their third kit for the season 2020/21! <FaHeart /></h3>
                 <Row>
                     <Col lg={8} md={8} sm={12}>
                     <ReactPlayer

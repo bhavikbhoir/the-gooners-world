@@ -11,13 +11,16 @@ import Breaking from './Breaking';
 import Stat from './Stats/Stat';
 
 function Home() {
+  React.useEffect(()=> {
+    document.getElementById("home").classList.add("active")
+})
   return (
     <div className="App">
         <Quote />
         <Content />
         <Fixtures />
-        <Trending />
         <Breaking />
+        <Trending />
         <NEWS />
         <Stat />
         <TRANSFER />

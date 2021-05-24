@@ -5,6 +5,9 @@ import FCT from '../assets/FCTables.jpg';
 import { FaEnvelope, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export default class About extends Component {
+    componentDidMount() {
+        document.getElementById("about").classList.add("active")
+    }
     render() {
         return (
             <div className="about">
@@ -13,7 +16,7 @@ export default class About extends Component {
                     <Col xs={12} className="about_message">
                         <p>
                             <h3>Your home for all things Arsenal F.C.</h3> 
-                            Started in September 2020 with passion to bring all the Arsenal Fans around the world, 
+                            Kicked off in September 2020 with passion to bring all the Arsenal Fans around the world, 
                             the latest team news, transfer updates, match results and reports along with weekly 
                             stats, trending updates, and matchday polls.
                         </p>
