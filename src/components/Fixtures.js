@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {FaInfoCircle, FaPlay} from 'react-icons/fa'
 import { Row, Col, Button } from 'react-bootstrap'
-import CRYARS from '../assets/CRYARS.jpg';
+import ARSBRI from '../assets/ARSBRI.jpg';
 
 export default class Fixtures extends Component {
     btnClick() {
-        window.open("https://youtu.be/gsEH9EkWDg4");
+        window.open("https://youtu.be/ADZu0sHlIiM");
     }
     detailsbtnClick() {
         window.open("https://www.fctables.com/teams/arsenal-180231/");
@@ -16,10 +16,10 @@ export default class Fixtures extends Component {
                 <h3>Fixtures & Results<span role="img" aria-label="fixtures icon"> 🏟️</span></h3>
                 <Row id="large-fixtures">
                     <Col lg={6} md={12} sm={12} className="last-match">
-                    <iframe title="last-match-large" frameborder="0"  scrolling="no" width="500" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-last-match&lang_id=2&country=67&template=12&team=180231&timezone=America/New_York&time=24&width=500&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>               
+                    <iframe title="last-match-large" frameborder="0"  scrolling="no" width="500" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-last-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=500&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>               
                     </Col>
                     <Col lg={6} md={12} sm={12} className="next-match">
-                    <iframe title="next-match-large" frameborder="0"  scrolling="no" width="500" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-next-match&lang_id=2&country=67&template=12&team=180231&timezone=America/New_York&time=24&width=500&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
+                    <iframe title="next-match-large" frameborder="0"  scrolling="no" width="500" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-next-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=500&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
                     </Col>
                     <Col className="details">
                     <Button variant="danger" onClick={this.detailsbtnClick}><FaInfoCircle/> More Details</Button>
@@ -27,10 +27,10 @@ export default class Fixtures extends Component {
                 </Row>
                 <Row id="mobile-fixtures">
                     <Col lg={12}>
-                    <iframe title="last-match-mobile" frameborder="0"  scrolling="no" width="350" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-last-match&lang_id=2&country=67&template=12&team=180231&timezone=America/New_York&time=24&width=350&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
+                    <iframe title="last-match-mobile" frameborder="0"  scrolling="no" width="350" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-last-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=350&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
                     </Col>
                     <Col lg={12}>
-                    <iframe title="next-match-mobile" frameborder="0"  scrolling="no" width="350" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-next-match&lang_id=2&country=67&template=12&team=180231&timezone=America/New_York&time=24&width=350&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
+                    <iframe title="next-match-mobile" frameborder="0"  scrolling="no" width="350" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-next-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=350&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
                     </Col>
                     <Col className="details">
                     <Button variant="danger" onClick={this.detailsbtnClick}><FaInfoCircle/> More Details</Button>
@@ -39,29 +39,38 @@ export default class Fixtures extends Component {
 
                 <Row> 
                     <Col lg={6} md={12} sm={12}>
-                        <h5 style={{marginBottom:"1rem"}}><b>Late Drama at Selhurst Park<span role="img" aria-label="red-white icon"> 🔴⚪️</span></b></h5>
+                        <h5 style={{marginBottom:"1rem"}}><b>Final day drama!<span role="img" aria-label="red-white icon"> 🔴⚪️</span></b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>CRYSTAL PALACE 1 - 3 ARSENAL</b>
+                            <b>ARSENAL 2-0 BRIGHTON</b>
                             <br/>
                             <br/>
-                            Late goals from Gabriel Martinelli and Nicolas Pepe meant we took all three points home and kept the fight for Europa League spot alive.
+                            A fifth straight win to close out the Premier League season was not enough to secure European football next term.
                             <br/>
                             <br/>
-                            The final away game of the season saw the men's team don the newly released away kit.
+                            A second successive brace from Nicolas gave us all three points on the final day of the season, but results elsewhere didn't go our way, meaning we finished eighth for the second year in a row.
                             <br/>
                             <br/> 
-                            Pepe had given us the lead in the first half with a lovely finish at the end of a slick team move, before Christian Benteke equalised.
+                            With Tottenham and Everton both trailing in their games, we were on course for seventh place, and European football again.
                             <br/>
                             <br/>                         
-                            Just as it appeared we would be held to a frustrating draw, Martinelli popped up in the 91st minute to put us back in front, and Pepe sealed the win late on with a fine individual effort.
+                            However, late Tottenham goals dampened the stadium atmosphere and our final day win wasn't enough to secure a spot in the European Conference league.
                             <br/>
                             <br/>  
-                            <i>We host Brighton next in our final game of the season with 10,000 fans back to Emirates Stadium.</i>
+                            We finish eighth in the Premier League, the same placing as last season (but with five more points), and it means we will not be competing in European football next term, for the first time since 1995/96.
+                            <br/>
+                            <br/>  
+                            The fixtures for 2021/22 season will be released on June 16 at 9am (UK time). 
+                            <br/>
+                            <br/>
+                            A couple of pre-season friendlies have already been announced, away to Hibernian on Tuesday, July 13 and then away to Scottish champions Rangers on Monday July 12.
+                            <br/>
+                            <br/>
+                            The Premier League season kicks off on Saturday, August 14.
                         </p>
                     </Col>
                     <Col lg={6} md={12} sm={12} id="celebrate">
-                    <img src={CRYARS} alt="Gabriel Martinelli scores a late goal against Palace."/>
-                    <caption>Gabriel Martinelli scores a late goal against Palace. (Source: Arsenal.com)</caption>
+                    <img src={ARSBRI} alt="Pepe grabs his second goal of the day."/>
+                    <caption>Pepe grabs his second goal of the day. (Source: Arsenal.com)</caption>
                     </Col>
                     <Col className="highlights">                    
                     <Button variant="danger" onClick={this.btnClick}><FaPlay /> Watch Highlights</Button>
