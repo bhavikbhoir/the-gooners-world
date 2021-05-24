@@ -1,52 +1,79 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
-import TweetEmbed from 'react-tweet-embed'
+import { Row, Col, Table } from 'react-bootstrap'
+import bukayo from '../assets/bukayo.jpg'
 export default class Breaking extends Component {
     render() {
         return (
             <div className="breaking">
                 <h3>Breaking <span role="img" aria-label="breaking news icon"> 🔥</span></h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>Super Drama!<span role="img" aria-label="super league reaction icon"> 😱</span> #NoSuperLeague</b></h5>
+                <h5 id="kit" style={{marginBottom:"1rem"}}><b>Bukayo Saka - Player of the season!<span role="img" aria-label="chilli icon"> 🌶</span></b></h5>
                 <Row>                  
-                    <Col lg={5} md={12} sm={12} className="pt-0 pr-1 pl-1 breaking-asset">
-                    {/* <ReactPlayer
-                        style={{width: "auto"}}
-                        url="https://youtu.be/Gog2TKtBmQE"
-                    /> */}
-                    <TweetEmbed id="1384626900056805379"/>
+                    <Col lg={6} md={12} sm={12} className="pt-0 pr-1 pl-1 breaking-asset">
+                    <img src={bukayo} alt="Bukayo Saka - Player of the season!" style={{width: "100%", height: "100%"}}/>
                     </Col>
-                    <Col lg={7} md={12} sm={12} className="breaking-content">
+                    <Col lg={6} md={12} sm={12} className="breaking-content">
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            April 19-20, 2021 will probably go down as the most dramatic 48 hours of Arsenal History and Football History in general.
+                            The Gooners World family has voted Bukayo Saka as the Arsenal player of the season 2020/21.
                             <br/>
                             <br/>
-                            It all started when Arsenal announced that they'll be one of the founding members of the new breakaway European Super league along with the
-                            other top clubs from Europe including Chelsea, Manchester City, Manchester United, Liverpool, Tottenham, Barcelona, Real Madrid, Atletico Madrid, Juventus, Inter Milan, and AC Milan 
-                            with 3 more clubs joining them as founders soon. The remaining 5 spots will be taken by teams passing the qualification matches to make up the 20 teams for the Super League.
+                            After having a breakthrough season last year and winning the FA Cup, the 19 year old English International produced yet another brilliant season.
                             <br/>
                             <br/>
-                            This News didn't go down well with the Fans, players, excluded clubs, and the officials of UEFA and FIFA who went on to declare that the teams participating in this breakaway league will be banned from the competitions such as the World Cup, Euros, UCL, and UEL.
+                            It didn't take long for Saka to make a mark this season as he registered an assist in the 2020 FA Community Shield, which Arsenal clinched a 5–4 victory over Liverpool in the penalty shootout after the match was 1–1 after 90 minutes.
                             <br/>
                             <br/>
-                            The fans, players, and managers expressed their disappointment in their respective club's decision. 
-                            Hector Bellerin shared the famous Arsene Wenger farewell message - "To all the Arsenal lovers take care of the values of the club. My love and support forever."
+                            Due to his stellar performances, Saka was voted as the Player of the Month on Arsenal official website for three consecutive months (December - February).
+                            On 6 March 2021, Saka made his 50th Premier League appearance for Arsenal in a 1–1 draw against Burnley; he's the second youngest player in club history to reach that milestone.
                             <br/>
                             <br/>
-                            Arsene Wenger himself expressed his thoughts on this league formation - 
-                            “I would say it's a bad idea. Football has to stay united, it’s the most important thing.
-
-                            It’s based on sporting merit and to respect the history that has been built from European football.
-
-                            I believe, personally, that this idea will not go far." [TalkSport]
+                            Saka also earned his first England senior team call when he debuted in a 3-0 victory over Wales on 4 Sepetember 2020.
                             <br/>
                             <br/>
-                            24 hours later, it seemed that the league was in trouble given the circumstances and actions taken by the fans, FA, UEFA, and other official parties.
-                            Chelsea was the first club to withdraw their participation which was followed by Arsenal and other English clubs. Barcelona, Real Madrid, and Juventus have still maintained their participation in this project but it seems to be unlikely that this league will go ahead.
+                            Overall, Bukayo started 41 games this season with 4 substitute appearances and scored 7 goals with 7 assists for the Gunners.
                             <br/>
                             <br/>
-                            In the end, it's all good in the hood but Arsenal's struggles on the pitch continue with a disappointing defeat against Everton. With the Europa league looming over us, it seems to be our only hope of salvaging this season and cementing a spot in next year's Champions League.
+                           <Table>
+                               <thead>
+                                   <th>Competition</th>
+                                   <th>M</th>
+                                   <th>Starts</th>
+                                   <th>Mins</th>
+                                   <th>G</th>
+                                   <th>A</th>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <td>Overall</td>
+                                       <td>45</td>
+                                       <td>41</td>
+                                       <td>3,575</td>
+                                       <td>7</td>
+                                       <td>7</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Premier League</td>
+                                       <td>32</td>
+                                       <td>29</td>
+                                       <td>2,553</td>
+                                       <td>5</td>
+                                       <td>3</td>
+                                   </tr>
+                                   <tr>
+                                       <td>Europa League</td>
+                                       <td>9</td>
+                                       <td>8</td>
+                                       <td>699</td>
+                                       <td>2</td>
+                                       <td>3</td>
+                                   </tr>
+                               </tbody>
+                           </Table>
+                           Pepe (16G 5A) was voted as runner-up and Lacazette (17G 3A) as first runner-up.
                         </p>
                     </Col>  
+                    <Col className="card-footer">
+                        <span>May 23, 2021</span>
+                    </Col>
                 </Row>                    
             </div>
         )

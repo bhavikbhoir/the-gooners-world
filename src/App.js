@@ -22,8 +22,8 @@ function App() {
         <Quote />
         <Content />
         <Fixtures />
-        <Trending />
         <Breaking />
+        <Trending />
         <NEWS />
         <Stat />
         <TRANSFER />
