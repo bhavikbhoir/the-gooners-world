@@ -22,7 +22,7 @@ export default class About extends Component {
                         </p>
                         <br/>
                     </Col>
-                    <Col md={6} sm={12}>
+                    <Col md={6} sm={12} className="mb-2">
                         <h4>Our Partners</h4>
                         <Row>
                         <br/>
@@ -38,7 +38,7 @@ export default class About extends Component {
                             </Col> */}
                         </Row>
                     </Col>
-                    <Col md={6} sm={12}>
+                    <Col md={6} sm={12} className="mb-2">
                         <h4>Contact Us</h4>
                         <div className="contact">
                             <FaEnvelope style={{color: "#0F9D58"}}/> <a href="mailto:	thegoonersworld@gmail.com">thegoonersworld@gmail.com</a>

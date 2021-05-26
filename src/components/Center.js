@@ -25,9 +25,10 @@ export default class Center extends Component {
     }
     render() {
         return (
-            <div className="fixtures">
+            <div className="fixtures m-0">
                 <Fixtures/>
                 
+                <div className="mr-3 ml-3">
                 <h3>League Table</h3>
                 <Row id="large-table">
                     <Col md={1} className="status">
@@ -125,8 +126,9 @@ export default class Center extends Component {
                         </div>
                     </Col>
                 </Row>
+                </div>
 
-                <h3>Previous Games</h3>
+                <h3 className="mr-3 ml-3">Previous Games</h3>
                 <Fixtures14 />
                 <Fixtures13 />
                 <Fixtures12 />

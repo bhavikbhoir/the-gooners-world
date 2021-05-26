@@ -35,11 +35,11 @@ export default class Breaking extends Component {
                            <Table>
                                <thead>
                                    <th>Competition</th>
-                                   <th>Matches</th>
+                                   <th>M</th>
                                    <th>Starts</th>
                                    <th>Mins</th>
-                                   <th>Goals</th>
-                                   <th>Assists</th>
+                                   <th>G</th>
+                                   <th>A</th>
                                </thead>
                                <tbody>
                                    <tr>

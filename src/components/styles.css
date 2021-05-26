@@ -432,7 +432,7 @@ p{
     justify-content: left;
     align-items: center;
     align-content: flex-end; 
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .about_message p{
     width: 50%;
@@ -502,6 +502,12 @@ p{
     }
 }
 @media screen and (max-width: 576px){
+    .navbar-nav .col{
+        padding: 0;
+    }
+    .navbar-nav .col a{
+        font-size: 14px;
+    }
     .fixtures #large-fixtures{
         display: none;
     }

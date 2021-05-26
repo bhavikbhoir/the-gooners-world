@@ -9,13 +9,13 @@ export default class Trending1 extends Component {
             <div className="trending">
                 <h3 id="kit">Arsenal drop their third kit for the season 2020/21! <FaHeart /></h3>
                 <Row>
-                    <Col lg={8} md={8} sm={12}>
+                    <Col lg={6} md={6} sm={12}>
                     <ReactPlayer
                         style={{width: "auto"}}
                         url="https://www.youtube.com/watch?v=0sbBijhhvQ0?autoplay=1"
                     />
                     </Col>
-                    <Col lg={4} md={4} sm={12}>
+                    <Col lg={6} md={6} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
                             <b>This is Family.<span role="img" aria-label="Strong icon">💪</span></b>
                             <br/>
