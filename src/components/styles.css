@@ -1,6 +1,16 @@
+.navbar {
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+.navbar button {
+    border: none;
+}
 .navbar-nav {
     width: 100%;
     display: block;
+}
+.navbar-nav .row {
+    margin: 0;
 }
 .navbar-nav svg{
     margin-top: -4px;
@@ -115,6 +125,77 @@ p{
     /* margin-top: -1rem; */
     padding: 0;
 }
+.status {
+    padding: 0;
+    max-width: 2.75%;
+}
+#mid-table .status {
+    max-width: 3.25%;
+}
+#ipad-table .status {
+    max-width: 5%;
+}
+.status tr {
+    font-size: 14px;
+    height: 31px;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+}
+.status tr:nth-child(1), .status tr:nth-child(2){
+    height: 29px;
+}
+.status tr:nth-child(3), .legend span:first-child{
+    background-color: gold;
+}
+.status tr:nth-child(4), .status tr:nth-child(5),
+.status tr:nth-child(6), .legend span:nth-child(2){
+    background-color: #162E58;
+}
+.status tr:nth-child(7), .status tr:nth-child(8), .legend span:nth-child(3){
+    background-color: #f39200;
+}
+.status tr:nth-child(9), .legend span:nth-child(6){
+    background-color: green;
+}
+.status tr:nth-child(20), .status tr:nth-child(21),
+.status tr:nth-child(22), .legend span:nth-child(7){
+    background-color: red;
+}
+.legend {
+    font-size: 14px;
+    margin-top: -5rem;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    padding: 1rem 0;
+}
+.legend span {
+    color: #ffffff;
+    margin-left: 2rem;
+    padding: 0.25rem;
+}
+#ipad-table .legend span{
+    font-size: 12px;
+    margin-left: 0.25rem;
+}
+#mid-table .legend {
+    margin-top: -4rem;
+}
+#small-table .legend {
+    margin-top: -1rem;
+}
+#small-table .legend span{
+    margin-left: 0.25rem;
+}
+#small-table .legend span:nth-child(5){
+    background-color: #f39200;
+}
+#small-table .legend span:nth-child(6){
+    background-color: green;
+}
+#small-table .legend span:nth-child(9){
+    background-color: red;
+}
 .pl-vote {
     color:#99824c;
 }
@@ -130,6 +211,23 @@ p{
 }
 #green svg{
     color: green;
+}
+.news-center .card-columns {
+    column-count: 1;
+}
+.news-center .card {
+    display: flex;
+    flex-direction: row;
+}
+.news-center .card-text {
+    font-size: 14px!important;
+}
+.news-center .card img {
+    height: 50%;
+    width: 50%;
+}
+.news-center .card-footer:last-child {
+    position: absolute;
 }
 .carousel-item{
     height: 300px;
@@ -298,6 +396,7 @@ p{
 }
 .archive h3{
     font-weight: 500!important;
+    margin: 0;
 }
 /* .news-center .card {
     flex-direction: row;
@@ -333,7 +432,7 @@ p{
     justify-content: left;
     align-items: center;
     align-content: flex-end; 
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .about_message p{
     width: 50%;
@@ -369,7 +468,46 @@ p{
         display: none;
     }
 }
+@media screen and (min-width: 1280px){
+    .fixtures #large-table{
+        display: flex;
+    }
+    .fixtures #small-table, .fixtures #ipad-table, .fixtures #mid-table{
+        display: none;
+    }
+}
+@media screen and (min-width: 1024px) and (max-width: 1279px){
+    .fixtures #mid-table{
+        display: flex;
+    }
+    .fixtures #small-table, .fixtures #ipad-table, .fixtures #large-table{
+        display: none;
+    }
+}
+@media screen and (min-width: 764px) and (max-width: 1023px){
+    .fixtures #ipad-table{
+        display: flex;
+    }
+    .fixtures #small-table, .fixtures #mid-table, .fixtures #large-table{
+        display: none;
+    }
+}
+@media screen and (max-width: 763px){
+    .fixtures #large-table, .fixtures #ipad-table, .fixtures #mid-table{
+        display: none;
+    }
+    .fixtures #small-table{
+        display: flex;
+        /* text-align: center; */
+    }
+}
 @media screen and (max-width: 576px){
+    .navbar-nav .col{
+        padding: 0;
+    }
+    .navbar-nav .col a{
+        font-size: 14px;
+    }
     .fixtures #large-fixtures{
         display: none;
     }
@@ -395,6 +533,13 @@ p{
     .footer .contact {
         display: block;
         text-align: center;
+    }
+    .news-center .card {
+        flex-direction: column;
+    }
+    .news-center .card img {
+        height: 50%;
+        width: 100%;
     }
 }
 @media screen and (max-width: 991px){

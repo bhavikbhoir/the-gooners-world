@@ -46,28 +46,28 @@ export default function News(props) {
                     </CardColumns>
                 </Row>
                 {props.origin !== "center" && <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>} 
-                <Row style={{display: display}}>
+                <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
                         <News19 />
                         <News18 />
                         <News17 />
                     </CardColumns>
                 </Row>
-                <Row style={{display: display}}>
+                <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
                         <News16 />
                         <News15 />
                         <News14 />
                     </CardColumns>
                 </Row>
-                <Row style={{display: display}}>
+                <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
                         <News9 />
                         <News8 />
                         <News7 />
                     </CardColumns>
                 </Row>
-                <Row style={{display: display}}>
+                <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
                         <News3 />
                         <News2 />

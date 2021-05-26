@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import DB10 from '../assets/DB10.jpg'
-
 export default class Trending4 extends Component {
     render() {
         return (
