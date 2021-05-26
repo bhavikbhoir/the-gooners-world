@@ -7,7 +7,7 @@ import { FaArchive, FaFutbol, FaHome, FaNewspaper, FaQuestionCircle } from 'reac
 function Navigation(){
         
 return (
-        <div>
+        <div className="sticky-navigation">
         <Navbar collapseOnSelect expand="md">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
