@@ -22,10 +22,12 @@ import Transfer17 from './Winter21/Transfer17';
 import Transfer15a from './Winter21/Transfer15a';
 import Transfer19 from './Winter21/Transfer19';
 import Transfer20 from './Winter21/Transfer20';
+import Transfer21 from './Summer21/Transfer1';
+import Transfer22 from './Summer21/Transfer2';
 
 function ControlledTabs() {
 
-const [key, setKey] = useState('winter');
+const [key, setKey] = useState('Summer21');
 const [display, setDisplay] = useState('none')
 const [morebtn, setMoreBtn] = useState('block')
 const [lessbtn, setLessBtn] = useState('none')
@@ -43,10 +45,18 @@ const handleless = () => {
 
     return (
         <Tabs
-            id="controlled-tab-example"
+            id="transfer-tabs"
             activeKey={key}
             onSelect={(k) => setKey(k)}
         >
+            <Tab eventKey="Summer21" title="Summer Updates ☀️">
+                <Row>
+                    <CardColumns>
+                        <Transfer22 />
+                        <Transfer21 />
+                    </CardColumns>
+                </Row>
+            </Tab>
             <Tab eventKey="winter" title="Winter Updates ❄️">
                 <Row>
                     <CardColumns>
@@ -78,7 +88,7 @@ const handleless = () => {
                 </Row>
                 <Button variant="danger" onClick={handleless} style={{display: lessbtn}}>Less News ⬆</Button>
                 </Tab>
-            <Tab eventKey="Summer" title="Previous Updates ☀️">
+            <Tab eventKey="Summer" title="From the Archives ⏮">
                 <Row>
                     <CardColumns>
                         <Transfer9 />
@@ -112,7 +122,7 @@ export default class Transfers extends Component {
         return (
             <div className="transfers">
                 <h3>Latest Transfer updates<span role="img" aria-label="transfer updates icon"> 🔁</span></h3>
-                <h5>The Winter Transfer Window is now Open!<span role="img" aria-label="window open icon"> 👀</span></h5>
+                <h5>The Summer Transfer Window is now Open!<span role="img" aria-label="window open icon"> 👀</span></h5>
                 <ControlledTabs/>
             </div>
         )

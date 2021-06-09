@@ -5,8 +5,8 @@ export default class Breaking extends Component {
     render() {
         return (
             <div className="breaking">
-                <h3>Breaking <span role="img" aria-label="breaking news icon"> 🔥</span></h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}><b>Bukayo Saka - Player of the season!<span role="img" aria-label="chilli icon"> 🌶</span></b></h5>
+                <h3 className="pb-0">Breaking <span role="img" aria-label="breaking news icon"> 🔥</span></h3>
+                <h5 id="kit" style={{marginBottom:"1rem"}}>Bukayo Saka - Player of the season!<span role="img" aria-label="chilli icon"> 🌶</span></h5>
                 <Row>                  
                     <Col lg={6} md={12} sm={12} className="pt-0 pr-1 pl-1 breaking-asset">
                     <img src={bukayo} alt="Bukayo Saka - Player of the season!" style={{width: "100%", height: "100%"}}/>
