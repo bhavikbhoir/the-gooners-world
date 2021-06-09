@@ -30,7 +30,7 @@ export default class Fixtures13 extends Component {
                             We displayed a strong defense for the rest of the game after scoring the early goal.
                             <br/>
                             <br/>                         
-                            After a hard fought game, we managed to secure our first double over the London rivals since 20003/2004, with our first victory at Stamford Bridge since that famous 5-3 in 2011.
+                            After a hard fought game, we managed to secure our first double over the London rivals since 2003/2004, with our first victory at Stamford Bridge since that famous 5-3 in 2011.
                             <br/>
                             <br/>   
                             {/* We sit 9th in the table with 52 points and 6 points away from 5th place West Ham. The gunners will hope that other results to go their way in order to have a chance at 
