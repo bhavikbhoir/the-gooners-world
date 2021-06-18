@@ -24,6 +24,9 @@ import Transfer19 from './Winter21/Transfer19';
 import Transfer20 from './Winter21/Transfer20';
 import Transfer21 from './Summer21/Transfer1';
 import Transfer22 from './Summer21/Transfer2';
+import Transfer23 from './Summer21/Transfer3';
+import Transfer24 from './Summer21/Transfer4';
+import Transfer25 from './Summer21/Transfer5';
 
 function ControlledTabs() {
 
@@ -51,6 +54,11 @@ const handleless = () => {
         >
             <Tab eventKey="Summer21" title="Summer Updates ☀️">
                 <Row>
+                    <CardColumns>
+                        <Transfer25 />
+                        <Transfer24 />
+                        <Transfer23 />
+                    </CardColumns>
                     <CardColumns>
                         <Transfer22 />
                         <Transfer21 />
