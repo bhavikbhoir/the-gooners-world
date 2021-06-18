@@ -20,10 +20,10 @@ function Home() {
         <Quote />
         <Content />
         <Recap />
+        <Trending />
         <TRANSFER />
         <NEWS />
         <Breaking />
-        <Trending />
         <Fixtures />
         <Stat />
         <Social />
