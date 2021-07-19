@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col  } from 'react-bootstrap'
 import Fixtures from './Fixtures';
-import Fixtures12 from './FixturesList/Fixtures12';
 import Fixtures13 from './FixturesList/Fixtures13';
 import Fixtures14 from './FixturesList/Fixtures14';
+import Fixtures15 from './FixturesList/Fixtures15';
 
 export default class Center extends Component {
     constructor(props) {
@@ -128,10 +128,10 @@ export default class Center extends Component {
                 </Row>
                 </div>
 
-                <h3 className="mr-3 ml-3">Previous Games</h3>
+                <h3 className="mr-3">Previous Games</h3>
+                <Fixtures15 />
                 <Fixtures14 />
                 <Fixtures13 />
-                <Fixtures12 />
             </div>
         )
     }
