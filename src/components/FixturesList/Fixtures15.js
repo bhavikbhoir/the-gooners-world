@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {FaInfoCircle} from 'react-icons/fa'
+import {FaPlay} from 'react-icons/fa'
 import { Row, Col, Button } from 'react-bootstrap'
-// import ARSBRI from '../assets/ARSBRI.jpg';
+import ARSBRI from '../../assets/ARSBRI.jpg';
 
-export default class Fixtures extends Component {
+export default class Fixtures15 extends Component {
     btnClick() {
         window.open("https://youtu.be/ADZu0sHlIiM");
     }
@@ -13,32 +13,7 @@ export default class Fixtures extends Component {
     render() {
         return (
             <div className="fixtures">
-                <h3>Fixtures & Results<span role="img" aria-label="fixtures icon"> 🏟️</span></h3>
-                <Row id="large-fixtures">
-                    <Col lg={6} md={12} sm={12} className="last-match">
-                    <iframe title="last-match-large" frameborder="0"  scrolling="no" width="500" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-last-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=500&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>               
-                    </Col>
-                    <Col lg={6} md={12} sm={12} className="next-match">
-                    <iframe title="next-match-large" frameborder="0"  scrolling="no" width="500" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-next-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=500&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
-                    </Col>
-                    <Col className="details">
-                    <Button variant="danger" onClick={this.detailsbtnClick}><FaInfoCircle/> More Details</Button>
-                    </Col>
-                </Row>
-                <Row id="mobile-fixtures">
-                    <Col lg={12}>
-                    <iframe title="last-match-mobile" frameborder="0"  scrolling="no" width="350" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-last-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=350&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
-                    </Col>
-                    <Col lg={12}>
-                    <iframe title="next-match-mobile" frameborder="0"  scrolling="no" width="350" height="200" src="https://www.fctables.com/teams/arsenal-180231/iframe/?type=team-next-match&lang_id=2&country=67&template=12&team=180231&timezone=Europe/London&time=12&width=350&height=200&font=Helvetica&fs=14&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&scfs=30&scfc=333333&scb=1&sclg=1&teamls=80&sh=1&hfb=1&hbc=FFFFFF&hfc=000000"></iframe>
-                    </Col>
-                    <Col className="details">
-                    <Button variant="danger" onClick={this.detailsbtnClick}><FaInfoCircle/> More Details</Button>
-                    </Col>
-                </Row>
-
-                {/* Match Report will be available from first official matchday */}
-                {/* <Row> 
+                <Row> 
                     <Col lg={6} md={12} sm={12}>
                         <h5 style={{marginBottom:"1rem"}}><b>Final day drama!<span role="img" aria-label="red-white icon"> 🔴⚪️</span></b></h5>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
@@ -77,7 +52,6 @@ export default class Fixtures extends Component {
                     <Button variant="danger" onClick={this.btnClick}><FaPlay /> Watch Highlights</Button>
                     </Col>
                 </Row>
-                     */}
             </div>
         )
     }

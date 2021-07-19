@@ -9,7 +9,7 @@ export default class Transfer4 extends Component {
                 <Card>
                         <Card.Img variant="top" src={mod} alt="Arsenal's search for #10 continues!" />
                         <Card.Body>
-                            <Card.Title>Arsenal's 🔍 for #10 continues! <span role="img" aria-label="search-icon"></span></Card.Title>
+                            <Card.Title>Arsenal's <span role="img" aria-label="search-icon">🔍</span> for #10 continues! </Card.Title>
                             <Card.Text>
                             Martin Odegaard will stay at Real Madrid as things stand. 
                             Arsenal's search for #10 continues this summer with James Madison rumoured to be another target on the list.

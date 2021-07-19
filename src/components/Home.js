@@ -9,7 +9,6 @@ import Trending from './Trending';
 import Fixtures from './Fixtures';
 import Breaking from './Breaking';
 import Stat from './Stats/Stat';
-import Recap from './Recap';
 
 function Home() {
   React.useEffect(()=> {
@@ -19,12 +18,11 @@ function Home() {
     <div className="App">
         <Quote />
         <Content />
-        <Recap />
+        <Fixtures />
         <Trending />
+        <Breaking />
         <TRANSFER />
         <NEWS />
-        <Breaking />
-        <Fixtures />
         <Stat />
         <Social />
     </div>

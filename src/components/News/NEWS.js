@@ -19,6 +19,7 @@ import News20 from './News20';
 import News21 from './News21';
 import News22 from './News22';
 import News23 from './News23';
+import News24 from './News24';
 
 export default function News(props) {
     const [display, setDisplay] = React.useState('none');
@@ -41,35 +42,36 @@ export default function News(props) {
                 <h3>Latest News <span role="img" aria-label="news icon"> 🗞️</span></h3>
                 <Row>
                     <CardColumns>
+                        <News24 />
                         <News23 />
                         <News22 />
-                        <News21 />
                     </CardColumns>
                 </Row>
                 {props.origin !== "center" && <Button variant="danger" onClick={handlemore} style={{display: morebtn}}>More News ⬇</Button>} 
                 <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
+                        <News21 />
                         <News20 />
                         <News19 />
-                        <News18 />
                     </CardColumns>
                 </Row>
                 <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
+                        <News18 />
                         <News17 />
                         <News16 />
-                        <News15 />
                     </CardColumns>
                 </Row>
                 <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
+                        <News15 />
                         <News14 />
                         <News9 />
-                        <News8 />
                     </CardColumns>
                 </Row>
                 <Row style={{display: props.origin !== "center" ? display : "block"}}>
                     <CardColumns>
+                        <News8 />
                         <News7 />
                         <News3 />
                         <News2 />

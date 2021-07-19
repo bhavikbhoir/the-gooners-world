@@ -1,35 +1,32 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import fixtures from '../assets/fixtures.jpg'
+import kit2122 from '../assets/kit2122.jpg'
 export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
                 <h3 className="pb-0">Trending <span role="img" aria-label="trending news icon"> ✨</span></h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}>Premier League Fixtures announced! <span role="img" aria-label="fixtures icon">🆚</span></h5>
+                <h5 id="kit" style={{marginBottom:"1rem"}}>The new home kit is here! <span role="img" aria-label="kit2122 icon">😍</span></h5>
                 <Row>
-                    <Col lg={7} md={7} sm={12}>
-                    <img src={fixtures} alt="Premier League Fixtures announced! (Source: Arsenal.com)" style={{width: "100%", height: "100%"}}/>
-                    </Col>
-                    <Col lg={5} md={5} sm={12}>
+                    <Col lg={6} md={6} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            <b>The 2021/22 Premier League fixture list is out!</b>
+                            Our new adidas home kit for 2021/22 has finally been revealed!
                             <br/>
                             <br/>
-                            We'll open the campaign with a trip across London to take on top-flight new boys Brentford, before hosting Chelsea at Emirates Stadium and then hitting the road to go to the champions, Manchester City.
+                            As excitement builds towards a new season with our fans back at Emirates Stadium and Meadow Park, we’re delighted to reveal our new home kit which will be worn by our women’s, men’s and academy teams.
                             <br/>
                             <br/>
-                            Our first north London derby of the season comes on September 25 as we host Tottenham, with the reverse fixture taking place on January 15.
+                            The new kit will be worn on pitch for the first time in Saturday's commemorative friendly against Rangers, which forms part of the Scottish champions’ 150th anniversary celebrations. 
                             <br/>
                             <br/>
-                            The run-in sees us welcome Leeds to Emirates Stadium on May 7, before a trip to St James’ Park to take on Newcastle and then hosting Everton on the final day.
-                            <br/>
-                            <br/>
-                            Click <a href="https://www.arsenal.com/fixtures" target="_blank" role="button">here</a> for the complete fixture list!
+                            The new kit is available to buy today exclusively at Arsenal Direct, the Armoury and online and in-store with adidas. Wider release with select retailers will be available from July 23.
                         </p>
                     </Col>
+                    <Col lg={6} md={6} sm={12} className="p-0">
+                    <img src={kit2122} alt="The new home kit is here! (Source: Arsenal.com)" style={{width: "100%", height: "100%"}}/>
+                    </Col>
                     <Col className="card-footer">
-                        <span>June 16, 2021</span>
+                        <span>July 16, 2021</span>
                     </Col>
                 </Row>
             </div>
