@@ -475,6 +475,48 @@ p{
     padding: 0.5rem 0;
     border-bottom: 1px solid grey!important;
 }
+#quick-news {
+    overflow: hidden;
+	padding: 0.25rem 0;
+    color: white;
+	background: rgb(240, 0, 0);
+    margin-bottom: 0.25rem;
+}
+#quick-news .news {
+	position: relative; 
+    width: 100%;
+}
+.news ul {
+    justify-content: space-evenly;
+    margin: auto;
+    display: -webkit-inline-box;
+}
+.news li {
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+.x1 {
+    animation: loopNews 25s linear infinite;
+	-webkit-animation: loopNews 25s linear infinite;
+	-moz-animation: loopNews 25s linear infinite;
+	-o-animation: loopNews 25s linear infinite;
+}
+@keyframes loopNews {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-webkit-keyframes loopNews {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-moz-keyframes loopNews {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-o-keyframes loopNews {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
 @media screen and (min-width: 577px){
     .fixtures #large-fixtures{
         display: flex;
@@ -555,6 +597,12 @@ p{
     .news-center .card img {
         height: 50%;
         width: 100%;
+    }
+    .x1 {
+        animation: loopNews 10s linear infinite;
+        -webkit-animation: loopNews 10s linear infinite;
+        -moz-animation: loopNews 10s linear infinite;
+        -o-animation: loopNews 10s linear infinite;
     }
 }
 @media screen and (max-width: 991px){

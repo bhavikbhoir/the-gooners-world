@@ -19,8 +19,8 @@ function Home() {
         <Quote />
         <Content />
         <Fixtures />
-        <Trending />
         <Breaking />
+        <Trending />
         <TRANSFER />
         <NEWS />
         <Stat />
