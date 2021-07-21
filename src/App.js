@@ -11,12 +11,14 @@ import Archive from './components/Archive';
 import NewsCenter from './components/News_center';
 import About from './components/About';
 import Navigation from './components/Navbar';
+import QuickLook from './components/QuickLook';
 
 function App() {
   return (
     <div className="App">
       <Header />
       <Navigation />
+      <QuickLook />
       <Container className="p-0">
         <Router>
             <Switch>

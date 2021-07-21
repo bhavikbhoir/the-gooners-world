@@ -14,6 +14,12 @@ export default class News24 extends Component {
                             Kieran Tierney has signed a new 5-year contract at Arsenal. 
                             <br/>
                             <br/>
+                            Since joining us from Celtic in the summer of 2019, the Scotland international has impressed with his consistently high-quality performances, making 62 appearances and becoming an integral part of the team.
+                            <br/>
+                            <br/>
+                            The 24-year-old defender has established himself as a Premier League regular and played a huge role in lifting the Emirates FA Cup in his first season with us, setting up the winning goal in the semi-final, before again starring at Wembley in the final win over Chelsea.
+                            <br/>
+                            <br/>
                             <b>Source:</b> Arsenal Official
                             </Card.Text>
                         </Card.Body>
