@@ -9,6 +9,7 @@ import Trending from './Trending';
 import Fixtures from './Fixtures';
 import Breaking from './Breaking';
 import Stat from './Stats/Stat';
+import QuickLook from './QuickLook';
 
 function Home() {
   React.useEffect(()=> {
@@ -16,11 +17,12 @@ function Home() {
 })
   return (
     <div className="App">
+        <QuickLook />
         <Quote />
         <Content />
         <Fixtures />
-        <Breaking />
         <Trending />
+        <Breaking />
         <TRANSFER />
         <NEWS />
         <Stat />

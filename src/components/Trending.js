@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import kit2122 from '../assets/kit2122.jpg'
+import esr10 from '../assets/esr10.jpg'
 export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
                 <h3 className="pb-0">Trending <span role="img" aria-label="trending news icon"> ✨</span></h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}>The new home kit is here! <span role="img" aria-label="kit2122 icon">😍</span></h5>
+                <h5 id="kit" style={{marginBottom:"1rem"}}>New Contract. <span  role="img" aria-label="pen icon">🖊️</span> New Number. <span role="img" aria-label="esr10 icon">🔟</span></h5>
                 <Row>
                     <Col lg={6} md={6} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            Our new adidas home kit for 2021/22 has finally been revealed!
+                            Emile Smith Rowe signs new long-term deal
                             <br/>
                             <br/>
-                            As excitement builds towards a new season with our fans back at Emirates Stadium and Meadow Park, we’re delighted to reveal our new home kit which will be worn by our women’s, men’s and academy teams.
+                            The attacking midfielder has been with us since the age of nine and progressed through the ranks at our Hale End academy, featuring for all our youth sides during his development with the club. 
                             <br/>
                             <br/>
-                            The new kit will be worn on pitch for the first time in Saturday's commemorative friendly against Rangers, which forms part of the Scottish champions’ 150th anniversary celebrations. 
+                            To coincide with his new long-term contract, Arsenal also revealed that Emile will wear the No 10 shirt for the 2021/22 season.  
                             <br/>
                             <br/>
-                            The new kit is available to buy today exclusively at Arsenal Direct, the Armoury and online and in-store with adidas. Wider release with select retailers will be available from July 23.
+                            On this occasion, Smith Rowe said, "I can't wait to carry on playing for this wonderful club. [Signing my new contract] means so much to me. I've been waiting for it, and to carry on playing for this club, it means so much."    
                         </p>
                     </Col>
                     <Col lg={6} md={6} sm={12} className="p-0">
-                    <img src={kit2122} alt="The new home kit is here! (Source: Arsenal.com)" style={{width: "100%", height: "100%"}}/>
+                    <img src={esr10} alt="Emile Smith Rowe signs new long-term deal" style={{width: "100%", height: "100%"}}/>
                     </Col>
                     <Col className="card-footer">
-                        <span>July 16, 2021</span>
+                        <span>July 22, 2021</span>
                     </Col>
                 </Row>
             </div>
