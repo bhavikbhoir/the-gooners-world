@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../components/styles.css';
 import { Row, Col } from 'react-bootstrap';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import { Timeline } from 'react-twitter-widgets'
 import { FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export default class Social extends Component {
@@ -16,10 +16,18 @@ export default class Social extends Component {
                         data-show-count="false">
                         <FaTwitter /> Follow @TheGoonersWorld</a>
                         </button>
-                        <TwitterTimelineEmbed
-                        sourceType="profile"
-                        screenName="thegoonersworld"
-                        options={{height: 913}}
+                        <Timeline
+                        dataSource={{
+                            sourceType: 'profile',
+                            screenName: 'thegoonersworld'
+                        }}
+                        renderError={_err =>
+                            <span style={{padding: "1rem 0", color: "red"}}>Sorry! Something went wrong!</span>
+                          }
+                        options={{
+                            height: '913',
+                            id: "profile:thegoonersworld" //fix for timeline break
+                        }}
                         />
                     </Col>
                     <Col id="insta">
