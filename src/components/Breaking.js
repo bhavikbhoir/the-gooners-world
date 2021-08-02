@@ -22,10 +22,10 @@ export default class Breaking extends Component {
                             Technical director Edu said: “Ben has been a key target this summer. He has so many qualities which make us so excited he’s joining us. Ben’s a young English player with a great future. He’s very strong defensively, good on the ball with a great passing range. We’re delighted Ben’s signed and we look forward to him growing with us.”
                             <br/>
                             <br/>
-                            Ben will wear the No 4 shirt and will immediately join up with his new team-mates ahead of The Mind Series friendly match at home to Chelsea on Sunday.
-                            {/* <br/>
+                            Mikel Arteta said: “Ben was a top target for us and it’s great that we’ve completed his signing. Ben has been educated with two very good clubs, Brighton and Leeds, in recent seasons. He has benefitted well from two very good coaching set-ups and has shown with both Brighton and on loan with Leeds what a strong talent he is."
                             <br/>
-                            Albert will wear the No 23 shirt and have the name Sambi on the back. */}
+                            <br/>
+                            Ben will wear the No 4 shirt and will immediately join up with his new team-mates ahead of The Mind Series friendly match at home to Chelsea on Sunday.
                         </p>
                     </Col>  
                     <Col className="card-footer">

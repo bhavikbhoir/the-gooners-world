@@ -18,10 +18,10 @@ export default function QuickLook() {
             <div className="news x1">
                 <ul>
                     <li onClick={() => handleScroll("news")}>
-                        BREAKING: Arsenal cancel US Tour! <span role="img" aria-label="breaking news icon"> 🔥</span>
+                        BREAKING: Granit Xhaka stays! <span role="img" aria-label="breaking news icon"> 🔥</span>
                     </li>
                     <li onClick={() => handleScroll("transfer")}>
-                        TRANSFER: Welcome Sambi Lokonga! <span role="img" aria-label="signings icon"> ✍️</span>
+                        TRANSFER: Welcome Ben White! <span role="img" aria-label="signings icon"> ✍️</span>
                     </li>
                     <li onClick={() => handleScroll("trending")}>
                         TRENDING: Emile Smith Rowe signs new long-term deal! <span role="img" aria-label="kit2122 icon">😍</span>
