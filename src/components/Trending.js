@@ -1,32 +1,33 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import esr10 from '../assets/esr10.jpg'
+import third from '../assets/third.jpg'
 export default class Trending extends Component {
     render() {
         return (
             <div className="trending">
                 <h3 className="pb-0">Trending <span role="img" aria-label="trending news icon"> ✨</span></h3>
-                <h5 id="kit" style={{marginBottom:"1rem"}}>New Contract. <span  role="img" aria-label="pen icon">🖊️</span> New Number. <span role="img" aria-label="esr10 icon">🔟</span></h5>
+                <h5 id="kit" style={{marginBottom:"1rem"}}>The Blue Bolt is here.</h5>
                 <Row>
                     <Col lg={6} md={6} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>
-                            Emile Smith Rowe signs new long-term deal
+                            Arsenal released their new third kit for the 2021/22 season.
                             <br/>
                             <br/>
-                            The attacking midfielder has been with us since the age of nine and progressed through the ranks at our Hale End academy, featuring for all our youth sides during his development with the club. 
+                            Our striking new kit takes inspiration from 90s style and culture and has a bold lightning pattern running throughout. 
                             <br/>
                             <br/>
-                            To coincide with his new long-term contract, Arsenal also revealed that Emile will wear the No 10 shirt for the 2021/22 season.  
+                            The shirt is a combination of different tones of blue with a scarlet outline and will be accompanied with dark blue shorts and socks. 
                             <br/>
                             <br/>
-                            On this occasion, Smith Rowe said, "I can't wait to carry on playing for this wonderful club. [Signing my new contract] means so much to me. I've been waiting for it, and to carry on playing for this club, it means so much."    
+                            The new kit will be worn on pitch for the first time in our Premier League curtain raiser against Brentford on Friday.
+                            The new kit is available to buy today exclusively at Arsenal Direct, the Armoury and online and in-store with adidas. 
                         </p>
                     </Col>
                     <Col lg={6} md={6} sm={12} className="p-0">
-                    <img src={esr10} alt="Emile Smith Rowe signs new long-term deal" style={{width: "100%", height: "100%"}}/>
+                    <img src={third} alt="Arsenal presents their new third kit for the " style={{width: "100%", height: "100%"}}/>
                     </Col>
                     <Col className="card-footer">
-                        <span>July 22, 2021</span>
+                        <span>Aug 13, 2021</span>
                     </Col>
                 </Row>
             </div>

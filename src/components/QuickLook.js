@@ -17,14 +17,14 @@ export default function QuickLook() {
         <div id="quick-news">
             <div className="news x1">
                 <ul>
-                    <li onClick={() => handleScroll("news")}>
-                        BREAKING: Granit Xhaka stays! <span role="img" aria-label="breaking news icon"> 🔥</span>
-                    </li>
                     <li onClick={() => handleScroll("transfer")}>
-                        TRANSFER: Welcome Ben White! <span role="img" aria-label="signings icon"> ✍️</span>
+                        TRANSFER: Friday Delight for the Gunners! <span role="img" aria-label="signings icon"> ✍️</span>
                     </li>
                     <li onClick={() => handleScroll("trending")}>
-                        TRENDING: Emile Smith Rowe signs new long-term deal! <span role="img" aria-label="kit2122 icon">😍</span>
+                        TRENDING: Arsenal released their new third kit for the 2021/22 season. <span role="img" aria-label="kit2122 icon">😍</span>
+                    </li>
+                    <li onClick={() => handleScroll("news")}>
+                        BREAKING: Joe leaves for Newcastle! <span role="img" aria-label="breaking news icon"> 🔥</span>
                     </li>
                 </ul>
             </div>
