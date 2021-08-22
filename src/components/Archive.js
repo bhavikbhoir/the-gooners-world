@@ -13,6 +13,8 @@ import Trending7 from './Archives/Trending/Trending7'
 import Trending8 from './Archives/Trending/Trending8'
 import Recap from './Recap'
 import Breaking6 from './Archives/Breaking/Breaking6'
+import Trending9 from './Archives/Trending/Trending9'
+import Breaking7 from './Archives/Breaking/Breaking7'
 
 export default class Archive extends Component {
     componentDidMount() {
@@ -21,6 +23,8 @@ export default class Archive extends Component {
     render() {
         return (
             <div className="archive mb-2">
+                <Breaking7 />
+                <Trending9 />
                 <Breaking6 />
                 <Trending8 />
                 <Trending7 />

@@ -23,8 +23,8 @@ function Home() {
         <Fixtures />
         <Breaking />
         <Trending />
-        <TRANSFER />
         <NEWS />
+        <TRANSFER />
         <Stat />
         <Social />
     </div>
