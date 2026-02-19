@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import odegaard from '/the-gooners-world/src/assets/odegaard.jpg';
+import odegaard from '../../..//assets/odegaard.jpg';
 
 export default class Transfer15 extends Component {
     render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import xhaka from '/the-gooners-world/src/assets/xhaka.jpg';
+import xhaka from '../../..//assets/xhaka.jpg';
 
 export default class Transfer2 extends Component {
     render() {

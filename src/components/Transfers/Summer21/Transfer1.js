@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import onana from '/the-gooners-world/src/assets/onana.jpg';
+import onana from '../../..//assets/onana.jpg';
 
 export default class Transfer1 extends Component {
     render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Emi from '/the-gooners-world/src/assets/emi-sold.jpg';
+import Emi from '../../..//assets/emi-sold.jpg';
 import { FaHeart } from 'react-icons/fa';
 
 export default class Transfer8 extends Component {

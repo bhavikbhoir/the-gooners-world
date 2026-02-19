@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import matteo from '/the-gooners-world/src/assets/matteo.jpg';
+import matteo from '../../..//assets/matteo.jpg';
 
 export default class Transfer8 extends Component {
     render() {
