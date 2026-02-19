@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../components/styles.css';
 import { Row, Col } from 'react-bootstrap';
-import { Timeline } from 'react-twitter-widgets'
 import { FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export default class Social extends Component {
@@ -11,52 +10,42 @@ export default class Social extends Component {
                 <h2>Get regular updates on our social media pages.</h2>
                 <Row>
                     <Col id="twitter">
-                    <button><a
-                        href="https://twitter.com/TheGoonersWorld"
-                        data-show-count="false">
-                        <FaTwitter /> Follow @TheGoonersWorld</a>
+                        <button><a
+                            href="https://twitter.com/TheGoonersWorld"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <FaTwitter /> Follow @TheGoonersWorld</a>
                         </button>
-                        <Timeline
-                        dataSource={{
-                            sourceType: 'profile',
-                            screenName: 'thegoonersworld'
-                        }}
-                        renderError={_err =>
-                            <span style={{padding: "1rem 0", color: "red"}}>Sorry! Something went wrong!</span>
-                          }
-                        options={{
-                            height: '913',
-                            id: "profile:thegoonersworld" //fix for timeline break
-                        }}
-                        />
+                        <div style={{padding: "2rem", textAlign: "center", border: "1px solid #ccc", borderRadius: "8px", marginTop: "1rem"}}>
+                            <FaTwitter size={48} style={{color: "#1DA1F2", marginBottom: "1rem"}} />
+                            <p>Follow us on X (Twitter) for live match updates, breaking news, and Arsenal content!</p>
+                            <a 
+                                href="https://twitter.com/TheGoonersWorld" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{display: "inline-block", padding: "10px 20px", background: "#1DA1F2", color: "white", borderRadius: "5px", textDecoration: "none"}}>
+                                View on X
+                            </a>
+                        </div>
                     </Col>
                     <Col id="insta">
-                        <button><a className="instagram-follow-button"
-                        href="https://instagram.com/thegoonersworld"
-                        data-show-count="false">
-                        <FaInstagram /> Follow @thegoonersworld</a>
+                        <button><a 
+                            href="https://instagram.com/thegoonersworld"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <FaInstagram /> Follow @thegoonersworld</a>
                         </button>
-                        {
-                        <blockquote 
-                        class="instagram-media" 
-                        data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/CE277sBjbd1/?utm_source=ig_embed&amp;utm_campaign=loading" 
-                        data-instgrm-version="13"
-                        style={{width:"100%"}}
-                        >
-
-	                    <div> 
-                            <a href="https://www.instagram.com/p/CE277sBjbd1/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank"  rel="noopener noreferrer"> 
-                            <div> 
-			                    <div> View this post on Instagram</div>
-		                    </div>
+                        <div style={{padding: "2rem", textAlign: "center", border: "1px solid #ccc", borderRadius: "8px", marginTop: "1rem"}}>
+                            <FaInstagram size={48} style={{color: "#E1306C", marginBottom: "1rem"}} />
+                            <p>Follow us on Instagram for photos, highlights, and behind-the-scenes Arsenal content!</p>
+                            <a 
+                                href="https://instagram.com/thegoonersworld" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{display: "inline-block", padding: "10px 20px", background: "#E1306C", color: "white", borderRadius: "5px", textDecoration: "none"}}>
+                                View on Instagram
                             </a>
-                            
-                            <p>
-                                <a href="https://www.instagram.com/p/CE277sBjbd1/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank"  rel="noopener noreferrer">A post shared by The Gooners World (@thegoonersworld)</a>
-                            </p>
                         </div>
-                        </blockquote>
-                        }
                     </Col>
                 </Row>
             </div>

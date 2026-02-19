@@ -47,30 +47,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyDBPOhfyiWg2rGI8lyNEXKBM4grufmZ4Kc",
-    authDomain: "the-gooners-world.firebaseapp.com",
-    databaseURL: "https://the-gooners-world.firebaseio.com",
-    projectId: "the-gooners-world",
-    storageBucket: "the-gooners-world.appspot.com",
-    messagingSenderId: "728904719682",
-    appId: "1:728904719682:web:256b0d5e7c68aa49143cdb",
-    measurementId: "G-5LJ27MEB3W"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
+  <!-- Firebase initialization moved to src/firebase.js for security -->
 
 <script src="https://www.footballwebpages.co.uk/embed.js" defer></script>
 <script type="text/javascript" src="https://www.footballwidgets.com/js/widgets.js" async="async"></script>
