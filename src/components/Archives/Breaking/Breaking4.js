@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
-// import TweetEmbed from 'react-tweet-embed'
+import TweetEmbed from 'react-tweet-embed'
 export default class Breaking extends Component {
     render() {
         return (
@@ -8,7 +8,7 @@ export default class Breaking extends Component {
                 <h3>Super Drama!<span role="img" aria-label="super league reaction icon"> 😱</span> #NoSuperLeague</h3>
                 <Row>                  
                     <Col lg={5} md={12} sm={12} className="pt-0 pr-1 pl-1 breaking-asset">
-                    {/* <TweetEmbed id="1384626900056805379"/> */}
+                    <TweetEmbed id="1384626900056805379"/>
                     </Col>
                     <Col lg={7} md={12} sm={12} className="breaking-content">
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>

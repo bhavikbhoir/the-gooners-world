@@ -13,7 +13,32 @@
       }
     ],
     "headers": [
-      {"source": "/service-worker.js", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}
+      {
+        "source": "**",
+        "headers": [
+          {"key": "X-Content-Type-Options", "value": "nosniff"},
+          {"key": "X-Frame-Options", "value": "DENY"},
+          {"key": "X-XSS-Protection", "value": "1; mode=block"},
+          {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
+          {"key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()"},
+          {"key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.gstatic.com https://www.instagram.com https://www.footballwebpages.co.uk https://www.footballwidgets.com; style-src 'self' 'unsafe-inline' https://use.fontawesome.com; img-src 'self' data: https:; font-src 'self' data: https://use.fontawesome.com; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://www.google-analytics.com; frame-src https://www.googletagmanager.com https://www.instagram.com;"}
+        ]
+      },
+      {
+        "source": "/service-worker.js",
+        "headers": [{"key": "Cache-Control", "value": "no-cache"}]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|ico)",
+        "headers": [{"key": "Cache-Control", "value": "max-age=31536000"}]
+      },
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [{"key": "Cache-Control", "value": "max-age=31536000"}]
+      }
     ]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }
