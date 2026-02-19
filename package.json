@@ -9,11 +9,10 @@
     "bootstrap": "^4.5.3",
     "firebase": "^12.9.0",
     "process": "^0.11.10",
-    "react": "^16.14.0",
+    "react": "^18.3.1",
     "react-bootstrap": "^1.4.0",
-    "react-dom": "^16.14.0",
+    "react-dom": "^18.3.1",
     "react-icons": "^3.11.0",
-    "react-instagram-embed": "^1.5.0",
     "react-player": "^2.15.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
@@ -24,7 +23,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "optimize-images": "node optimize-images.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,6 +42,10 @@
     ]
   },
   "devDependencies": {
+    "imagemin": "^9.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-webp": "^8.0.0",
     "react-app-rewired": "^2.2.1"
   }
 }
