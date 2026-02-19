@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Jule from '/the-gooners-world/src/assets/jule.jpg';
+import Jule from '../../..//assets/jule.jpg';
 
 export default class Transfer3 extends Component {
     render() {

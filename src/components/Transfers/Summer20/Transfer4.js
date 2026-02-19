@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Aouar from '/the-gooners-world/src/assets/aouar.jpg';
+import Aouar from '../../..//assets/aouar.jpg';
 
 export default class Transfer4 extends Component {
     render() {

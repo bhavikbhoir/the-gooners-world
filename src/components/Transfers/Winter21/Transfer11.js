@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Brandt from '/the-gooners-world/src/assets/brandt.jpg';
+import Brandt from '../../..//assets/brandt.jpg';
 
 export default class Transfer11 extends Component {
     render() {

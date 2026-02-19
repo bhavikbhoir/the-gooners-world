@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import white from '/the-gooners-world/src/assets/white.jpg';
+import white from '../../..//assets/white.jpg';
 
 export default class Transfer5 extends Component {
     render() {

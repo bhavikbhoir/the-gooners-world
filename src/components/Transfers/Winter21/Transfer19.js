@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import sokratis from '/the-gooners-world/src/assets/sokratis.jpg';
+import sokratis from '../../..//assets/sokratis.jpg';
 
 export default class Transfer18 extends Component {
     render() {

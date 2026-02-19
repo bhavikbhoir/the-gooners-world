@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 import { Row, Col } from 'react-bootstrap'
 
 export default class Breaking2 extends Component {
@@ -9,10 +9,10 @@ export default class Breaking2 extends Component {
                 <h3 id="kit">#WelcomeØdegaard</h3>
                 <Row>                  
                     <Col lg={7} md={7} sm={12}>
-                    <ReactPlayer
+                    {/* <ReactPlayer
                         style={{width: "auto"}}
                         url="https://youtu.be/Gog2TKtBmQE"
-                    />
+                    /> */}
                     </Col>
                     <Col lg={5} md={5} sm={12}>
                         <p style={{textAlign: "left", fontSize: "1.125rem"}}>

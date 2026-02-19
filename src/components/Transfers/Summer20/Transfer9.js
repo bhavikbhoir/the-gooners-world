@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import LT from '/the-gooners-world/src/assets/lt.jpg';
+import LT from '../../..//assets/lt.jpg';
 
 export default class Transfer9 extends Component {
     render() {

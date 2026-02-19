@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Hector from '/the-gooners-world/src/assets/hector.jpg';
+import Hector from '../../..//assets/hector.jpg';
 
 export default class Transfer5 extends Component {
     render() {

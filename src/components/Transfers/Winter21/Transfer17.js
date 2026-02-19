@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import mesut from '/the-gooners-world/src/assets/ByeMesut.jpg';
+import mesut from '../../..//assets/ByeMesut.jpg';
 
 export default class Transfer17 extends Component {
     render() {

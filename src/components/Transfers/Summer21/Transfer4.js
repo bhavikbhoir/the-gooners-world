@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import mod from '/the-gooners-world/src/assets/mod.jpg';
+import mod from '../../..//assets/mod.jpg';
 
 export default class Transfer4 extends Component {
     render() {

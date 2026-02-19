@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Emi from '/the-gooners-world/src/assets/emi.jpg';
+import Emi from '../../../assets/emi.jpg';
 
 export default class Transfer6 extends Component {
     render() {

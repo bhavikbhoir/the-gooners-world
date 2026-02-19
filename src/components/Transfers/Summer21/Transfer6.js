@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import medley from '/the-gooners-world/src/assets/medley.jpg';
+import medley from '../../..//assets/medley.jpg';
 
 export default class Transfer6 extends Component {
     render() {

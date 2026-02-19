@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
-import Signings from '/the-gooners-world/src/assets/signings.jpg';
+import Signings from '../../..//assets/signings.jpg';
 
 export default class Transfer1 extends Component {
     render() {
