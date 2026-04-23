@@ -23,10 +23,12 @@ package-lock.json.backup
 
 # Firebase config (contains API keys)
 src/firebaseConfig.js
+src/firebaseConfig.jsx
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+debug.log
 *.cache
 *.log
 .firebase/hosting.YnVpbGQ.cache
