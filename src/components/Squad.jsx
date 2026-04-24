@@ -47,24 +47,29 @@ export default function Squad() {
     return Math.floor((Date.now() - new Date(dob)) / 31557600000);
   };
 
+  const cell = { verticalAlign: 'middle', padding: '0.5rem 0.75rem', textAlign: 'left' };
+
   return (
     <div style={{ padding: '0 1rem' }}>
-      <h3>Arsenal Squad <span role="img" aria-label="squad">👥</span></h3>
       {sortedGroups.map(([group, players]) => (
         <div key={group} style={{ marginBottom: '1.5rem' }}>
-          <h5 style={{ color: '#dc3545', borderBottom: '2px solid #dc3545', paddingBottom: 4 }}>{group}</h5>
-          <Table striped hover responsive size="sm" style={{ fontSize: '0.875rem' }}>
+          <h5 style={{ color: '#dc3545', borderBottom: '2px solid #dc3545', paddingBottom: 6, marginBottom: 0 }}>{group}</h5>
+          <Table hover responsive style={{ fontSize: '0.9rem', marginBottom: 0 }}>
             <thead>
-              <tr><th>#</th><th>Name</th><th>Position</th><th>Nationality</th><th>Age</th></tr>
+              <tr style={{ background: '#f8f8f8' }}>
+                <th style={{ ...cell, width: '35%' }}>Name</th>
+                <th style={{ ...cell, width: '25%' }}>Position</th>
+                <th style={{ ...cell, width: '25%' }}>Nationality</th>
+                <th style={{ ...cell, width: '15%' }}>Age</th>
+              </tr>
             </thead>
             <tbody>
-              {players.sort((a, b) => (a.shirtNumber || 99) - (b.shirtNumber || 99)).map((p) => (
+              {players.sort((a, b) => a.name.localeCompare(b.name)).map((p) => (
                 <tr key={p.id}>
-                  <td>{p.shirtNumber || '-'}</td>
-                  <td><strong>{p.name}</strong></td>
-                  <td>{p.position && p.position !== 'null' ? p.position : '-'}</td>
-                  <td>{p.nationality || '-'}</td>
-                  <td>{age(p.dateOfBirth)}</td>
+                  <td style={cell}><strong>{p.name}</strong></td>
+                  <td style={{ ...cell, color: '#666' }}>{p.position || '-'}</td>
+                  <td style={cell}>{p.nationality || '-'}</td>
+                  <td style={cell}>{age(p.dateOfBirth)}</td>
                 </tr>
               ))}
             </tbody>
