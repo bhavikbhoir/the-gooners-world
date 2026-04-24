@@ -8,7 +8,7 @@ export default function NewsCenter() {
 
   return (
     <div className="news-center">
-      <NewsFeed />
+      <NewsFeed searchable />
     </div>
   );
 }

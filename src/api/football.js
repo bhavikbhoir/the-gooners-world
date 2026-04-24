@@ -23,6 +23,22 @@ async function apiFetch(url) {
   return res.json();
 }
 
+function mapMatch(m) {
+  return {
+    id: m.id,
+    competition: m.competition?.name,
+    date: m.utcDate,
+    status: m.status,
+    minute: m.minute,
+    home: m.homeTeam.shortName || m.homeTeam.name,
+    homeCrest: m.homeTeam.crest,
+    away: m.awayTeam.shortName || m.awayTeam.name,
+    awayCrest: m.awayTeam.crest,
+    homeScore: m.score?.fullTime?.home ?? m.score?.halfTime?.home,
+    awayScore: m.score?.fullTime?.away ?? m.score?.halfTime?.away,
+  };
+}
+
 export async function fetchStandings() {
   const key = 'tgw_standings';
   const cached = cacheGet(key, 30 * 60 * 1000);
@@ -62,19 +78,47 @@ export async function fetchMatches() {
     : `${BASE}?type=matches`;
 
   const json = await apiFetch(url);
-  const matches = (json.matches || []).map((m) => ({
-    id: m.id,
-    competition: m.competition?.name,
-    date: m.utcDate,
-    status: m.status,
-    home: m.homeTeam.shortName || m.homeTeam.name,
-    homeCrest: m.homeTeam.crest,
-    away: m.awayTeam.shortName || m.awayTeam.name,
-    awayCrest: m.awayTeam.crest,
-    homeScore: m.score?.fullTime?.home,
-    awayScore: m.score?.fullTime?.away,
-  }));
-
+  const matches = (json.matches || []).map(mapMatch);
   cacheSet(key, matches);
   return matches;
+}
+
+export async function fetchLiveMatch() {
+  // No cache — always fresh for live scores
+  const url = isDev
+    ? `${BASE}/teams/${ARSENAL_ID}/matches?status=LIVE,IN_PLAY,PAUSED&limit=1`
+    : `${BASE}?type=live`;
+
+  try {
+    const json = await apiFetch(url);
+    const matches = (json.matches || []).map(mapMatch);
+    return matches[0] || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchSquad() {
+  const key = 'tgw_squad';
+  const cached = cacheGet(key, 24 * 60 * 60 * 1000); // 24hr cache
+  if (cached) return cached;
+
+  const url = isDev
+    ? `${BASE}/teams/${ARSENAL_ID}`
+    : `${BASE}?type=squad`;
+
+  const json = await apiFetch(url);
+  const squad = (json.squad || [])
+    .filter((p) => p.name)
+    .map((p) => ({
+      id: p.id,
+      name: p.name,
+      position: p.position && p.position !== 'null' ? p.position : null,
+      nationality: p.nationality || '',
+      dateOfBirth: p.dateOfBirth || null,
+      shirtNumber: p.shirtNumber || null,
+    }));
+
+  cacheSet(key, squad);
+  return squad;
 }

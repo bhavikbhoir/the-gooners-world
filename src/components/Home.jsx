@@ -6,6 +6,8 @@ import Quote from './Quote';
 import NewsFeed from './News/NewsFeed';
 import Fixtures from './Fixtures';
 import NewsTicker from './NewsTicker';
+import Countdown from './Countdown';
+import LiveScore from './LiveScore';
 
 function Home() {
   React.useEffect(() => {
@@ -15,7 +17,9 @@ function Home() {
   return (
     <div className="App">
       <NewsTicker />
+      <LiveScore />
       <Quote />
+      <Countdown />
       <Content />
       <Fixtures limit={4} />
       <NewsFeed count={5} />
