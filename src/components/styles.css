@@ -222,23 +222,6 @@ p{
 #green svg{
     color: green;
 }
-.news-center .card-columns {
-    column-count: 1;
-}
-.news-center .card {
-    display: flex;
-    flex-direction: row;
-}
-.news-center .card-text {
-    font-size: 14px!important;
-}
-.news-center .card img {
-    height: 50%;
-    width: 50%;
-}
-.news-center .card-footer:last-child {
-    position: absolute;
-}
 .carousel-item{
     height: 300px;
 }
@@ -590,13 +573,6 @@ p{
     .footer .contact {
         display: block;
         text-align: center;
-    }
-    .news-center .card {
-        flex-direction: column;
-    }
-    .news-center .card img {
-        height: 50%;
-        width: 100%;
     }
     .x1 {
         animation: loopNews 10s linear infinite;
