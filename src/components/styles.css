@@ -327,10 +327,18 @@ p{
     margin: 0 0.25rem 0.5rem 1.5rem;
 }
 #twitter a{
-    margin: 0.5rem 0;
+    color: #000;
 }
 #twitter {
     text-align: left;
+}
+#twitter button{
+    border-radius: 4px;
+    padding: 1px 10px 1px 9px;
+    border: 2px solid #000;
+    background-color: #fff;
+    color: #000;
+    margin: 0.5rem 0;
 }
 .twitter-timeline {
     border: 1px solid rgb(219, 219, 219)!important;
@@ -364,17 +372,6 @@ p{
     padding: 1px 10px 1px 9px;
     border: none;
     margin: 0.5rem 0;
-}
-#twitter button{
-    border-radius: 4px;
-    padding: 1px 10px 1px 9px;
-    border: none;
-    background-color: #1da1f2;
-    color: white;
-    margin: 0.5rem 0;
-}
-#twitter a{
-    color: white;
 }
 .btn-danger svg{
     margin-top: -2px;

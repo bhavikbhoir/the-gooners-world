@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaTwitter, FaWhatsapp, FaLink } from 'react-icons/fa';
+import { FaWhatsapp, FaLink } from 'react-icons/fa';
+import XIcon from './XIcon';
 
 export default function ShareButtons({ url, title }) {
   const [copied, setCopied] = useState(false);
@@ -16,8 +17,8 @@ export default function ShareButtons({ url, title }) {
   return (
     <span className="share-buttons">
       <button className="share-buttons__btn" title="Share on X"
-        onClick={() => window.open(`https://twitter.com/intent/tweet?text=${text}&url=${link}`, '_blank', 'noopener,noreferrer')}>
-        <FaTwitter color="#1DA1F2" />
+        onClick={() => window.open(`https://x.com/intent/tweet?text=${text}&url=${link}`, '_blank', 'noopener,noreferrer')}>
+        <XIcon size={14} />
       </button>
       <button className="share-buttons__btn" title="Share on WhatsApp"
         onClick={() => window.open(`https://wa.me/?text=${text}%20${link}`, '_blank', 'noopener,noreferrer')}>

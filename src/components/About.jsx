@@ -1,7 +1,8 @@
 import React from 'react';
 import '../components/styles.scss';
 import { Row, Col } from 'react-bootstrap';
-import { FaEnvelope, FaInstagram, FaTwitter, FaFutbol, FaNewspaper } from 'react-icons/fa';
+import { FaEnvelope, FaInstagram, FaFutbol, FaNewspaper } from 'react-icons/fa';
+import XIcon from './XIcon';
 
 export default function About() {
   React.useEffect(() => {
@@ -35,7 +36,7 @@ export default function About() {
           <div className="contact">
             <FaEnvelope style={{ color: "#0F9D58" }} /> <a href="mailto:thegoonersworld@gmail.com">thegoonersworld@gmail.com</a>
             <br />
-            <FaTwitter style={{ color: "rgb(29, 161, 242)" }} /> <a href="https://twitter.com/TheGoonersWorld">@TheGoonersWorld</a>
+            <XIcon size={20} /> <a href="https://x.com/TheGoonersWorld">@TheGoonersWorld</a>
             <br />
             <FaInstagram style={{ color: "#C13584" }} /> <a href="https://www.instagram.com/thegoonersworld/">@thegoonersworld</a>
           </div>

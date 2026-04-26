@@ -1,7 +1,8 @@
 import React from 'react';
 import '../components/styles.css';
 import { Row, Col } from 'react-bootstrap';
-import { FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import XIcon from './XIcon';
 
 export default function Social() {
     return (
@@ -10,38 +11,38 @@ export default function Social() {
             <Row>
                 <Col id="twitter">
                     <button><a
-                        href="https://twitter.com/TheGoonersWorld"
+                        href="https://x.com/TheGoonersWorld"
                         target="_blank"
                         rel="noopener noreferrer">
-                        <FaTwitter /> Follow @TheGoonersWorld</a>
+                        <XIcon size={14} /> Follow @TheGoonersWorld</a>
                     </button>
-                    <div style={{padding: "2rem", textAlign: "center", border: "1px solid #ccc", borderRadius: "8px", marginTop: "1rem"}}>
-                        <FaTwitter size={48} style={{color: "#1DA1F2", marginBottom: "1rem"}} />
-                        <p>Follow us on X (Twitter) for live match updates, breaking news, and Arsenal content!</p>
-                        <a 
-                            href="https://twitter.com/TheGoonersWorld" 
-                            target="_blank" 
+                    <div className="social__card">
+                        <XIcon size={48} />
+                        <p>Follow us on X for live match updates, breaking news, and Arsenal content!</p>
+                        <a
+                            href="https://x.com/TheGoonersWorld"
+                            target="_blank"
                             rel="noopener noreferrer"
-                            style={{display: "inline-block", padding: "10px 20px", background: "#1DA1F2", color: "white", borderRadius: "5px", textDecoration: "none"}}>
+                            className="social__btn social__btn--x">
                             View on X
                         </a>
                     </div>
                 </Col>
                 <Col id="insta">
-                    <button><a 
+                    <button><a
                         href="https://instagram.com/thegoonersworld"
                         target="_blank"
                         rel="noopener noreferrer">
                         <FaInstagram /> Follow @thegoonersworld</a>
                     </button>
-                    <div style={{padding: "2rem", textAlign: "center", border: "1px solid #ccc", borderRadius: "8px", marginTop: "1rem"}}>
+                    <div className="social__card">
                         <FaInstagram size={48} style={{color: "#E1306C", marginBottom: "1rem"}} />
                         <p>Follow us on Instagram for photos, highlights, and behind-the-scenes Arsenal content!</p>
-                        <a 
-                            href="https://instagram.com/thegoonersworld" 
-                            target="_blank" 
+                        <a
+                            href="https://instagram.com/thegoonersworld"
+                            target="_blank"
                             rel="noopener noreferrer"
-                            style={{display: "inline-block", padding: "10px 20px", background: "#E1306C", color: "white", borderRadius: "5px", textDecoration: "none"}}>
+                            className="social__btn social__btn--insta">
                             View on Instagram
                         </a>
                     </div>
