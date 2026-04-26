@@ -509,6 +509,37 @@
 }
 
 // =====================
+// Social
+// =====================
+.social {
+  &__card {
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+
+  &__btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+
+    &--x {
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+    }
+
+    &--insta {
+      background: #E1306C;
+    }
+  }
+}
+
+// =====================
 // About
 // =====================
 .about {
@@ -520,4 +551,11 @@
       margin-bottom: 0.5rem;
     }
   }
+}
+
+.footer__disclaimer {
+  font-size: 0.65rem !important;
+  color: #999;
+  font-weight: normal !important;
+  margin-top: 0.5rem;
 }
