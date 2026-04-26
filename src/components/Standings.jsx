@@ -15,46 +15,43 @@ export default function Standings() {
     return () => { cancelled = true; };
   }, []);
 
-  if (loading) return <div style={{ padding: '2rem', textAlign: 'center' }}>Loading standings...</div>;
+  if (loading) return <div className="loading">Loading standings...</div>;
   if (!table.length) return null;
 
-  const cellStyle = { verticalAlign: 'middle', textAlign: 'center', padding: '0.4rem' };
-  const teamCell = { ...cellStyle, textAlign: 'left', whiteSpace: 'nowrap' };
-
   return (
-    <div style={{ marginTop: '1rem' }}>
+    <div className="standings">
       <h3>Premier League Table</h3>
-      <Table striped bordered hover responsive size="sm" style={{ fontSize: '0.875rem' }}>
-        <thead>
-          <tr style={{ background: '#333', color: '#fff' }}>
-            <th style={cellStyle}>#</th>
-            <th style={teamCell}>Team</th>
-            <th style={cellStyle}>P</th>
-            <th style={cellStyle}>W</th>
-            <th style={cellStyle}>D</th>
-            <th style={cellStyle}>L</th>
-            <th style={cellStyle}>GF</th>
-            <th style={cellStyle}>GA</th>
-            <th style={cellStyle}>GD</th>
-            <th style={cellStyle}>Pts</th>
+      <Table striped bordered hover responsive size="sm" className="standings__table">
+        <thead className="standings__head">
+          <tr>
+            <th className="standings__cell">#</th>
+            <th className="standings__team-cell">Team</th>
+            <th className="standings__cell">P</th>
+            <th className="standings__cell">W</th>
+            <th className="standings__cell">D</th>
+            <th className="standings__cell">L</th>
+            <th className="standings__cell">GF</th>
+            <th className="standings__cell">GA</th>
+            <th className="standings__cell">GD</th>
+            <th className="standings__cell">Pts</th>
           </tr>
         </thead>
         <tbody>
           {table.map((t) => (
-            <tr key={t.position} style={t.isArsenal ? { background: '#dc3545', color: '#fff', fontWeight: 'bold' } : {}}>
-              <td style={cellStyle}>{t.position}</td>
-              <td style={teamCell}>
-                {t.crest && <img src={t.crest} alt="" style={{ width: 20, height: 20, marginRight: 8, verticalAlign: 'middle' }} />}
+            <tr key={t.position} className={t.isArsenal ? 'standings__row--arsenal' : ''}>
+              <td className="standings__cell">{t.position}</td>
+              <td className="standings__team-cell">
+                {t.crest && <img src={t.crest} alt="" className="standings__crest" />}
                 {t.team}
               </td>
-              <td style={cellStyle}>{t.played}</td>
-              <td style={cellStyle}>{t.won}</td>
-              <td style={cellStyle}>{t.draw}</td>
-              <td style={cellStyle}>{t.lost}</td>
-              <td style={cellStyle}>{t.gf}</td>
-              <td style={cellStyle}>{t.ga}</td>
-              <td style={cellStyle}>{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
-              <td style={cellStyle}><strong>{t.points}</strong></td>
+              <td className="standings__cell">{t.played}</td>
+              <td className="standings__cell">{t.won}</td>
+              <td className="standings__cell">{t.draw}</td>
+              <td className="standings__cell">{t.lost}</td>
+              <td className="standings__cell">{t.gf}</td>
+              <td className="standings__cell">{t.ga}</td>
+              <td className="standings__cell">{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
+              <td className="standings__cell"><strong>{t.points}</strong></td>
             </tr>
           ))}
         </tbody>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/styles.css';
+import '../components/styles.scss';
 import { Row, Col } from 'react-bootstrap';
 import { FaEnvelope, FaInstagram, FaTwitter, FaFutbol, FaNewspaper } from 'react-icons/fa';
 
@@ -10,7 +10,7 @@ export default function About() {
 
   return (
     <div className="about">
-      <Row style={{ textAlign: "center" }}>
+      <Row className="text-center">
         <Col xs={12} className="about_message">
           <p>
             <h3>Your home for all things Arsenal F.C.</h3>
@@ -21,11 +21,11 @@ export default function About() {
         </Col>
         <Col md={6} sm={12} className="mb-2">
           <h4>Powered By</h4>
-          <div style={{ textAlign: 'left', padding: '0.5rem 1rem' }}>
-            <p><FaFutbol style={{ color: '#333', marginRight: 8 }} />
+          <div className="about__partners">
+            <p><FaFutbol className="mr-2" />
               <a href="https://www.football-data.org/" target="_blank" rel="noopener noreferrer">Football-Data.org</a> — Live fixtures, results & standings
             </p>
-            <p><FaNewspaper style={{ color: '#333', marginRight: 8 }} />
+            <p><FaNewspaper className="mr-2" />
               <a href="https://newsdata.io/" target="_blank" rel="noopener noreferrer">NewsData.io</a> — Arsenal news feed
             </p>
           </div>

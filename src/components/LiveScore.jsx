@@ -6,32 +6,34 @@ export default function LiveScore() {
 
   useEffect(() => {
     let id;
+    let stopped = false;
+
     const poll = () => {
-      fetchLiveMatch().then((m) => setMatch(m));
+      fetchLiveMatch().then((m) => {
+        if (stopped) return;
+        setMatch(m);
+        // Only keep polling if there's a live match
+        if (m) {
+          id = setTimeout(poll, 30000);
+        }
+      });
     };
+
     poll();
-    id = setInterval(poll, 30000); // poll every 30s
-    return () => clearInterval(id);
+    return () => { stopped = true; clearTimeout(id); };
   }, []);
 
   if (!match) return null;
 
   return (
-    <div style={{
-      background: '#dc3545', color: '#fff', padding: '0.75rem',
-      textAlign: 'center', borderRadius: 8, margin: '0.5rem 0'
-    }}>
-      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
-        🔴 LIVE — {match.competition}
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12 }}>
-        {match.homeCrest && <img src={match.homeCrest} alt="" style={{ width: 28, height: 28 }} />}
+    <div className="live-score">
+      <div className="live-score__badge">🔴 LIVE — {match.competition}</div>
+      <div className="live-score__match">
+        {match.homeCrest && <img src={match.homeCrest} alt="" className="crest-lg" />}
         <strong>{match.home}</strong>
-        <span style={{ fontSize: 22, fontWeight: 'bold', margin: '0 8px' }}>
-          {match.homeScore ?? 0} - {match.awayScore ?? 0}
-        </span>
+        <span className="live-score__score">{match.homeScore ?? 0} - {match.awayScore ?? 0}</span>
         <strong>{match.away}</strong>
-        {match.awayCrest && <img src={match.awayCrest} alt="" style={{ width: 28, height: 28 }} />}
+        {match.awayCrest && <img src={match.awayCrest} alt="" className="crest-lg" />}
       </div>
     </div>
   );
