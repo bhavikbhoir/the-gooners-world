@@ -119,6 +119,13 @@
     margin: 0;
     opacity: 0.9;
   }
+
+  &__h2h {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-bottom: 8px;
+  }
 }
 
 // =====================
@@ -201,6 +208,22 @@
   &__label {
     font-size: 13px;
   }
+
+  &__filter {
+    margin-bottom: 1rem;
+
+    .nav-link {
+      color: #333;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.75rem;
+      cursor: pointer;
+
+      &.active {
+        background: #dc3545;
+        color: #fff;
+      }
+    }
+  }
 }
 
 // =====================
@@ -239,9 +262,13 @@
   }
 
   &__row--arsenal {
-    background: #dc3545;
-    color: #fff;
+    background: #dc3545 !important;
+    color: #fff !important;
     font-weight: bold;
+
+    td {
+      color: #fff !important;
+    }
   }
 }
 
@@ -370,10 +397,115 @@
 }
 
 // =====================
+// CL Bracket
+// =====================
+.cl-bracket {
+  margin-top: 1rem;
+
+  &__stage {
+    margin-bottom: 1.5rem;
+  }
+
+  &__stage-title {
+    color: #1a1a2e;
+    border-bottom: 2px solid #1a1a2e;
+    padding-bottom: 6px;
+
+    &--upcoming {
+      color: #dc3545;
+      border-bottom-color: #dc3545;
+    }
+  }
+
+  &__tie {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  &__team {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--arsenal {
+      background: #dc3545;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+
+  &__name {
+    flex: 1;
+    margin-left: 8px;
+  }
+
+  &__score {
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 24px;
+    text-align: center;
+  }
+
+  &__date {
+    font-size: 0.75rem;
+    color: #999;
+    text-align: center;
+    padding: 4px;
+    border-top: 1px solid #eee;
+  }
+
+  &__upcoming {
+    color: #dc3545;
+    font-weight: 600;
+  }
+}
+
+// =====================
 // Match Center
 // =====================
 .match-center {
   padding: 0 1rem;
+
+  &__tabs {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #dc3545;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    .nav-item {
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      color: #333;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        color: #dc3545;
+      }
+
+      &.active {
+        color: #dc3545;
+        border-bottom-color: #dc3545;
+        background: none;
+      }
+    }
+  }
+
+  &__content {
+    min-height: 400px;
+  }
 }
 
 // =====================

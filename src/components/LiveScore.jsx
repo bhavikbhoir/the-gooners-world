@@ -6,10 +6,21 @@ export default function LiveScore() {
 
   useEffect(() => {
     let id;
-    const poll = () => { fetchLiveMatch().then((m) => setMatch(m)); };
+    let stopped = false;
+
+    const poll = () => {
+      fetchLiveMatch().then((m) => {
+        if (stopped) return;
+        setMatch(m);
+        // Only keep polling if there's a live match
+        if (m) {
+          id = setTimeout(poll, 30000);
+        }
+      });
+    };
+
     poll();
-    id = setInterval(poll, 30000);
-    return () => clearInterval(id);
+    return () => { stopped = true; clearTimeout(id); };
   }, []);
 
   if (!match) return null;

@@ -29,13 +29,14 @@ function mapMatch(m) {
     competition: m.competition?.name,
     date: m.utcDate,
     status: m.status,
-    minute: m.minute,
     home: m.homeTeam.shortName || m.homeTeam.name,
     homeCrest: m.homeTeam.crest,
     away: m.awayTeam.shortName || m.awayTeam.name,
     awayCrest: m.awayTeam.crest,
     homeScore: m.score?.fullTime?.home ?? m.score?.halfTime?.home,
     awayScore: m.score?.fullTime?.away ?? m.score?.halfTime?.away,
+    venue: m.venue,
+    referees: m.referees?.map((r) => r.name) || [],
   };
 }
 
@@ -68,6 +69,61 @@ export async function fetchStandings() {
   return table;
 }
 
+export async function fetchCLStandings() {
+  const key = 'tgw_cl_matches';
+  const cached = cacheGet(key, 15 * 60 * 1000);
+  if (cached) return cached;
+
+  const url = isDev
+    ? `${BASE}/teams/${ARSENAL_ID}/matches?competitions=CL&status=SCHEDULED,TIMED,FINISHED&limit=40`
+    : `${BASE}?type=cl-matches`;
+
+  const json = await apiFetch(url);
+  const clMatches = (json.matches || [])
+    .filter((m) => m.competition?.code === 'CL')
+    .map((m) => ({
+      id: m.id,
+      stage: m.stage,
+      date: m.utcDate,
+      status: m.status,
+      home: m.homeTeam.shortName || m.homeTeam.name,
+      homeCrest: m.homeTeam.crest,
+      homeScore: m.score?.fullTime?.home,
+      away: m.awayTeam.shortName || m.awayTeam.name,
+      awayCrest: m.awayTeam.crest,
+      awayScore: m.score?.fullTime?.away,
+      homeIsArsenal: m.homeTeam.id === ARSENAL_ID,
+      awayIsArsenal: m.awayTeam.id === ARSENAL_ID,
+    }));
+
+  cacheSet(key, clMatches);
+  return clMatches;
+}
+
+export async function fetchScorers() {
+  const key = 'tgw_scorers';
+  const cached = cacheGet(key, 30 * 60 * 1000);
+  if (cached) return cached;
+
+  const url = isDev
+    ? `${BASE}/competitions/PL/scorers?limit=20`
+    : `${BASE}?type=scorers`;
+
+  const json = await apiFetch(url);
+  const scorers = (json.scorers || []).map((s) => ({
+    name: s.player.name,
+    team: s.team.shortName || s.team.name,
+    crest: s.team.crest,
+    goals: s.goals || 0,
+    assists: s.assists || 0,
+    penalties: s.penalties || 0,
+    isArsenal: s.team.id === ARSENAL_ID,
+  }));
+
+  cacheSet(key, scorers);
+  return scorers;
+}
+
 export async function fetchMatches() {
   const key = 'tgw_matches';
   const cached = cacheGet(key, 15 * 60 * 1000);
@@ -84,7 +140,6 @@ export async function fetchMatches() {
 }
 
 export async function fetchLiveMatch() {
-  // No cache — always fresh for live scores
   const url = isDev
     ? `${BASE}/teams/${ARSENAL_ID}/matches?status=LIVE,IN_PLAY,PAUSED&limit=1`
     : `${BASE}?type=live`;
@@ -100,7 +155,7 @@ export async function fetchLiveMatch() {
 
 export async function fetchSquad() {
   const key = 'tgw_squad';
-  const cached = cacheGet(key, 24 * 60 * 60 * 1000); // 24hr cache
+  const cached = cacheGet(key, 24 * 60 * 60 * 1000);
   if (cached) return cached;
 
   const url = isDev

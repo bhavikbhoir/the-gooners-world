@@ -23,7 +23,11 @@ function MatchCard({ match, showSummary }) {
 
   return (
     <div className={`match-card ${finished ? 'match-card--finished' : 'match-card--upcoming'}`}>
-      <div className="match-card__meta">{match.competition} &middot; {date}</div>
+      <div className="match-card__meta">
+        {match.competition} &middot; {date}
+        {match.venue && <span> &middot; 📍 {match.venue}</span>}
+        {match.referees?.length > 0 && <span> &middot; 🟨 {match.referees[0]}</span>}
+      </div>
       <Row className="align-items-center text-center">
         <Col xs={5} className="match-card__home">
           <strong>{match.home} </strong>
