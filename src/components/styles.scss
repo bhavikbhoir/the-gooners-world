@@ -1,0 +1,391 @@
+// =====================
+// Shared
+// =====================
+.loading {
+  padding: 2rem;
+  text-align: center;
+}
+
+.crest-sm {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+.crest-md {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.crest-lg {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+// =====================
+// Countdown
+// =====================
+.countdown {
+  text-align: center;
+  padding: 1rem 0;
+
+  &__label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 6px;
+  }
+
+  &__teams {
+    margin-bottom: 8px;
+
+    .vs {
+      margin: 0 8px;
+      color: #999;
+    }
+  }
+
+  &__box {
+    display: inline-block;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.25rem;
+    min-width: 50px;
+    text-align: center;
+  }
+}
+
+// =====================
+// Live Score
+// =====================
+.live-score {
+  background: #dc3545;
+  color: #fff;
+  padding: 0.75rem;
+  text-align: center;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+
+  &__badge {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  &__match {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__score {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0 8px;
+  }
+}
+
+// =====================
+// Match Prediction
+// =====================
+.match-prediction {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin: 0.75rem 0;
+
+  &__label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffc107;
+    margin-bottom: 8px;
+  }
+
+  &__teams {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+  }
+}
+
+// =====================
+// Match Card
+// =====================
+.match-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+
+  &--finished {
+    background: #fff;
+  }
+
+  &--upcoming {
+    background: #fafafa;
+  }
+
+  &__meta {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 6px;
+  }
+
+  &__home {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__away {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__score {
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__vs {
+    color: #dc3545;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__summary {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 6px;
+    font-style: italic;
+  }
+}
+
+// =====================
+// Season Stats
+// =====================
+.season-stats {
+  margin-top: 1rem;
+
+  &__box {
+    margin-bottom: 0.75rem;
+  }
+
+  &__card {
+    color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &__value {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  &__label {
+    font-size: 13px;
+  }
+}
+
+// =====================
+// Standings
+// =====================
+.standings {
+  margin-top: 1rem;
+
+  &__table {
+    font-size: 0.875rem;
+  }
+
+  &__head {
+    background: #333;
+    color: #fff;
+  }
+
+  &__cell {
+    vertical-align: middle;
+    text-align: center;
+    padding: 0.4rem;
+  }
+
+  &__team-cell {
+    vertical-align: middle;
+    text-align: left;
+    white-space: nowrap;
+    padding: 0.4rem;
+  }
+
+  &__crest {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  &__row--arsenal {
+    background: #dc3545;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+
+// =====================
+// News Feed
+// =====================
+.news-card {
+  margin-bottom: 1rem;
+  overflow: hidden;
+
+  &__image-wrap {
+    height: 180px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__title {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: #555;
+  }
+
+  &__link {
+    font-size: 0.85rem;
+    color: #dc3545;
+    font-weight: 600;
+  }
+
+  &__footer {
+    font-size: 0.8rem;
+    background: #99824c;
+    color: #fff;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.news-search {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.news-empty {
+  text-align: center;
+  color: #999;
+  padding: 1rem;
+}
+
+// =====================
+// Share Buttons
+// =====================
+.share-buttons {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 8px;
+
+  &__btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+}
+
+// =====================
+// Squad
+// =====================
+.squad {
+  padding: 0 1rem;
+
+  &__group {
+    margin-bottom: 1.5rem;
+  }
+
+  &__group-title {
+    color: #dc3545;
+    border-bottom: 2px solid #dc3545;
+    padding-bottom: 6px;
+    margin-bottom: 0;
+  }
+
+  &__table {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  &__head {
+    background: #f8f8f8;
+  }
+
+  &__cell {
+    vertical-align: middle;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  &__cell--position {
+    color: #666;
+  }
+
+  &__col-name { width: 35%; }
+  &__col-pos { width: 25%; }
+  &__col-nat { width: 25%; }
+  &__col-age { width: 15%; }
+}
+
+// =====================
+// Match Center
+// =====================
+.match-center {
+  padding: 0 1rem;
+}
+
+// =====================
+// About
+// =====================
+.about {
+  &__partners {
+    text-align: left;
+    padding: 0.5rem 1rem;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

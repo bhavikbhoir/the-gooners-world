@@ -30,27 +30,21 @@ export default function Countdown() {
 
   if (!next || !time) return null;
 
-  const boxStyle = {
-    display: 'inline-block', background: '#dc3545', color: '#fff',
-    borderRadius: 6, padding: '0.5rem 0.75rem', margin: '0 0.25rem',
-    minWidth: 50, textAlign: 'center'
-  };
-
   return (
-    <div style={{ textAlign: 'center', padding: '1rem 0' }}>
-      <div style={{ fontSize: '0.85rem', color: '#999', marginBottom: 6 }}>Next Match</div>
-      <div style={{ marginBottom: 8 }}>
-        {next.homeCrest && <img src={next.homeCrest} alt="" style={{ width: 24, height: 24, marginRight: 6 }} />}
-        <strong>{next.home}</strong>
-        <span style={{ margin: '0 8px', color: '#999' }}>vs</span>
-        <strong>{next.away}</strong>
-        {next.awayCrest && <img src={next.awayCrest} alt="" style={{ width: 24, height: 24, marginLeft: 6 }} />}
+    <div className="countdown">
+      <div className="countdown__label">Next Match</div>
+      <div className="countdown__teams">
+        {next.homeCrest && <img src={next.homeCrest} alt="" className="crest-md" />}
+        <strong> {next.home}</strong>
+        <span className="vs"> vs </span>
+        <strong>{next.away} </strong>
+        {next.awayCrest && <img src={next.awayCrest} alt="" className="crest-md" />}
       </div>
       <div>
-        <span style={boxStyle}><strong>{time.d}</strong><br/><small>Days</small></span>
-        <span style={boxStyle}><strong>{time.h}</strong><br/><small>Hrs</small></span>
-        <span style={boxStyle}><strong>{time.m}</strong><br/><small>Min</small></span>
-        <span style={boxStyle}><strong>{time.s}</strong><br/><small>Sec</small></span>
+        <span className="countdown__box"><strong>{time.d}</strong><br/><small>Days</small></span>
+        <span className="countdown__box"><strong>{time.h}</strong><br/><small>Hrs</small></span>
+        <span className="countdown__box"><strong>{time.m}</strong><br/><small>Min</small></span>
+        <span className="countdown__box"><strong>{time.s}</strong><br/><small>Sec</small></span>
       </div>
     </div>
   );

@@ -4,13 +4,10 @@ import { fetchMatches } from '../api/football';
 
 function StatBox({ label, value, color }) {
   return (
-    <Col xs={6} md={3} style={{ marginBottom: '0.75rem' }}>
-      <div style={{
-        background: color, color: '#fff', borderRadius: 8,
-        padding: '1rem', textAlign: 'center'
-      }}>
-        <div style={{ fontSize: 28, fontWeight: 'bold' }}>{value}</div>
-        <div style={{ fontSize: 13 }}>{label}</div>
+    <Col xs={6} md={3} className="season-stats__box">
+      <div className="season-stats__card" style={{ background: color }}>
+        <div className="season-stats__value">{value}</div>
+        <div className="season-stats__label">{label}</div>
       </div>
     </Col>
   );
@@ -42,7 +39,7 @@ export default function SeasonStats() {
   if (!stats) return null;
 
   return (
-    <div style={{ marginTop: '1rem' }}>
+    <div className="season-stats">
       <h3>Season Stats <span role="img" aria-label="stats">📊</span></h3>
       <Row>
         <StatBox label="Played" value={stats.played} color="#333" />

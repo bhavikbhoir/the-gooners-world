@@ -8,6 +8,7 @@ import Fixtures from './Fixtures';
 import NewsTicker from './NewsTicker';
 import Countdown from './Countdown';
 import LiveScore from './LiveScore';
+import MatchPrediction from './MatchPrediction';
 
 function Home() {
   React.useEffect(() => {
@@ -20,6 +21,7 @@ function Home() {
       <LiveScore />
       <Quote />
       <Countdown />
+      <MatchPrediction />
       <Content />
       <Fixtures limit={4} />
       <NewsFeed count={5} />

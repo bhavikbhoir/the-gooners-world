@@ -28,7 +28,7 @@ export default function Squad() {
     return () => { cancelled = true; };
   }, []);
 
-  if (loading) return <div style={{ padding: '2rem', textAlign: 'center' }}>Loading squad...</div>;
+  if (loading) return <div className="loading">Loading squad...</div>;
   if (!squad.length) return null;
 
   const grouped = {};
@@ -47,29 +47,27 @@ export default function Squad() {
     return Math.floor((Date.now() - new Date(dob)) / 31557600000);
   };
 
-  const cell = { verticalAlign: 'middle', padding: '0.5rem 0.75rem', textAlign: 'left' };
-
   return (
-    <div style={{ padding: '0 1rem' }}>
+    <div className="squad">
       {sortedGroups.map(([group, players]) => (
-        <div key={group} style={{ marginBottom: '1.5rem' }}>
-          <h5 style={{ color: '#dc3545', borderBottom: '2px solid #dc3545', paddingBottom: 6, marginBottom: 0 }}>{group}</h5>
-          <Table hover responsive style={{ fontSize: '0.9rem', marginBottom: 0 }}>
-            <thead>
-              <tr style={{ background: '#f8f8f8' }}>
-                <th style={{ ...cell, width: '35%' }}>Name</th>
-                <th style={{ ...cell, width: '25%' }}>Position</th>
-                <th style={{ ...cell, width: '25%' }}>Nationality</th>
-                <th style={{ ...cell, width: '15%' }}>Age</th>
+        <div key={group} className="squad__group">
+          <h5 className="squad__group-title">{group}</h5>
+          <Table hover responsive className="squad__table">
+            <thead className="squad__head">
+              <tr>
+                <th className="squad__cell squad__col-name">Name</th>
+                <th className="squad__cell squad__col-pos">Position</th>
+                <th className="squad__cell squad__col-nat">Nationality</th>
+                <th className="squad__cell squad__col-age">Age</th>
               </tr>
             </thead>
             <tbody>
               {players.sort((a, b) => a.name.localeCompare(b.name)).map((p) => (
                 <tr key={p.id}>
-                  <td style={cell}><strong>{p.name}</strong></td>
-                  <td style={{ ...cell, color: '#666' }}>{p.position || '-'}</td>
-                  <td style={cell}>{p.nationality || '-'}</td>
-                  <td style={cell}>{age(p.dateOfBirth)}</td>
+                  <td className="squad__cell"><strong>{p.name}</strong></td>
+                  <td className="squad__cell squad__cell--position">{p.position || '-'}</td>
+                  <td className="squad__cell">{p.nationality || '-'}</td>
+                  <td className="squad__cell">{age(p.dateOfBirth)}</td>
                 </tr>
               ))}
             </tbody>

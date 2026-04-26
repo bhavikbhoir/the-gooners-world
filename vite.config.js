@@ -20,6 +20,12 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api\/news/, '/api/1/latest'),
         },
+        '/api/ai': {
+          target: env.VITE_API_BASE || 'http://localhost:3000/dev',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/ai/, '/proxy/ai'),
+          headers: { 'x-api-key': env.VITE_API_GW_KEY || '' },
+        },
       },
     },
   };

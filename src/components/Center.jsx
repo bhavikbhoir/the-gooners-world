@@ -10,7 +10,7 @@ export default function Center() {
   });
 
   return (
-    <div style={{ padding: '0 1rem' }}>
+    <div className="match-center">
       <LiveScore />
       <Fixtures />
       <SeasonStats />
