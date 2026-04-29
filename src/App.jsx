@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 import { Container } from 'react-bootstrap';
 
 const Home = lazy(() => import('./components/Home'));
@@ -32,6 +33,7 @@ function App() {
         </Container>
       </Suspense>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
