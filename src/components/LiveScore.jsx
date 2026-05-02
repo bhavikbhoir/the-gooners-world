@@ -35,8 +35,10 @@ export default function LiveScore() {
     if (match.minute) return `${match.minute}'`;
     const elapsed = Math.floor((Date.now() - new Date(match.date)) / 60000);
     if (elapsed <= 45) return `${elapsed}'`;
-    if (elapsed <= 60) return 'HT';
-    const secondHalf = elapsed - 15;
+    // First-half stoppage time (status still IN_PLAY, elapsed 46–65)
+    if (elapsed <= 65) return `45+${elapsed - 45}'`;
+    // Second half: subtract ~20 min (first-half stoppage + halftime break)
+    const secondHalf = elapsed - 20;
     return secondHalf >= 90 ? "90+'" : `${secondHalf}'`;
   })();
 
