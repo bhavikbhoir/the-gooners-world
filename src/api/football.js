@@ -29,14 +29,17 @@ function mapMatch(m) {
     competition: m.competition?.name,
     date: m.utcDate,
     status: m.status,
+    minute: m.minute ?? null,
     home: m.homeTeam.shortName || m.homeTeam.name,
     homeCrest: m.homeTeam.crest,
     away: m.awayTeam.shortName || m.awayTeam.name,
     awayCrest: m.awayTeam.crest,
     homeScore: m.score?.fullTime?.home ?? m.score?.halfTime?.home,
     awayScore: m.score?.fullTime?.away ?? m.score?.halfTime?.away,
-    venue: m.venue,
-    referees: m.referees?.map((r) => r.name) || [],
+    halfTimeHome: m.score?.halfTime?.home ?? null,
+    halfTimeAway: m.score?.halfTime?.away ?? null,
+    venue: m.venue ?? null,
+    referee: m.referees?.[0]?.name ?? null,
   };
 }
 
