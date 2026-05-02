@@ -54,5 +54,6 @@ export async function fetchSummary(match) {
     awayScore: match.awayScore,
     competition: match.competition,
     date: match.date,
+    stage: match.stage,
   });
 }

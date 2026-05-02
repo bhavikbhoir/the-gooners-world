@@ -3,6 +3,29 @@ import { sendMessage } from '../api/agent';
 import { FaComments, FaMinus, FaPaperPlane, FaRobot } from 'react-icons/fa';
 import './ChatWidget.css';
 
+function formatMessage(text) {
+  // Split numbered items: "1. Arsenal... 2. Man City..." (handles 1-99)
+  const items = text.split(/(?=(?:^|\s)\d{1,2}\.\s)/g).map(s => s.trim()).filter(Boolean);
+  
+  // Only render as table if we got clean numbered items
+  if (items.length >= 3 && items[0].match(/^\d{1,2}\.\s/)) {
+    return (
+      <div className="chat-table-wrap">
+        {items.map((line, i) => (
+          <div key={i} className="chat-table-row">
+            {line}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  // Render line breaks
+  return text.split('\n').map((line, i) => (
+    <span key={i}>{line}{i < text.split('\n').length - 1 && <br />}</span>
+  ));
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -98,7 +121,7 @@ export default function ChatWidget() {
             {messages.map((m, i) => (
               <div key={i} className={`chat-bubble chat-bubble--${m.role}`}>
                 {m.role === 'assistant' && <div className="chat-bubble-avatar"><FaRobot /></div>}
-                <div className="chat-bubble-text">{m.text}</div>
+                <div className="chat-bubble-text">{formatMessage(m.text)}</div>
               </div>
             ))}
             {loading && (
