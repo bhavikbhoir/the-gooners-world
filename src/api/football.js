@@ -145,7 +145,11 @@ export async function fetchLiveMatch() {
     : `${BASE}?type=live`;
 
   try {
-    const json = await apiFetch(url);
+    const headers = {};
+    if (!isDev && GW_KEY) headers['x-api-key'] = GW_KEY;
+    const res = await fetch(url, { headers, cache: 'no-store' });
+    if (!res.ok) throw new Error(`Football API ${res.status}`);
+    const json = await res.json();
     const matches = (json.matches || []).map(mapMatch);
     return matches[0] || null;
   } catch {
