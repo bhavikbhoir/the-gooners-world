@@ -27,6 +27,7 @@ function mapMatch(m) {
   return {
     id: m.id,
     competition: m.competition?.name,
+    stage: m.stage ?? null,
     date: m.utcDate,
     status: m.status,
     minute: m.minute ?? null,
