@@ -14,9 +14,12 @@ function posGroup(pos) {
 
 const GROUP_ORDER = { Goalkeepers: 0, Defenders: 1, Midfielders: 2, Forwards: 3, Other: 4 };
 
+const FILTERS = ['All', 'Goalkeepers', 'Defenders', 'Midfielders', 'Forwards'];
+
 export default function Squad() {
   const [squad, setSquad] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('All');
 
   useEffect(() => {
     document.getElementById("squad")?.classList.add("active");
@@ -38,9 +41,9 @@ export default function Squad() {
     grouped[group].push(p);
   });
 
-  const sortedGroups = Object.entries(grouped).sort((a, b) =>
-    (GROUP_ORDER[a[0]] ?? 9) - (GROUP_ORDER[b[0]] ?? 9)
-  );
+  const sortedGroups = Object.entries(grouped)
+    .filter(([group]) => filter === 'All' || group === filter)
+    .sort((a, b) => (GROUP_ORDER[a[0]] ?? 9) - (GROUP_ORDER[b[0]] ?? 9));
 
   const age = (dob) => {
     if (!dob) return '-';
@@ -49,6 +52,11 @@ export default function Squad() {
 
   return (
     <div className="squad">
+      <div className="squad__filters">
+        {FILTERS.map((f) => (
+          <button key={f} className={`squad__filter-btn${filter === f ? ' active' : ''}`} onClick={() => setFilter(f)}>{f}</button>
+        ))}
+      </div>
       {sortedGroups.map(([group, players]) => (
         <div key={group} className="squad__group">
           <h5 className="squad__group-title">{group}</h5>

@@ -16,7 +16,7 @@ function Navigation(){
                 <Nav.Item><Nav.Link id="home" href="/"><FaHome /> Home</Nav.Link></Nav.Item>
               </Col>
               <Col>
-                <Nav.Item><Nav.Link id="match-center" href="/MatchCenter"><FaFutbol /> Match Center</Nav.Link></Nav.Item>
+                <Nav.Item><Nav.Link id="match-center" href="/StatsFixtures"><FaFutbol /> Stats &amp; Fixtures</Nav.Link></Nav.Item>
               </Col>
               <Col>
                 <Nav.Item><Nav.Link id="news-center" href="/NewsCenter"><FaNewspaper/> News Center</Nav.Link></Nav.Item>

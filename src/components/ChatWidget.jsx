@@ -60,8 +60,8 @@ export default function ChatWidget() {
     }
   }, [open, scrollToBottom]);
 
-  const handleSend = async () => {
-    const msg = input.trim();
+  const handleSend = async (overrideMsg) => {
+    const msg = (overrideMsg ?? input).trim();
     if (!msg || loading) return;
 
     if (msgCount >= MSG_LIMIT) {
@@ -124,6 +124,13 @@ export default function ChatWidget() {
                 <div className="chat-bubble-text">{formatMessage(m.text)}</div>
               </div>
             ))}
+            {messages.length === 1 && !loading && (
+              <div className="chat-chips">
+                {['Next match?', 'Current standings?', 'Predict the match', 'Latest news'].map((chip) => (
+                  <button key={chip} className="chat-chip" onClick={() => handleSend(chip)}>{chip}</button>
+                ))}
+              </div>
+            )}
             {loading && (
               <div className="chat-bubble chat-bubble--assistant">
                 <div className="chat-bubble-avatar"><FaRobot /></div>

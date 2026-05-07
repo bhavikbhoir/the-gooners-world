@@ -31,6 +31,15 @@ export default function MatchPrediction() {
     return () => { cancelled = true; };
   }, []);
 
+  const [shared, setShared] = useState(false);
+
+  const handleShare = async () => {
+    const text = `🔮 Arsenal vs ${match.away} Prediction\n\n${prediction}\n\n— The Gooners World`;
+    await navigator.clipboard.writeText(text);
+    setShared(true);
+    setTimeout(() => setShared(false), 2000);
+  };
+
   if (loading || !match || !prediction) return null;
 
   return (
@@ -42,6 +51,9 @@ export default function MatchPrediction() {
         {match.awayCrest && <img src={match.awayCrest} alt="" className="crest-lg" />}
       </div>
       <p className="match-prediction__text">{prediction}</p>
+      <button className="match-prediction__share" onClick={handleShare}>
+        {shared ? '✅ Copied!' : '🔗 Share Prediction'}
+      </button>
     </div>
   );
 }

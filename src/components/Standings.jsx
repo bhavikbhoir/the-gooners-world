@@ -34,6 +34,7 @@ export default function Standings() {
             <th className="standings__cell">GA</th>
             <th className="standings__cell">GD</th>
             <th className="standings__cell">Pts</th>
+            <th className="standings__cell">Form</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,13 @@ export default function Standings() {
               <td className="standings__cell">{t.ga}</td>
               <td className="standings__cell">{t.gd > 0 ? `+${t.gd}` : t.gd}</td>
               <td className="standings__cell"><strong>{t.points}</strong></td>
+              <td className="standings__cell">
+                <span className="form-guide">
+                  {(t.form || '').split(',').filter(Boolean).map((r, i) => (
+                    <span key={i} className={`form-dot form-dot--${r}`}>{r}</span>
+                  ))}
+                </span>
+              </td>
             </tr>
           ))}
         </tbody>

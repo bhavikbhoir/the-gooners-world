@@ -24,7 +24,7 @@ function App() {
           <Router>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/MatchCenter" component={Center} />
+              <Route exact path="/StatsFixtures" component={Center} />
               <Route exact path="/NewsCenter" component={NewsCenter} />
               <Route exact path="/Squad" component={Squad} />
               <Route exact path="/About" component={About} />

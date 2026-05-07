@@ -310,6 +310,30 @@
   font-weight: 600;
 }
 
+/* ── Quick-reply chips ── */
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 0 2px;
+  align-self: flex-start;
+}
+.chat-chip {
+  background: rgba(220, 53, 69, 0.12);
+  border: 1px solid rgba(220, 53, 69, 0.35);
+  color: #f87171;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.chat-chip:hover {
+  background: rgba(220, 53, 69, 0.25);
+  border-color: #dc3545;
+}
+
 /* ── Mobile ── */
 @media (max-width: 480px) {
   .chat-panel {

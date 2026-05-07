@@ -44,8 +44,29 @@ function mapMatch(m) {
   };
 }
 
+async function fetchPLResults() {
+  const key = 'tgw_pl_results';
+  const cached = cacheGet(key, 15 * 60 * 1000);
+  if (cached) return cached;
+
+  const url = isDev
+    ? `${BASE}/competitions/PL/matches?status=FINISHED`
+    : `${BASE}?type=pl-results`;
+
+  const json = await apiFetch(url);
+  const results = (json.matches || []).map((m) => ({
+    homeId: m.homeTeam.id,
+    awayId: m.awayTeam.id,
+    homeScore: m.score?.fullTime?.home,
+    awayScore: m.score?.fullTime?.away,
+  }));
+
+  cacheSet(key, results);
+  return results;
+}
+
 export async function fetchStandings() {
-  const key = 'tgw_standings';
+  const key = 'tgw_standings_v3';
   const cached = cacheGet(key, 30 * 60 * 1000);
   if (cached) return cached;
 
@@ -53,21 +74,40 @@ export async function fetchStandings() {
     ? `${BASE}/competitions/PL/standings`
     : `${BASE}?type=standings`;
 
-  const json = await apiFetch(url);
-  const table = json.standings?.[0]?.table?.map((t) => ({
-    position: t.position,
-    team: t.team.shortName || t.team.name,
-    crest: t.team.crest,
-    played: t.playedGames,
-    won: t.won,
-    draw: t.draw,
-    lost: t.lost,
-    gf: t.goalsFor,
-    ga: t.goalsAgainst,
-    gd: t.goalDifference,
-    points: t.points,
-    isArsenal: t.team.id === ARSENAL_ID,
-  })) || [];
+  const [json, plResults] = await Promise.all([
+    apiFetch(url),
+    fetchPLResults().catch(() => []),
+  ]);
+
+  const formByTeam = {};
+  for (const m of plResults) {
+    const homeResult = m.homeScore > m.awayScore ? 'W' : m.homeScore === m.awayScore ? 'D' : 'L';
+    const awayResult = m.awayScore > m.homeScore ? 'W' : m.awayScore === m.homeScore ? 'D' : 'L';
+    if (!formByTeam[m.homeId]) formByTeam[m.homeId] = [];
+    if (!formByTeam[m.awayId]) formByTeam[m.awayId] = [];
+    formByTeam[m.homeId].push(homeResult);
+    formByTeam[m.awayId].push(awayResult);
+  }
+
+  const table = json.standings?.[0]?.table?.map((t) => {
+    const results = formByTeam[t.team.id] || [];
+    const form = results.slice(-5).reverse().join(',') || t.form || null;
+    return {
+      position: t.position,
+      team: t.team.shortName || t.team.name,
+      crest: t.team.crest,
+      played: t.playedGames,
+      won: t.won,
+      draw: t.draw,
+      lost: t.lost,
+      gf: t.goalsFor,
+      ga: t.goalsAgainst,
+      gd: t.goalDifference,
+      points: t.points,
+      form,
+      isArsenal: t.team.id === ARSENAL_ID,
+    };
+  }) || [];
 
   cacheSet(key, table);
   return table;
