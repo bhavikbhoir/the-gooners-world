@@ -126,6 +126,10 @@ export default function Admin() {
         platform,
         instagramCaption: posts.instagram,
         xText: posts.x,
+        home: selected?.home,
+        away: selected?.away,
+        homeScore: selected?.homeScore,
+        awayScore: selected?.awayScore,
       };
       if (platform === 'instagram' || platform === 'both') {
         if (!imageBase64) { setGenError('Upload an image first'); setPublishing(''); return; }
