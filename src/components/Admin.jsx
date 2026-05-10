@@ -5,13 +5,14 @@ import './Admin.css';
 const isDev = import.meta.env.DEV;
 const BASE = isDev ? '/api/admin' : import.meta.env.VITE_API_BASE + '/admin';
 const GW_KEY = import.meta.env.VITE_API_GW_KEY;
-const ADMIN_API_KEY = import.meta.env.VITE_ADMIN_API_KEY;
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
+
+function getToken() { return sessionStorage.getItem('tgw_admin_token'); }
 
 function adminFetch(path, body) {
   const headers = { 'Content-Type': 'application/json' };
   if (!isDev && GW_KEY) headers['x-api-key'] = GW_KEY;
-  if (ADMIN_API_KEY) headers['x-admin-key'] = ADMIN_API_KEY;
+  const token = getToken();
+  if (token) headers['Authorization'] = `Bearer ${token}`;
   return fetch(`${BASE}${path}`, { method: 'POST', headers, body: JSON.stringify(body) });
 }
 
@@ -35,7 +36,7 @@ function getRecentForm(matches, selected) {
 }
 
 export default function Admin() {
-  const [authed, setAuthed] = useState(() => sessionStorage.getItem('tgw_admin') === '1');
+  const [authed, setAuthed] = useState(() => sessionStorage.getItem('tgw_admin') === '1' && !!getToken());
   const [pwInput, setPwInput] = useState('');
   const [pwError, setPwError] = useState(false);
 
@@ -66,12 +67,22 @@ export default function Admin() {
       .catch(() => {});
   }, []);
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
-    if (pwInput === ADMIN_PASSWORD) {
+    try {
+      const headers = { 'Content-Type': 'application/json' };
+      if (!isDev && GW_KEY) headers['x-api-key'] = GW_KEY;
+      const res = await fetch(`${BASE}/auth`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ password: pwInput }),
+      });
+      if (!res.ok) throw new Error('bad');
+      const { token } = await res.json();
+      sessionStorage.setItem('tgw_admin_token', token);
       sessionStorage.setItem('tgw_admin', '1');
       setAuthed(true);
-    } else {
+    } catch {
       setPwError(true);
       setTimeout(() => setPwError(false), 2000);
     }
