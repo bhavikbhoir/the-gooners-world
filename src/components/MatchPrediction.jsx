@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchMatches } from '../api/football';
 import { fetchPrediction } from '../api/ai';
+import { FaWhatsapp, FaLink } from 'react-icons/fa';
+import XIcon from './XIcon';
 
 export default function MatchPrediction() {
   const [prediction, setPrediction] = useState(null);
@@ -31,13 +33,17 @@ export default function MatchPrediction() {
     return () => { cancelled = true; };
   }, []);
 
-  const [shared, setShared] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  const handleShare = async () => {
-    const text = `🔮 Arsenal vs ${match.away} Prediction\n\n${prediction}\n\n— The Gooners World`;
-    await navigator.clipboard.writeText(text);
-    setShared(true);
-    setTimeout(() => setShared(false), 2000);
+  const SITE_URL = 'https://the-gooners-world.web.app';
+  const shareText = prediction
+    ? `🔮 Arsenal vs ${match?.away} Prediction\n\n${prediction.slice(0, 200)}${prediction.length > 200 ? '...' : ''}\n\nThe Gooners World`
+    : '';
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(`🔮 Arsenal vs ${match.away} Prediction\n\n${prediction}\n\n— The Gooners World`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   if (loading || !match || !prediction) return null;
@@ -51,9 +57,30 @@ export default function MatchPrediction() {
         {match.awayCrest && <img src={match.awayCrest} alt="" className="crest-lg" />}
       </div>
       <p className="match-prediction__text">{prediction}</p>
-      <button className="match-prediction__share" onClick={handleShare}>
-        {shared ? '✅ Copied!' : '🔗 Share Prediction'}
-      </button>
+      <div className="match-prediction__share-row">
+        <button
+          className="match-prediction__share-btn"
+          title="Share on X"
+          onClick={() => window.open(`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(SITE_URL)}`, '_blank', 'noopener,noreferrer')}
+        >
+          <XIcon size={13} />
+        </button>
+        <button
+          className="match-prediction__share-btn"
+          title="Share on WhatsApp"
+          onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + SITE_URL)}`, '_blank', 'noopener,noreferrer')}
+        >
+          <FaWhatsapp size={15} color="#25D366" />
+        </button>
+        <button
+          className="match-prediction__share-btn match-prediction__share-btn--copy"
+          title={copied ? 'Copied!' : 'Copy prediction'}
+          onClick={handleCopy}
+        >
+          <FaLink size={13} color={copied ? '#16a34a' : '#555'} />
+          <span>{copied ? 'Copied!' : 'Copy'}</span>
+        </button>
+      </div>
     </div>
   );
 }

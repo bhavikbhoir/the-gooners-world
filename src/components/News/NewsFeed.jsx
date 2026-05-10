@@ -3,30 +3,31 @@ import { Card, Row, Col } from 'react-bootstrap';
 import useNews from '../../hooks/useNews';
 import ShareButtons from '../ShareButtons';
 
-const PLACEHOLDER = 'data:image/svg+xml,' + encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" fill="%23eee"><rect width="400" height="200"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="16">No Image</text></svg>'
-);
-
 function NewsCard({ article }) {
+  const [imgFailed, setImgFailed] = React.useState(false);
+  const hasImage = !!article.image && !imgFailed;
   const date = new Date(article.publishedAt).toLocaleDateString('en-US', {
     month: 'short', day: 'numeric', year: 'numeric'
   });
+  const descLimit = hasImage ? 120 : 280;
 
   return (
-    <Card className="news-card">
-      <div className="news-card__image-wrap">
-        <img
-          src={article.image || PLACEHOLDER}
-          alt={article.title}
-          className="news-card__image"
-          onError={(e) => { e.target.src = PLACEHOLDER; }}
-        />
-      </div>
+    <Card className={`news-card${hasImage ? '' : ' news-card--no-image'}`}>
+      {hasImage && (
+        <div className="news-card__image-wrap">
+          <img
+            src={article.image}
+            alt={article.title}
+            className="news-card__image"
+            onError={() => setImgFailed(true)}
+          />
+        </div>
+      )}
       <Card.Body>
         <Card.Title className="news-card__title">{article.title}</Card.Title>
         {article.description && (
           <Card.Text className="news-card__desc">
-            {article.description.length > 120 ? article.description.slice(0, 120) + '...' : article.description}
+            {article.description.length > descLimit ? article.description.slice(0, descLimit) + '...' : article.description}
           </Card.Text>
         )}
         <div className="news-card__actions">

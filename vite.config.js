@@ -32,6 +32,15 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api\/agent/, '/agent'),
           headers: { 'x-api-key': env.VITE_API_GW_KEY || '' },
         },
+        '/api/admin': {
+          target: env.VITE_API_BASE || 'http://localhost:3000/dev',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/admin/, '/admin'),
+          headers: {
+            'x-api-key': env.VITE_API_GW_KEY || '',
+            'x-admin-key': env.VITE_ADMIN_API_KEY || '',
+          },
+        },
       },
     },
   };

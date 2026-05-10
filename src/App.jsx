@@ -12,6 +12,7 @@ const Center = lazy(() => import('./components/Center'));
 const NewsCenter = lazy(() => import('./components/News_center'));
 const Squad = lazy(() => import('./components/Squad'));
 const About = lazy(() => import('./components/About'));
+const Admin = lazy(() => import('./components/Admin'));
 const Navigation = lazy(() => import('./components/Navbar'));
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Route exact path="/NewsCenter" component={NewsCenter} />
               <Route exact path="/Squad" component={Squad} />
               <Route exact path="/About" component={About} />
+              <Route exact path="/admin" component={Admin} />
             </Switch>
           </Router>
         </Container>
