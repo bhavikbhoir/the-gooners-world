@@ -201,6 +201,27 @@ export async function fetchLiveMatch() {
   }
 }
 
+export async function fetchMatchDetail(matchId) {
+  const url = isDev
+    ? `${BASE}/matches/${matchId}`
+    : `${BASE}?type=match&matchId=${matchId}`;
+  try {
+    const json = await apiFetch(url);
+    return {
+      goals: (json.goals || []).map((g) => ({
+        scorer: g.scorer?.name || 'Unknown',
+        team: g.team?.shortName || g.team?.name || '',
+        minute: g.minute,
+        type: g.type, // REGULAR | OWN_GOAL | PENALTY
+      })),
+      referee: json.referees?.find((r) => r.role === 'REFEREE')?.name || json.referees?.[0]?.name || null,
+      venue: json.venue || null,
+    };
+  } catch {
+    return { goals: [], referee: null, venue: null };
+  }
+}
+
 export async function fetchSquad() {
   const key = 'tgw_squad';
   const cached = cacheGet(key, 24 * 60 * 60 * 1000);
