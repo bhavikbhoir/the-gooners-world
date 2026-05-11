@@ -45,7 +45,7 @@ function mapMatch(m) {
 }
 
 async function fetchPLResults() {
-  const key = 'tgw_pl_results';
+  const key = 'tgw_pl_results_v2';
   const cached = cacheGet(key, 15 * 60 * 1000);
   if (cached) return cached;
 
@@ -66,7 +66,7 @@ async function fetchPLResults() {
 }
 
 export async function fetchStandings() {
-  const key = 'tgw_standings_v3';
+  const key = 'tgw_standings_v4';
   const cached = cacheGet(key, 30 * 60 * 1000);
   if (cached) return cached;
 

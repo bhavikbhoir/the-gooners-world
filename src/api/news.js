@@ -2,17 +2,18 @@ const isDev = import.meta.env.DEV;
 const BASE = isDev ? '/api/news' : import.meta.env.VITE_API_BASE + '/proxy/news';
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 const GW_KEY = import.meta.env.VITE_API_GW_KEY;
-const CACHE_KEY = 'tgw_news_cache_v3';
+const CACHE_KEY = 'tgw_news_cache_v4';
 const CACHE_TTL = 30 * 60 * 1000;
 
-const NON_FOOTBALL = /\b(wag|wags|twerk|influencer|influencers|celebrity|celebrities|fashion|beauty|makeup|hairstyle|hairstyles|playlist|music|singer|actress|actor|model|lifestyle|gossip|romance|dating|married|wedding|divorce|baby|pregnant|pregnancy|viral|meme|tiktok|instagram\s+star|youtube)\b/i;
+// Only block content clearly unrelated to football (WAG lifestyle, celeb gossip, etc.)
+// Removed: fashion, beauty, model, lifestyle, music, viral, youtube, baby, pregnant — too many false positives on legitimate Arsenal articles
+const NON_FOOTBALL = /\b(wag|wags|twerk|influencer|influencers|celebrity|celebrities|makeup|hairstyle|hairstyles|playlist|singer|actress|actor|gossip|romance|dating|married|wedding|divorce|pregnant|pregnancy|meme|tiktok|instagram\s+star)\b/i;
 const NON_ARSENAL_SCORE = /^(?:premier league|bundesliga|la liga|serie a|ligue 1|eredivisie|championship):/i;
 
 function isRelevant(a) {
   if (!a.title) return false;
   if (NON_FOOTBALL.test(a.title)) return false;
   if (NON_ARSENAL_SCORE.test(a.title) && !/arsenal|gunners/i.test(a.title)) return false;
-  if (a.description && a.description.trim() === a.title.trim()) return false;
   return true;
 }
 

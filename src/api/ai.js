@@ -15,7 +15,7 @@ function cacheSet(key, data, ttl) {
 }
 
 async function aiCall(type, data) {
-  const cacheKey = `tgw_ai_${type}_${data.home || ''}_${data.away || ''}`;
+  const cacheKey = `tgw_ai_${type}_${data.home || ''}_${data.away || ''}_${data.homeScore ?? ''}_${data.awayScore ?? ''}`;
   const cached = cacheGet(cacheKey);
   if (cached) return cached;
 
@@ -46,7 +46,7 @@ export async function fetchPrediction(match, recentForm) {
   });
 }
 
-export async function fetchSummary(match) {
+export async function fetchSummary(match, recentForm) {
   return aiCall('summary', {
     home: match.home,
     away: match.away,
@@ -55,5 +55,6 @@ export async function fetchSummary(match) {
     competition: match.competition,
     date: match.date,
     stage: match.stage,
+    recentForm: recentForm || null,
   });
 }

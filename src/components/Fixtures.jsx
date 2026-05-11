@@ -3,19 +3,19 @@ import { Row, Col } from 'react-bootstrap';
 import { fetchMatches } from '../api/football';
 import { fetchSummary } from '../api/ai';
 
-function MatchSummary({ match }) {
+function MatchSummary({ match, recentForm }) {
   const [summary, setSummary] = useState(null);
 
   useEffect(() => {
     if (match.status !== 'FINISHED') return;
-    fetchSummary(match).then((text) => { if (text) setSummary(text); });
-  }, [match]);
+    fetchSummary(match, recentForm).then((text) => { if (text) setSummary(text); });
+  }, [match, recentForm]);
 
   if (!summary) return null;
   return <div className="match-card__summary">📝 {summary}</div>;
 }
 
-function MatchCard({ match, showSummary }) {
+function MatchCard({ match, showSummary, recentForm }) {
   const date = new Date(match.date).toLocaleDateString('en-US', {
     month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
   });
@@ -45,9 +45,25 @@ function MatchCard({ match, showSummary }) {
           <strong> {match.away}</strong>
         </Col>
       </Row>
-      {showSummary && finished && <MatchSummary match={match} />}
+      {showSummary && finished && <MatchSummary match={match} recentForm={recentForm} />}
     </div>
   );
+}
+
+function computeFormUpTo(matches, matchId) {
+  const allFinished = matches.filter((m) => m.status === 'FINISHED');
+  const idx = allFinished.findIndex((m) => m.id === matchId);
+  const before = idx >= 0 ? allFinished.slice(0, idx) : allFinished;
+  return before
+    .slice(-5)
+    .map((m) => {
+      const isHome = /^arsenal/i.test(m.home);
+      const scored = isHome ? m.homeScore : m.awayScore;
+      const conceded = isHome ? m.awayScore : m.homeScore;
+      return scored > conceded ? 'W' : scored === conceded ? 'D' : 'L';
+    })
+    .reverse()
+    .join(', ');
 }
 
 export default function Fixtures({ limit }) {
@@ -75,7 +91,9 @@ export default function Fixtures({ limit }) {
         <h3>Fixtures & Results <span role="img" aria-label="fixtures icon">🏟️</span></h3>
         <Row>
           {display.map((m) => (
-            <Col key={m.id} lg={6} md={6} sm={12}><MatchCard match={m} showSummary /></Col>
+            <Col key={m.id} lg={6} md={6} sm={12}>
+              <MatchCard match={m} showSummary recentForm={computeFormUpTo(matches, m.id)} />
+            </Col>
           ))}
         </Row>
       </div>
@@ -100,7 +118,9 @@ export default function Fixtures({ limit }) {
           <h5 className="mt-3">Recent Results</h5>
           <Row>
             {finished.slice(0, 6).map((m) => (
-              <Col key={m.id} lg={6} md={6} sm={12}><MatchCard match={m} showSummary /></Col>
+              <Col key={m.id} lg={6} md={6} sm={12}>
+                <MatchCard match={m} showSummary recentForm={computeFormUpTo(matches, m.id)} />
+              </Col>
             ))}
           </Row>
         </>

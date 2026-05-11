@@ -24,7 +24,7 @@ function Home() {
       <MatchPrediction />
       <Content />
       <Fixtures limit={4} />
-      <NewsFeed count={5} />
+      <NewsFeed count={6} />
       <Social />
     </div>
   );
