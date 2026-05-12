@@ -31,8 +31,8 @@ function isSameStory(titleA, titleB) {
   return overlap / Math.min(a.size, b.size) >= 0.6;
 }
 
-const TARGET_ARTICLES = 10; // keep fetching pages until we have this many
-const MAX_PAGES = 3;        // hard cap — max 3 API calls per cache refresh (free tier safe)
+const TARGET_ARTICLES = 10;
+const MAX_PAGES = 3;
 
 export async function fetchArsenalNews() {
   try {
@@ -55,12 +55,11 @@ export async function fetchArsenalNews() {
         q: '"Arsenal FC" OR "Arsenal Football Club"',
         category: 'sports',
         language: 'en',
-        size: '10',
+        size: '20',
       });
       if (nextPage) params.set('page', nextPage);
       url = `${BASE}?${params}`;
     } else {
-      // prod: Lambda at /proxy/news — pass nextPage token so Lambda can forward it to NewsData.io
       const params = new URLSearchParams();
       if (nextPage) params.set('nextPage', nextPage);
       url = nextPage ? `${BASE}?${params}` : BASE;
@@ -87,7 +86,7 @@ export async function fetchArsenalNews() {
     }
 
     pagesFetched++;
-    if (!nextPage) break; // no more pages available
+    if (!nextPage) break;
   }
 
   const articles = kept.slice(0, 20).map((a) => ({
