@@ -325,6 +325,37 @@
 
 .admin__char-count--over { color: #f87171; }
 
+/* ── Share / copy row ── */
+.admin__share-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.admin__share-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  background: #222;
+  border: 1px solid #333;
+  color: #ccc;
+  transition: opacity 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.admin__share-btn:hover { opacity: 0.8; color: #fff; border-color: #555; }
+
+.admin__share-btn--x-share { background: #000; border-color: #333; color: #fff; }
+.admin__share-btn--wa { background: #25d366; border-color: #25d366; color: #fff; }
+
 /* ── Post actions ── */
 .admin__post-actions {
   display: flex;

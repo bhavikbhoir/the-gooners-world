@@ -304,6 +304,7 @@ export default function Admin() {
   const [publishing, setPublishing] = useState('');
   const [publishResult, setPublishResult] = useState({});
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [copiedTab, setCopiedTab] = useState(null);
 
   const fileRef = useRef();
 
@@ -445,13 +446,20 @@ export default function Admin() {
     }
   }
 
+  function handleCopy(text, tab) {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedTab(tab);
+      setTimeout(() => setCopiedTab(null), 2000);
+    });
+  }
+
   const xLen = posts.x.length;
 
   if (!authed) {
     return (
       <div className="admin-gate">
         <div className="admin-gate__box">
-          <div className="admin-gate__logo">🔫</div>
+          <div className="admin-gate__logo">⚽</div>
           <h2 className="admin-gate__title">The Gooners World</h2>
           <p className="admin-gate__sub">Admin Access</p>
           <form onSubmit={handleLogin}>
@@ -474,7 +482,7 @@ export default function Admin() {
   return (
     <div className="admin">
       <div className="admin__header">
-        <span className="admin__logo">🔫 The Gooners World</span>
+        <span className="admin__logo">⚽ The Gooners World</span>
         <span className="admin__badge">Admin</span>
       </div>
 
@@ -564,6 +572,17 @@ export default function Admin() {
                     value={posts.instagram}
                     onChange={(e) => setPosts((p) => ({ ...p, instagram: e.target.value }))}
                   />
+                  <div className="admin__share-row">
+                    <button className="admin__share-btn" onClick={() => handleCopy(posts.instagram, 'instagram')}>
+                      {copiedTab === 'instagram' ? '✓ Copied' : 'Copy'}
+                    </button>
+                    <a
+                      className="admin__share-btn admin__share-btn--wa"
+                      href={`https://wa.me/?text=${encodeURIComponent(posts.instagram)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >WhatsApp</a>
+                  </div>
                   <div className="admin__post-actions">
                     <button
                       className="admin__post-btn admin__post-btn--ig"
@@ -591,6 +610,23 @@ export default function Admin() {
                   />
                   <div className="admin__char-count">
                     <span className={xLen > 280 ? 'admin__char-count--over' : ''}>{xLen}/280</span>
+                  </div>
+                  <div className="admin__share-row">
+                    <button className="admin__share-btn" onClick={() => handleCopy(posts.x, 'x')}>
+                      {copiedTab === 'x' ? '✓ Copied' : 'Copy'}
+                    </button>
+                    <a
+                      className="admin__share-btn admin__share-btn--x-share"
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(posts.x)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >Share on X</a>
+                    <a
+                      className="admin__share-btn admin__share-btn--wa"
+                      href={`https://wa.me/?text=${encodeURIComponent(posts.x)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >WhatsApp</a>
                   </div>
                   <div className="admin__post-actions">
                     <button

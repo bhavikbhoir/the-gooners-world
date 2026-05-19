@@ -55,7 +55,7 @@ export async function fetchArsenalNews() {
         q: '"Arsenal FC" OR "Arsenal Football Club"',
         category: 'sports',
         language: 'en',
-        size: '20',
+        size: '10',
       });
       if (nextPage) params.set('page', nextPage);
       url = `${BASE}?${params}`;
