@@ -163,7 +163,7 @@ export default function ChatWidget() {
             </button>
           </div>
 
-          <div className="chat-footer">Powered by AWS Bedrock Agent Core</div>
+          <div className="chat-footer">Powered by AWS</div>
         </div>
       )}
     </>
