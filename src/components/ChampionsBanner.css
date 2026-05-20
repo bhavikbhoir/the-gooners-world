@@ -1,0 +1,64 @@
+.champions-banner {
+  position: relative;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 1rem;
+  background: linear-gradient(90deg, #6b0000 0%, #EF0107 25%, #c9a227 50%, #EF0107 75%, #6b0000 100%);
+  background-size: 300% auto;
+  animation: cb-shimmer 4s linear infinite;
+  overflow: hidden;
+}
+
+/* Light sweep */
+.champions-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+  animation: cb-sweep 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cb-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+@keyframes cb-sweep {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+.champions-banner__trophy {
+  font-size: 1.1rem;
+  animation: cb-bounce 1.6s ease-in-out infinite;
+  display: inline-block;
+}
+
+.champions-banner__trophy:last-child {
+  animation-delay: 0.8s;
+}
+
+@keyframes cb-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+
+.champions-banner__text {
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.88rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 480px) {
+  .champions-banner__text {
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+  }
+}

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import ChampionsBanner from './components/ChampionsBanner';
 import { Container } from 'react-bootstrap';
 
 const Home = lazy(() => import('./components/Home'));
@@ -18,6 +19,7 @@ const Navigation = lazy(() => import('./components/Navbar'));
 function App() {
   return (
     <div className="App">
+      <ChampionsBanner />
       <Header />
       <Suspense fallback={<div style={{padding: '2rem', textAlign: 'center'}}>Loading...</div>}>
         <Navigation />
