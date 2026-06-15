@@ -2,7 +2,7 @@ import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar'
-import { FaFutbol, FaHome, FaNewspaper, FaUsers, FaQuestionCircle } from 'react-icons/fa';
+import { FaFutbol, FaHome, FaNewspaper, FaUsers, FaQuestionCircle, FaTrophy } from 'react-icons/fa';
 
 function Navigation(){
   return (
@@ -26,6 +26,9 @@ function Navigation(){
               </Col>
               <Col>
                 <Nav.Item><Nav.Link id="about" href="/About"><FaQuestionCircle /> About</Nav.Link></Nav.Item>
+              </Col>
+              <Col>
+                <Nav.Item><Nav.Link id="world-cup" href="/WorldCup"><FaTrophy /> World Cup</Nav.Link></Nav.Item>
               </Col>
             </Row>
           </Nav>

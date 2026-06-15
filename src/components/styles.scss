@@ -712,3 +712,364 @@
   font-weight: normal !important;
   margin-top: 0.5rem;
 }
+
+// =====================
+// World Cup Watch
+// =====================
+.wc-watch {
+  padding: 0 1rem 2rem;
+
+  &__header {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem;
+    border-bottom: 2px solid #dc3545;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #dc3545;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitle {
+    font-size: 0.78rem;
+    color: #888;
+    margin: 0;
+  }
+
+  &__tabs {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #dc3545;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    .nav-item { white-space: nowrap; }
+
+    .nav-link {
+      color: #333;
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+
+      &:hover { color: #dc3545; }
+
+      &.active {
+        color: #dc3545;
+        border-bottom-color: #dc3545;
+        background: none;
+      }
+    }
+  }
+
+  &__content { min-height: 300px; }
+
+  &__section { margin-bottom: 1.5rem; }
+
+  &__section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #666;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__empty {
+    color: #888;
+    font-size: 0.9rem;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  &__error {
+    color: #dc3545;
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  &__no-gunners {
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+}
+
+// WC Roster
+.wc-roster {
+  background: #fff7f7;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &__title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #dc3545;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  &__nations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  &__nation {
+    background: #fff;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    min-width: 140px;
+  }
+
+  &__nation-header {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.35rem;
+  }
+
+  &__flag { font-size: 1rem; }
+
+  &__nation-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+  }
+
+  &__match-count {
+    font-size: 0.7rem;
+    color: #999;
+    white-space: nowrap;
+  }
+
+  &__players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  &__player {
+    font-size: 0.75rem;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.15rem 0.4rem;
+    white-space: nowrap;
+  }
+}
+
+// WC Match Card
+.wc-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+
+  &:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+  &--gunner {
+    border-left: 4px solid #dc3545;
+  }
+
+  &--live {
+    border-left: 4px solid #28a745;
+    box-shadow: 0 0 0 2px rgba(40,167,69,0.15);
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem 0;
+  }
+
+  &__live-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #28a745;
+    animation: wc-pulse 1.5s infinite;
+  }
+
+  &__stage {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  &__match {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  &__team {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    &--home { justify-content: flex-end; }
+    &--away { justify-content: flex-start; }
+  }
+
+  &__team-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #222;
+  }
+
+  &__centre {
+    text-align: center;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__score {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.05em;
+  }
+
+  &__ft {
+    font-size: 0.65rem;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__minute {
+    font-size: 0.7rem;
+    color: #28a745;
+    font-weight: 700;
+  }
+
+  &__kickoff {
+    font-size: 0.72rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  &__gunner-band {
+    background: #fff7f7;
+    border-top: 1px solid #f5c6cb;
+    padding: 0.5rem 0.75rem;
+  }
+
+  &__gunner-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #dc3545;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  &__gunner-players {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.25rem;
+  }
+
+  &__gunner-tag {
+    font-size: 0.75rem;
+    border-radius: 4px;
+    padding: 0.15rem 0.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+
+    &--home {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    &--away {
+      background: #6c757d;
+      color: #fff;
+    }
+  }
+
+  &__goal-dot { font-size: 0.65rem; }
+
+  &__goal-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  &__goal-event {
+    font-size: 0.72rem;
+    color: #155724;
+    background: #d4edda;
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  &__ai {
+    border-top: 1px solid #e9ecef;
+    padding: 0.6rem 0.75rem;
+    background: #fafafa;
+  }
+
+  &__ai-loading {
+    font-size: 0.75rem;
+    color: #888;
+    font-style: italic;
+  }
+
+  &__ai-text {
+    font-size: 0.8rem;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &__ai-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 700;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 3px;
+    padding: 0.05rem 0.3rem;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+    letter-spacing: 0.04em;
+  }
+}
+
+@keyframes wc-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
