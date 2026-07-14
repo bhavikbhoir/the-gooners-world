@@ -40,12 +40,6 @@ export default defineConfig(({ mode }) => {
             'x-api-key': env.VITE_API_GW_KEY || '',
           },
         },
-        '/api/wc': {
-          target: env.VITE_API_BASE || 'http://localhost:3000/dev',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api\/wc/, '/wc'),
-          headers: { 'x-api-key': env.VITE_API_GW_KEY || '' },
-        },
       },
     },
   };
