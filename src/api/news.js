@@ -52,7 +52,7 @@ export async function fetchArsenalNews() {
     if (isDev) {
       const params = new URLSearchParams({
         apikey: API_KEY,
-        q: '"Arsenal FC" OR "Arsenal Football Club"',
+        q: '"Arsenal"',
         category: 'sports',
         language: 'en',
         size: '10',
