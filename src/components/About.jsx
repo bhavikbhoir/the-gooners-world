@@ -3,6 +3,7 @@ import '../components/styles.scss';
 import { Row, Col } from 'react-bootstrap';
 import { FaEnvelope, FaInstagram, FaFutbol, FaNewspaper } from 'react-icons/fa';
 import XIcon from './XIcon';
+import McpConnect from './McpConnect';
 
 export default function About() {
   React.useEffect(() => {
@@ -42,6 +43,7 @@ export default function About() {
           </div>
         </Col>
       </Row>
+      <McpConnect />
     </div>
   );
 }
