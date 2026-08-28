@@ -44,12 +44,16 @@ export default function QuickDraft({ onCreated }) {
   const [type, setType] = useState('signing');
   const [details, setDetails] = useState('');
   const [competition, setCompetition] = useState('');
+  const [sourceUrl, setSourceUrl] = useState('');
   const [photo, setPhoto] = useState(null); // { base64, mime, preview }
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState(null);
 
   const tmpl = TEMPLATES.find((t) => t.id === type);
+  // Templates where the fact isn't self-evident — accuracy is on the admin.
+  const RISKY = ['signing', 'news', 'custom'];
+  const isRisky = RISKY.includes(type);
 
   const onPhoto = async (file) => {
     if (!file) return;
@@ -66,12 +70,13 @@ export default function QuickDraft({ onCreated }) {
         headers: authHeaders(),
         body: JSON.stringify({
           type, details, competition: competition || undefined,
+          sourceUrl: sourceUrl.trim() || undefined,
           ...(photo ? { imageBase64: photo.base64, mimeType: photo.mime } : {}),
         }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Generation failed');
-      setResult(json.draft);
+      setResult({ ...json.draft, verification: json.verification, sourceError: json.sourceError });
       if (onCreated) onCreated();
     } catch (e) { setError(e.message); }
     finally { setBusy(false); }
@@ -86,6 +91,12 @@ export default function QuickDraft({ onCreated }) {
           <h3>✓ Draft created</h3>
           <p>It's waiting in <strong>Autopilot drafts</strong> for review &amp; publishing.</p>
         </div>
+        {result.sourceError && <div className="quick__verify quick__verify--warn">⚠ {result.sourceError}</div>}
+        {result.verification && (
+          result.verification.supported
+            ? <div className="quick__verify quick__verify--ok">✓ Grounded in your source{result.verification.note ? ` — ${result.verification.note}` : ''}</div>
+            : <div className="quick__verify quick__verify--warn">⚠ Source doesn’t clearly support this — double-check before publishing.{result.verification.note ? ` (${result.verification.note})` : ''}</div>
+        )}
         <div className="quick__result">
           <img className="quick__preview" src={result.previewUrl} alt="generated card" />
           <div className="quick__captions">
@@ -125,6 +136,22 @@ export default function QuickDraft({ onCreated }) {
         placeholder={tmpl?.hint}
         value={details}
         onChange={(e) => setDetails(e.target.value)}
+      />
+
+      {isRisky && (
+        <p className="quick__guard">
+          ⚠ This is <strong>not fact-checked</strong> — the AI only phrases what you type, you’re vouching for it.
+          Add a source URL below to ground it (recommended for transfers &amp; news).
+        </p>
+      )}
+
+      <label className="quick__label">Source URL {isRisky ? '(recommended)' : '(optional)'}</label>
+      <input
+        className="quick__select"
+        type="url"
+        placeholder="https://… link to a reputable report"
+        value={sourceUrl}
+        onChange={(e) => setSourceUrl(e.target.value)}
       />
 
       <div className="quick__row">
