@@ -45,6 +45,8 @@ export default function DraftsQueue() {
   const [busy, setBusy] = useState('');
   const [flash, setFlash] = useState({});
   const [copied, setCopied] = useState('');
+  const [regen, setRegen] = useState({});    // draftId -> composited card previewUrl
+  const [regenBusy, setRegenBusy] = useState('');
 
   const load = useCallback(async () => {
     setLoading(true); setError('');
@@ -67,6 +69,22 @@ export default function DraftsQueue() {
     if (!file) return;
     const base64 = await fileToBase64(file);
     setPhotos((p) => ({ ...p, [id]: { base64, mime: file.type, preview: URL.createObjectURL(file) } }));
+    setRegen((r) => ({ ...r, [id]: null })); // stale composite until regenerated
+  };
+
+  // Re-composite the card over the attached photo (server-side) and preview it.
+  const regenerate = async (d) => {
+    const photo = photos[d.draftId];
+    if (!photo) return;
+    setRegenBusy(d.draftId);
+    setFlash((f) => ({ ...f, [d.draftId]: '' }));
+    try {
+      const res = await post({ action: 'rerender', draftId: d.draftId, imageBase64: photo.base64 });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Regenerate failed');
+      setRegen((r) => ({ ...r, [d.draftId]: json.previewUrl }));
+    } catch (e) { setFlash((f) => ({ ...f, [d.draftId]: e.message })); }
+    finally { setRegenBusy(''); }
   };
 
   const post = (body) => fetch(`${BASE}/drafts`, { method: 'POST', headers: authHeaders(), body: JSON.stringify(body) });
@@ -91,9 +109,11 @@ export default function DraftsQueue() {
     try {
       await saveEditsIfChanged(d);
       const photo = photos[d.draftId];
+      // If already regenerated, the composite is saved — no need to re-send.
+      const needsApply = photo && !regen[d.draftId];
       const res = await post({
         action: 'approve', draftId: d.draftId, platforms: ['instagram'],
-        ...(photo ? { imageBase64: photo.base64, mimeType: photo.mime } : {}),
+        ...(needsApply ? { imageBase64: photo.base64, mimeType: photo.mime } : {}),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Publish failed');
@@ -142,7 +162,8 @@ export default function DraftsQueue() {
         const c = copyOf(d);
         const photo = photos[d.draftId];
         const isBusy = busy === d.draftId;
-        const imgUrl = photo?.preview || d.previewUrl;
+        const regenUrl = regen[d.draftId];
+        const imgUrl = regenUrl || photo?.preview || d.previewUrl;
         const isStatement = d.kind === 'statement';
         const title = isStatement
           ? [d.headline, d.subhead].filter(Boolean).join(' — ')
@@ -163,11 +184,17 @@ export default function DraftsQueue() {
               <div className="drafts__image">
                 <img src={imgUrl} alt="post card" />
                 {d.needsPhoto && !photo && <span className="drafts__photo-nudge">Tip: add a real match photo for a stronger FT post</span>}
+                {photo && !regenUrl && <span className="drafts__photo-nudge">Photo attached — click “Regenerate card” to build the final graphic.</span>}
                 <div className="drafts__img-actions">
                   <label className="drafts__photo-btn">
                     {photo ? 'Change photo' : 'Attach match photo'}
                     <input type="file" accept="image/*" hidden onChange={(e) => onPhoto(d.draftId, e.target.files[0])} />
                   </label>
+                  {photo && (
+                    <button className="drafts__photo-btn" disabled={regenBusy === d.draftId} onClick={() => regenerate(d)}>
+                      {regenBusy === d.draftId ? 'Regenerating…' : '↻ Regenerate card'}
+                    </button>
+                  )}
                   <button className="drafts__photo-btn" onClick={() => downloadImage(imgUrl, filename)}>⬇ Download image</button>
                 </div>
               </div>
