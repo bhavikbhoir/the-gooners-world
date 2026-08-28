@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { fetchMatches, fetchMatchDetail } from '../api/football';
 import DraftsQueue from './DraftsQueue';
+import QuickDraft from './QuickDraft';
 import './Admin.css';
 
 const isDev = import.meta.env.DEV;
@@ -36,7 +37,32 @@ function getRecentForm(matches, selected) {
     .join(', ');
 }
 
-function generateMatchCanvas(match, detail, bgImg = null) {
+// Load an image (optionally cross-origin) — resolves null on failure.
+function loadImg(url, cross) {
+  return new Promise((resolve) => {
+    if (!url) return resolve(null);
+    const img = new Image();
+    if (cross) img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = url;
+  });
+}
+
+// True only if the image can be drawn to a canvas without tainting it (so the
+// PNG download still works). Remote crests without CORS headers return false.
+function corsClean(img) {
+  if (!img) return false;
+  try {
+    const c = document.createElement('canvas');
+    c.width = c.height = 2;
+    c.getContext('2d').drawImage(img, 0, 0, 2, 2);
+    c.toDataURL();
+    return true;
+  } catch { return false; }
+}
+
+function generateMatchCanvas(match, detail, bgImg = null, crests = {}) {
   const W = 1080, H = 1080;
   const canvas = document.createElement('canvas');
   canvas.width = W;
@@ -168,11 +194,34 @@ function generateMatchCanvas(match, detail, bgImg = null) {
   }
   ctx.fillText(match.home.toUpperCase(), W / 2, 272);
 
+  // ── CRESTS (flank the score, filling the empty band) ──
+  const hasCrest = crests.home || crests.away;
+  const drawCrest = (img, cx) => {
+    if (!img) return;
+    const size = 168, cy = 520;
+    noShadow();
+    // Soft circular backdrop so any crest reads cleanly on photo or dark bg.
+    ctx.beginPath();
+    ctx.arc(cx, cy, size / 2 + 16, 0, Math.PI * 2);
+    ctx.fillStyle = bgImg ? 'rgba(0,0,0,0.38)' : 'rgba(255,255,255,0.04)';
+    ctx.fill();
+    shadow();
+    // Preserve aspect ratio inside the box.
+    const ar = img.naturalWidth / img.naturalHeight || 1;
+    let dw = size, dh = size;
+    if (ar > 1) dh = size / ar; else dw = size * ar;
+    ctx.drawImage(img, cx - dw / 2, cy - dh / 2, dw, dh);
+    noShadow();
+  };
+  drawCrest(crests.home, 175);
+  drawCrest(crests.away, W - 175);
+
   // ── SCORE ──
   const scoreText = `${match.homeScore}  -  ${match.awayScore}`;
+  const scoreMaxW = hasCrest ? W - 500 : W - 60;
   let scoreFont = 240;
   ctx.font = `900 ${scoreFont}px Arial, sans-serif`;
-  while (ctx.measureText(scoreText).width > W - 60 && scoreFont > 110) {
+  while (ctx.measureText(scoreText).width > scoreMaxW && scoreFont > 96) {
     scoreFont -= 6;
     ctx.font = `900 ${scoreFont}px Arial, sans-serif`;
   }
@@ -404,8 +453,18 @@ export default function Admin() {
         });
       }
 
-      // Generate canvas image with optional photo background
-      const dataUrl = generateMatchCanvas(selected, matchDetail, bgImg);
+      // Load club crests (only keep CORS-clean ones so Download never breaks)
+      const [homeCr, awayCr] = await Promise.all([
+        loadImg(selected.homeCrest, true),
+        loadImg(selected.awayCrest, true),
+      ]);
+      const crests = {
+        home: corsClean(homeCr) ? homeCr : null,
+        away: corsClean(awayCr) ? awayCr : null,
+      };
+
+      // Generate canvas image with optional photo background + crests
+      const dataUrl = generateMatchCanvas(selected, matchDetail, bgImg, crests);
       setImagePreview(dataUrl);
       setImageBase64(dataUrl.split(',')[1]);
       setImageMime('image/png');
@@ -492,13 +551,17 @@ export default function Admin() {
             onClick={() => setView('compose')}
           >Compose</button>
           <button
+            className={`admin__viewtab${view === 'quick' ? ' admin__viewtab--active' : ''}`}
+            onClick={() => setView('quick')}
+          >Quick draft</button>
+          <button
             className={`admin__viewtab${view === 'drafts' ? ' admin__viewtab--active' : ''}`}
             onClick={() => setView('drafts')}
           >Autopilot drafts</button>
         </div>
       </div>
 
-      {view === 'drafts' ? <DraftsQueue /> : (
+      {view === 'drafts' ? <DraftsQueue /> : view === 'quick' ? <QuickDraft onCreated={() => {}} /> : (
       <div className="admin__body">
         {/* Left: controls */}
         <div className="admin__left">

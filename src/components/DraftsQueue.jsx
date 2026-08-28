@@ -143,12 +143,20 @@ export default function DraftsQueue() {
         const photo = photos[d.draftId];
         const isBusy = busy === d.draftId;
         const imgUrl = photo?.preview || d.previewUrl;
-        const filename = `${d.type}-${d.home}-vs-${d.away}.jpg`.toLowerCase().replace(/\s+/g, '-');
+        const isStatement = d.kind === 'statement';
+        const title = isStatement
+          ? [d.headline, d.subhead].filter(Boolean).join(' — ')
+          : `${d.home} vs ${d.away} · ${d.competition}`;
+        const badge = isStatement
+          ? (d.tag || d.type || 'POST').toUpperCase()
+          : (d.type === 'prematch' ? 'MATCHDAY' : 'FULL-TIME');
+        const filename = (isStatement ? `${d.type}-${d.headline}` : `${d.type}-${d.home}-vs-${d.away}`)
+          .toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.jpg';
         return (
           <div className="drafts__card" key={d.draftId}>
             <div className="drafts__badge-row">
-              <span className={`drafts__type drafts__type--${d.type}`}>{d.type === 'prematch' ? 'MATCHDAY' : 'FULL-TIME'}</span>
-              <span className="drafts__fixture">{d.home} vs {d.away} · {d.competition}</span>
+              <span className={`drafts__type drafts__type--${isStatement ? 'statement' : d.type}`}>{badge}</span>
+              <span className="drafts__fixture">{title}</span>
             </div>
 
             <div className="drafts__grid">
