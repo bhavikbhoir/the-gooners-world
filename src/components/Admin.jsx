@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { fetchMatches, fetchMatchDetail } from '../api/football';
+import DraftsQueue from './DraftsQueue';
 import './Admin.css';
 
 const isDev = import.meta.env.DEV;
@@ -282,6 +283,7 @@ function generateMatchCanvas(match, detail, bgImg = null) {
 }
 
 export default function Admin() {
+  const [view, setView] = useState('compose');
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('tgw_admin') === '1' && !!getToken());
   const [pwInput, setPwInput] = useState('');
   const [pwError, setPwError] = useState(false);
@@ -484,8 +486,19 @@ export default function Admin() {
       <div className="admin__header">
         <span className="admin__logo">⚽ The Gooners World</span>
         <span className="admin__badge">Admin</span>
+        <div className="admin__viewtabs">
+          <button
+            className={`admin__viewtab${view === 'compose' ? ' admin__viewtab--active' : ''}`}
+            onClick={() => setView('compose')}
+          >Compose</button>
+          <button
+            className={`admin__viewtab${view === 'drafts' ? ' admin__viewtab--active' : ''}`}
+            onClick={() => setView('drafts')}
+          >Autopilot drafts</button>
+        </div>
       </div>
 
+      {view === 'drafts' ? <DraftsQueue /> : (
       <div className="admin__body">
         {/* Left: controls */}
         <div className="admin__left">
@@ -671,6 +684,7 @@ export default function Admin() {
           )}
         </div>
       </div>
+      )}
 
       {lightboxOpen && imagePreview && (
         <div className="admin__lightbox" onClick={closeLightbox}>

@@ -494,3 +494,99 @@
   }
   .admin__left { flex: none; }
 }
+
+/* ── View tabs (Compose / Autopilot drafts) ───────────────── */
+.admin__viewtabs { display: flex; gap: 0.4rem; margin-left: auto; }
+.admin__viewtab {
+  background: transparent; border: 1px solid #2a2a2a; color: #b0b0b0;
+  padding: 0.4rem 0.9rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
+  transition: all 0.15s;
+}
+.admin__viewtab:hover { color: #fff; border-color: #444; }
+.admin__viewtab--active { background: #dc3545; border-color: #dc3545; color: #fff; font-weight: 600; }
+
+/* ── Drafts queue ─────────────────────────────────────────── */
+.drafts { padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.drafts__empty {
+  text-align: center; color: #b0b0b0; padding: 4rem 1.5rem;
+}
+.drafts__empty p { margin: 0.3rem 0; }
+.drafts__hint { font-size: 0.85rem; color: #777; max-width: 420px; margin: 0.5rem auto !important; }
+.drafts__top {
+  display: flex; justify-content: space-between; align-items: center;
+  color: #d0d0d0; font-size: 0.9rem; margin-bottom: 1rem;
+}
+.drafts__link {
+  background: none; border: none; color: #f87171; cursor: pointer; font-size: 0.85rem; text-decoration: underline;
+}
+
+.drafts__card {
+  background: #141414; border: 1px solid #2a2a2a; border-radius: 10px;
+  padding: 1.25rem; margin-bottom: 1.25rem;
+}
+.drafts__badge-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.drafts__type {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2rem 0.5rem;
+  border-radius: 4px; color: #fff;
+}
+.drafts__type--prematch { background: #2563eb; }
+.drafts__type--fulltime { background: #dc3545; }
+.drafts__fixture { color: #d0d0d0; font-size: 0.9rem; font-weight: 600; }
+
+.drafts__grid { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; }
+.drafts__image { display: flex; flex-direction: column; gap: 0.5rem; }
+.drafts__image img { width: 100%; border-radius: 8px; border: 1px solid #2a2a2a; }
+.drafts__photo-nudge { font-size: 0.72rem; color: #f5a623; }
+.drafts__photo-btn {
+  text-align: center; background: #1f1f1f; border: 1px dashed #444; color: #ccc;
+  padding: 0.5rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
+}
+.drafts__photo-btn:hover { border-color: #dc3545; color: #fff; }
+
+.drafts__copy { display: flex; flex-direction: column; }
+.drafts__label {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;
+  margin: 0.5rem 0 0.25rem; display: flex; justify-content: space-between;
+}
+.drafts__count { color: #666; }
+.drafts__text {
+  background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 6px; color: #e8e8e8;
+  padding: 0.6rem; font-size: 0.85rem; resize: vertical; font-family: inherit;
+}
+.drafts__text:focus { outline: none; border-color: #dc3545; }
+.drafts__platforms { display: flex; gap: 1.25rem; margin: 0.75rem 0; color: #ccc; font-size: 0.85rem; }
+.drafts__platforms label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; }
+.drafts__flash { color: #f87171; font-size: 0.82rem; margin: 0.25rem 0; }
+.drafts__actions { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+.drafts__approve {
+  background: #16a34a; border: none; color: #fff; font-weight: 600; padding: 0.6rem 1.2rem;
+  border-radius: 6px; cursor: pointer; flex: 1;
+}
+.drafts__approve:hover:not(:disabled) { background: #15803d; }
+.drafts__approve:disabled { opacity: 0.6; cursor: default; }
+.drafts__reject {
+  background: transparent; border: 1px solid #444; color: #b0b0b0; padding: 0.6rem 1.2rem;
+  border-radius: 6px; cursor: pointer;
+}
+.drafts__reject:hover:not(:disabled) { border-color: #dc3545; color: #fff; }
+
+@media (max-width: 720px) {
+  .drafts__grid { grid-template-columns: 1fr; }
+  .admin__viewtabs { width: 100%; margin: 0.75rem 0 0; }
+}
+
+/* ── Drafts: manual-route additions ───────────────────────── */
+.drafts__img-actions { display: flex; flex-direction: column; gap: 0.4rem; }
+.drafts__copybtn {
+  background: #1f1f1f; border: 1px solid #333; color: #ccc; font-size: 0.7rem;
+  padding: 0.1rem 0.5rem; border-radius: 4px; cursor: pointer;
+}
+.drafts__copybtn:hover { border-color: #dc3545; color: #fff; }
+.drafts__manual-hint { font-size: 0.75rem; color: #888; margin: 0.75rem 0 0.25rem; line-height: 1.5; }
+.drafts__manual-hint strong { color: #bbb; }
+.drafts__mark {
+  background: #2563eb; border: none; color: #fff; font-weight: 600; padding: 0.6rem 1rem;
+  border-radius: 6px; cursor: pointer;
+}
+.drafts__mark:hover:not(:disabled) { background: #1d4ed8; }
+.drafts__mark:disabled { opacity: 0.6; cursor: default; }
