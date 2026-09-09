@@ -37,300 +37,6 @@ function getRecentForm(matches, selected) {
     .join(', ');
 }
 
-// Load an image (optionally cross-origin) — resolves null on failure.
-function loadImg(url, cross) {
-  return new Promise((resolve) => {
-    if (!url) return resolve(null);
-    const img = new Image();
-    if (cross) img.crossOrigin = 'anonymous';
-    img.onload = () => resolve(img);
-    img.onerror = () => resolve(null);
-    img.src = url;
-  });
-}
-
-// True only if the image can be drawn to a canvas without tainting it (so the
-// PNG download still works). Remote crests without CORS headers return false.
-function corsClean(img) {
-  if (!img) return false;
-  try {
-    const c = document.createElement('canvas');
-    c.width = c.height = 2;
-    c.getContext('2d').drawImage(img, 0, 0, 2, 2);
-    c.toDataURL();
-    return true;
-  } catch { return false; }
-}
-
-function generateMatchCanvas(match, detail, bgImg = null, crests = {}) {
-  const W = 1080, H = 1080;
-  const canvas = document.createElement('canvas');
-  canvas.width = W;
-  canvas.height = H;
-  const ctx = canvas.getContext('2d');
-
-  const WHITE = '#FFFFFF';
-  const FOOTER_H = 100;
-  const FOOTER_Y = H - FOOTER_H;
-  const isUCL = /champions.league|UEFA.CL|UCL/i.test(match.competition || '');
-
-  const T = isUCL ? {
-    accent: '#c9a227',
-    footerBg: '#0b1e52',
-    separator: 'rgba(255,255,255,0.12)',
-    metaColor: bgImg ? 'rgba(255,255,255,0.75)' : '#7a8db0',
-    refColor: bgImg ? 'rgba(255,255,255,0.5)' : '#3a4e72',
-    opponentGoalColor: bgImg ? 'rgba(255,255,255,0.6)' : '#7a8db0',
-  } : {
-    accent: '#EF0107',
-    footerBg: '#EF0107',
-    separator: bgImg ? 'rgba(255,255,255,0.12)' : '#1e1e1e',
-    metaColor: bgImg ? 'rgba(255,255,255,0.75)' : '#888888',
-    refColor: bgImg ? 'rgba(255,255,255,0.5)' : '#555555',
-    opponentGoalColor: bgImg ? 'rgba(255,255,255,0.6)' : '#aaaaaa',
-  };
-
-  // Shadow helpers — only active when photo background is used
-  const shadow = () => {
-    if (!bgImg) return;
-    ctx.shadowColor = 'rgba(0,0,0,0.95)';
-    ctx.shadowBlur = 16;
-    ctx.shadowOffsetY = 2;
-  };
-  const noShadow = () => {
-    ctx.shadowColor = 'transparent';
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetY = 0;
-  };
-
-  // ── BACKGROUND ──
-  if (bgImg) {
-    // Draw photo with cover-crop to fill 1080×1080
-    const iw = bgImg.naturalWidth, ih = bgImg.naturalHeight;
-    const scale = Math.max(W / iw, H / ih);
-    const dw = iw * scale, dh = ih * scale;
-    ctx.drawImage(bgImg, (W - dw) / 2, (H - dh) / 2, dw, dh);
-
-    // Base dark scrim
-    ctx.fillStyle = 'rgba(0,0,0,0.52)';
-    ctx.fillRect(0, 0, W, H);
-
-    // Stronger gradient at top (header zone)
-    const topScrim = ctx.createLinearGradient(0, 0, 0, 240);
-    topScrim.addColorStop(0, 'rgba(0,0,0,0.72)');
-    topScrim.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = topScrim;
-    ctx.fillRect(0, 0, W, 240);
-
-    // Stronger gradient at bottom (meta/goals zone)
-    const bottomScrim = ctx.createLinearGradient(0, 720, 0, FOOTER_Y);
-    bottomScrim.addColorStop(0, 'rgba(0,0,0,0)');
-    bottomScrim.addColorStop(1, 'rgba(0,0,0,0.78)');
-    ctx.fillStyle = bottomScrim;
-    ctx.fillRect(0, 720, W, FOOTER_Y - 720);
-
-    // Subtle accent color tint in the score zone (adds brand identity)
-    const scoreTint = isUCL
-      ? ctx.createRadialGradient(W / 2, 530, 0, W / 2, 530, 420)
-      : ctx.createRadialGradient(W / 2, 530, 0, W / 2, 530, 360);
-    scoreTint.addColorStop(0, isUCL ? 'rgba(201,162,39,0.08)' : 'rgba(239,1,7,0.1)');
-    scoreTint.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = scoreTint;
-    ctx.fillRect(0, 0, W, H);
-  } else {
-    // Dark programmatic background
-    ctx.fillStyle = isUCL ? '#06091a' : '#0d0d0d';
-    ctx.fillRect(0, 0, W, H);
-
-    // Diagonal glow — top right
-    const diagGrad = ctx.createLinearGradient(W, 0, W - 460, 460);
-    diagGrad.addColorStop(0, isUCL ? 'rgba(30,80,200,0.22)' : 'rgba(239,1,7,0.2)');
-    diagGrad.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = diagGrad;
-    ctx.fillRect(0, 0, W, H);
-
-    // Corner glow — bottom left
-    const cornerGlow = ctx.createRadialGradient(0, H, 0, 0, H, 500);
-    cornerGlow.addColorStop(0, isUCL ? 'rgba(201,162,39,0.1)' : 'rgba(239,1,7,0.1)');
-    cornerGlow.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = cornerGlow;
-    ctx.fillRect(0, 0, W, H);
-  }
-
-  // ── TOP ACCENT BAR ──
-  noShadow();
-  ctx.fillStyle = T.accent;
-  ctx.fillRect(0, 0, W, 8);
-
-  // ── HEADER ──
-  shadow();
-  ctx.fillStyle = bgImg ? 'rgba(255,255,255,0.85)' : '#aaaaaa';
-  ctx.font = '700 14px Arial, sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText('F U L L   T I M E', 64, 58);
-
-  ctx.textAlign = 'right';
-  ctx.font = '500 13px Arial, sans-serif';
-  ctx.fillStyle = isUCL ? T.accent : (bgImg ? 'rgba(255,255,255,0.6)' : '#666666');
-  ctx.fillText((match.competition || '').toUpperCase(), W - 64, 58);
-
-  noShadow();
-  ctx.strokeStyle = T.separator;
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(64, 80);
-  ctx.lineTo(W - 64, 80);
-  ctx.stroke();
-
-  // ── HOME TEAM ──
-  shadow();
-  ctx.fillStyle = WHITE;
-  ctx.textAlign = 'center';
-  let homeFont = 96;
-  ctx.font = `700 ${homeFont}px Arial, sans-serif`;
-  while (ctx.measureText(match.home.toUpperCase()).width > W - 80 && homeFont > 52) {
-    homeFont -= 4;
-    ctx.font = `700 ${homeFont}px Arial, sans-serif`;
-  }
-  ctx.fillText(match.home.toUpperCase(), W / 2, 272);
-
-  // ── CRESTS (flank the score, filling the empty band) ──
-  const hasCrest = crests.home || crests.away;
-  const drawCrest = (img, cx) => {
-    if (!img) return;
-    const size = 168, cy = 520;
-    noShadow();
-    // Soft circular backdrop so any crest reads cleanly on photo or dark bg.
-    ctx.beginPath();
-    ctx.arc(cx, cy, size / 2 + 16, 0, Math.PI * 2);
-    ctx.fillStyle = bgImg ? 'rgba(0,0,0,0.38)' : 'rgba(255,255,255,0.04)';
-    ctx.fill();
-    shadow();
-    // Preserve aspect ratio inside the box.
-    const ar = img.naturalWidth / img.naturalHeight || 1;
-    let dw = size, dh = size;
-    if (ar > 1) dh = size / ar; else dw = size * ar;
-    ctx.drawImage(img, cx - dw / 2, cy - dh / 2, dw, dh);
-    noShadow();
-  };
-  drawCrest(crests.home, 175);
-  drawCrest(crests.away, W - 175);
-
-  // ── SCORE ──
-  const scoreText = `${match.homeScore}  -  ${match.awayScore}`;
-  const scoreMaxW = hasCrest ? W - 500 : W - 60;
-  let scoreFont = 240;
-  ctx.font = `900 ${scoreFont}px Arial, sans-serif`;
-  while (ctx.measureText(scoreText).width > scoreMaxW && scoreFont > 96) {
-    scoreFont -= 6;
-    ctx.font = `900 ${scoreFont}px Arial, sans-serif`;
-  }
-  if (!bgImg) {
-    // Drop shadow on dark bg (manual offset)
-    noShadow();
-    ctx.fillStyle = isUCL ? 'rgba(201,162,39,0.25)' : 'rgba(239,1,7,0.22)';
-    ctx.fillText(scoreText, W / 2 + 5, 589);
-  }
-  shadow();
-  ctx.fillStyle = T.accent;
-  ctx.fillText(scoreText, W / 2, 585);
-
-  // ── AWAY TEAM ──
-  ctx.fillStyle = WHITE;
-  let awayFont = 96;
-  ctx.font = `700 ${awayFont}px Arial, sans-serif`;
-  while (ctx.measureText(match.away.toUpperCase()).width > W - 80 && awayFont > 52) {
-    awayFont -= 4;
-    ctx.font = `700 ${awayFont}px Arial, sans-serif`;
-  }
-  ctx.fillText(match.away.toUpperCase(), W / 2, 770);
-
-  // ── META SEPARATOR ──
-  noShadow();
-  ctx.strokeStyle = T.separator;
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(64, 808);
-  ctx.lineTo(W - 64, 808);
-  ctx.stroke();
-
-  // ── DATE + VENUE ──
-  shadow();
-  const dateStr = new Date(match.date).toLocaleDateString('en-GB', {
-    weekday: 'short', day: 'numeric', month: 'long', year: 'numeric',
-  });
-  let metaLine = detail?.venue ? `${dateStr}  ·  ${detail.venue}` : dateStr;
-  ctx.fillStyle = T.metaColor;
-  ctx.font = '18px Arial, sans-serif';
-  ctx.textAlign = 'center';
-  if (ctx.measureText(metaLine).width > W - 120) metaLine = dateStr;
-  ctx.fillText(metaLine, W / 2, 842);
-
-  if (detail?.referee) {
-    ctx.fillStyle = T.refColor;
-    ctx.font = '15px Arial, sans-serif';
-    ctx.fillText(`Referee: ${detail.referee}`, W / 2, 866);
-  }
-
-  // ── GOAL SCORERS ──
-  const goals = detail?.goals || [];
-  if (goals.length > 0) {
-    const isArsenalHome = /^arsenal/i.test(match.home);
-    let gy = 905;
-    ctx.font = '600 18px Arial, sans-serif';
-    for (const g of goals.slice(0, 5)) {
-      if (gy > FOOTER_Y - 24) break;
-      const isArsenal = /^arsenal/i.test(g.team) || g.team === (isArsenalHome ? match.home : match.away);
-      const suffix = g.type === 'OWN_GOAL' ? ' og' : g.type === 'PENALTY' ? ' pen' : '';
-      const label = `${g.minute}' ${g.scorer}${suffix}`;
-      if (isArsenal) {
-        ctx.fillStyle = WHITE;
-        ctx.textAlign = 'right';
-        ctx.fillText(label, W / 2 - 28, gy);
-      } else {
-        ctx.fillStyle = T.opponentGoalColor;
-        ctx.textAlign = 'left';
-        ctx.fillText(label, W / 2 + 28, gy);
-      }
-      gy += 27;
-    }
-  }
-
-  // ── FOOTER ──
-  noShadow();
-  // Fade into footer (from photo or dark bg)
-  const fadeBg = bgImg ? '0,0,0' : (isUCL ? '6,9,26' : '13,13,13');
-  const fade = ctx.createLinearGradient(0, FOOTER_Y - 30, 0, FOOTER_Y);
-  fade.addColorStop(0, `rgba(${fadeBg},0)`);
-  fade.addColorStop(1, `rgba(${fadeBg},1)`);
-  ctx.fillStyle = fade;
-  ctx.fillRect(0, FOOTER_Y - 30, W, 30);
-
-  ctx.fillStyle = T.footerBg;
-  ctx.fillRect(0, FOOTER_Y, W, FOOTER_H);
-
-  if (isUCL) {
-    ctx.fillStyle = T.accent;
-    ctx.fillRect(0, FOOTER_Y, 6, FOOTER_H);
-  }
-
-  const footShade = ctx.createLinearGradient(0, FOOTER_Y, 0, FOOTER_Y + 16);
-  footShade.addColorStop(0, 'rgba(0,0,0,0.35)');
-  footShade.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = footShade;
-  ctx.fillRect(0, FOOTER_Y, W, 16);
-
-  ctx.fillStyle = WHITE;
-  ctx.textAlign = 'center';
-  ctx.font = 'bold 26px Arial, sans-serif';
-  ctx.fillText('THE GOONERS WORLD', W / 2, FOOTER_Y + 52);
-  ctx.fillStyle = isUCL ? 'rgba(201,162,39,0.8)' : 'rgba(255,255,255,0.65)';
-  ctx.font = '14px Arial, sans-serif';
-  ctx.fillText('@thegoonersworld  ·  the-gooners-world.web.app', W / 2, FOOTER_Y + 78);
-
-  return canvas.toDataURL('image/png');
-}
-
 export default function Admin() {
   const [view, setView] = useState('compose');
   const [authed, setAuthed] = useState(() => sessionStorage.getItem('tgw_admin') === '1' && !!getToken());
@@ -442,34 +148,35 @@ export default function Admin() {
       if (!res.ok) throw new Error(data.error || 'Generation failed');
       setPosts(data);
 
-      // Load user-uploaded photo as canvas background (only if not already a generated canvas)
-      let bgImg = null;
-      if (imagePreview && !imageIsGenerated) {
-        bgImg = await new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => resolve(img);
-          img.onerror = () => resolve(null);
-          img.src = imagePreview;
-        });
-      }
+      // Only forward a photo if the admin uploaded one (not a previously generated card).
+      const uploadedPhoto = imagePreview && !imageIsGenerated ? imageBase64 : null;
 
-      // Load club crests (only keep CORS-clean ones so Download never breaks)
-      const [homeCr, awayCr] = await Promise.all([
-        loadImg(selected.homeCrest, true),
-        loadImg(selected.awayCrest, true),
-      ]);
-      const crests = {
-        home: corsClean(homeCr) ? homeCr : null,
-        away: corsClean(awayCr) ? awayCr : null,
-      };
+      // Same renderer the autopilot orchestrator uses (functions/social/graphics.js
+      // renderCard), so compose and autopilot cards always look identical. Crests
+      // are fetched server-side here — no browser CORS issues to work around.
+      const cardRes = await adminFetch('/generate-card', {
+        type: 'fulltime',
+        home: selected.home,
+        away: selected.away,
+        homeScore: selected.homeScore,
+        awayScore: selected.awayScore,
+        homeCrest: selected.homeCrest,
+        awayCrest: selected.awayCrest,
+        competition: selected.competition,
+        date: selected.date,
+        venue: matchDetail?.venue || undefined,
+        goals: matchDetail?.goals?.length ? matchDetail.goals : undefined,
+        referee: matchDetail?.referee || undefined,
+        ...(uploadedPhoto ? { imageBase64: uploadedPhoto } : {}),
+      });
+      const cardData = await cardRes.json();
+      if (!cardRes.ok) throw new Error(cardData.error || 'Card generation failed');
 
-      // Generate canvas image with optional photo background + crests
-      const dataUrl = generateMatchCanvas(selected, matchDetail, bgImg, crests);
-      setImagePreview(dataUrl);
-      setImageBase64(dataUrl.split(',')[1]);
-      setImageMime('image/png');
+      setImagePreview(`data:${cardData.mimeType};base64,${cardData.imageBase64}`);
+      setImageBase64(cardData.imageBase64);
+      setImageMime(cardData.mimeType);
       setImageFile(null);
-      setImageIsGenerated(bgImg ? 'photo' : true);
+      setImageIsGenerated(uploadedPhoto ? 'photo' : true);
     } catch (err) {
       setGenError(err.message);
     } finally {
@@ -515,6 +222,7 @@ export default function Admin() {
   }
 
   const xLen = posts.x.length;
+  const imageExt = imageMime === 'image/jpeg' ? 'jpg' : 'png';
 
   if (!authed) {
     return (
@@ -607,7 +315,7 @@ export default function Admin() {
                 <span className="admin__img-actions-sep">·</span>
                 <a
                   href={imagePreview}
-                  download={selected ? `${selected.home}-vs-${selected.away}.png`.toLowerCase().replace(/\s+/g, '-') : 'match.png'}
+                  download={selected ? `${selected.home}-vs-${selected.away}.${imageExt}`.toLowerCase().replace(/\s+/g, '-') : `match.${imageExt}`}
                   className="admin__img-link"
                   onClick={(e) => e.stopPropagation()}
                 >Download</a>
