@@ -152,16 +152,13 @@ export default function Admin() {
       const uploadedPhoto = imagePreview && !imageIsGenerated ? imageBase64 : null;
 
       // Same renderer the autopilot orchestrator uses (functions/social/graphics.js
-      // renderCard), so compose and autopilot cards always look identical. Crests
-      // are fetched server-side here — no browser CORS issues to work around.
+      // renderCard), so compose and autopilot cards always look identical.
       const cardRes = await adminFetch('/generate-card', {
         type: 'fulltime',
         home: selected.home,
         away: selected.away,
         homeScore: selected.homeScore,
         awayScore: selected.awayScore,
-        homeCrest: selected.homeCrest,
-        awayCrest: selected.awayCrest,
         competition: selected.competition,
         date: selected.date,
         venue: matchDetail?.venue || undefined,
