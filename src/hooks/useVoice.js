@@ -7,6 +7,7 @@ const Recognition = typeof window !== 'undefined'
   ? window.SpeechRecognition || window.webkitSpeechRecognition
   : undefined;
 const synth = typeof window !== 'undefined' ? window.speechSynthesis : undefined;
+const SILENCE_MS = 8000;
 
 // Strip anything that sounds wrong read aloud: markdown, URLs, emoji.
 export function toSpeech(text) {
@@ -31,6 +32,10 @@ export default function useVoice() {
   const [interim, setInterim] = useState('');
   const recRef = useRef(null);
   const utterRef = useRef(null); // held so Chrome doesn't GC it before onend fires
+  // Settles whichever listen/speak is in flight. stop() calls these directly
+  // because Android Chrome doesn't always fire onend after abort()/cancel().
+  const finishListenRef = useRef(null);
+  const finishSpeakRef = useRef(null);
 
   // Resolves with { text } once the user stops talking, or { text: null, error }.
   const listen = useCallback(() => new Promise((resolve) => {
@@ -45,7 +50,26 @@ export default function useVoice() {
 
     let finalText = '';
     let error = null;
+    let settled = false;
+    let silenceTimer;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(silenceTimer);
+      if (recRef.current === rec) recRef.current = null;
+      if (finishListenRef.current === finish) finishListenRef.current = null;
+      setListening(false);
+      setInterim('');
+      resolve({ text: finalText.trim() || null, error });
+    };
+    // Android Chrome can sit in a session forever when nobody speaks.
+    const armSilenceTimer = () => {
+      clearTimeout(silenceTimer);
+      silenceTimer = setTimeout(() => { error = error || 'no-speech'; rec.abort(); finish(); }, SILENCE_MS);
+    };
+
     rec.onresult = (e) => {
+      armSilenceTimer();
       let partial = '';
       for (let i = e.resultIndex; i < e.results.length; i++) {
         const r = e.results[i];
@@ -55,21 +79,17 @@ export default function useVoice() {
       setInterim(finalText + partial);
     };
     rec.onerror = (e) => { error = e.error; };
-    rec.onend = () => {
-      recRef.current = null;
-      setListening(false);
-      setInterim('');
-      resolve({ text: finalText.trim() || null, error });
-    };
+    rec.onend = finish;
 
     recRef.current = rec;
+    finishListenRef.current = finish;
     setListening(true);
     try {
       rec.start();
+      armSilenceTimer();
     } catch {
-      recRef.current = null;
-      setListening(false);
-      resolve({ text: null, error: 'start-failed' });
+      error = 'start-failed';
+      finish();
     }
   }), []);
 
@@ -84,8 +104,12 @@ export default function useVoice() {
     if (voice) u.voice = voice;
     u.lang = voice?.lang || 'en-GB';
     u.rate = 1.05;
+    let settled = false;
     const done = () => {
-      utterRef.current = null;
+      if (settled) return;
+      settled = true;
+      if (utterRef.current === u) utterRef.current = null;
+      if (finishSpeakRef.current === done) finishSpeakRef.current = null;
       setSpeaking(false);
       resolve();
     };
@@ -93,6 +117,7 @@ export default function useVoice() {
     u.onerror = done;
 
     utterRef.current = u;
+    finishSpeakRef.current = done;
     setSpeaking(true);
     synth.speak(u);
   }), []);
@@ -106,6 +131,8 @@ export default function useVoice() {
   const stop = useCallback(() => {
     recRef.current?.abort();
     synth?.cancel();
+    finishListenRef.current?.();
+    finishSpeakRef.current?.();
   }, []);
 
   useEffect(() => stop, [stop]);

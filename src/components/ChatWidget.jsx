@@ -44,6 +44,9 @@ export default function ChatWidget() {
   const voice = useVoice();
   const [voiceMode, setVoiceMode] = useState(false);
   const voiceGenRef = useRef(0); // bumped on stop so a stale loop exits
+  // Only reflect speech-engine state while a voice conversation is running
+  const listening = voiceMode && voice.listening;
+  const speaking = voiceMode && voice.speaking;
 
   // Keep ref in sync so async callbacks see latest value
   useEffect(() => { openRef.current = open; }, [open]);
@@ -151,7 +154,7 @@ export default function ChatWidget() {
               <div className="chat-header-info">
                 <div className="chat-header-title">Arsenal AI Assistant</div>
                 <div className="chat-header-status">
-                  {voice.listening ? 'Listening...' : voice.speaking ? 'Speaking...' : loading ? 'Typing...' : 'Online'}
+                  {listening ? 'Listening...' : speaking ? 'Speaking...' : loading ? 'Typing...' : 'Online'}
                 </div>
               </div>
             </div>
@@ -192,7 +195,7 @@ export default function ChatWidget() {
               value={voiceMode ? voice.interim : input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder={voice.listening ? 'Listening...' : voice.speaking ? 'Speaking...' : 'Ask about Arsenal...'}
+              placeholder={listening ? 'Listening... go ahead' : speaking ? 'Speaking...' : 'Ask about Arsenal...'}
               disabled={loading || voiceMode}
               autoComplete="off"
             />
