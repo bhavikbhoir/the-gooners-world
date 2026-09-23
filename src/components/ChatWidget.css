@@ -348,3 +348,43 @@
     right: 16px;
   }
 }
+
+/* ── Voice ── */
+.chat-mic {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s, opacity 0.15s, background 0.15s;
+}
+.chat-mic:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.12);
+}
+.chat-mic:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.chat-mic--active {
+  background: #dc3545;
+  border-color: #dc3545;
+  animation: chat-mic-pulse 1.4s ease-out infinite;
+}
+.chat-mic--active:hover:not(:disabled) {
+  background: #b02a37;
+}
+@keyframes chat-mic-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.6); }
+  100% { box-shadow: 0 0 0 12px rgba(220, 53, 69, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-mic--active { animation: none; }
+}
