@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { sendMessage } from '../api/agent';
-import { FaComments, FaMinus, FaPaperPlane, FaRobot } from 'react-icons/fa';
+import useVoice from '../hooks/useVoice';
+import { FaComments, FaMicrophone, FaMinus, FaPaperPlane, FaRobot, FaStop } from 'react-icons/fa';
 import './ChatWidget.css';
 
 function formatMessage(text) {
@@ -35,11 +36,14 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const [sessionId] = useState(() => `tgw-${Date.now()}`);
   const [unread, setUnread] = useState(0);
-  const [msgCount, setMsgCount] = useState(0);
+  const msgCountRef = useRef(0);
   const MSG_LIMIT = 30; // max messages per session
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
   const openRef = useRef(open);
+  const voice = useVoice();
+  const [voiceMode, setVoiceMode] = useState(false);
+  const voiceGenRef = useRef(0); // bumped on stop so a stale loop exits
 
   // Keep ref in sync so async callbacks see latest value
   useEffect(() => { openRef.current = open; }, [open]);
@@ -60,31 +64,68 @@ export default function ChatWidget() {
     }
   }, [open, scrollToBottom]);
 
-  const handleSend = async (overrideMsg) => {
+  // Returns the assistant's reply text (null if nothing was sent or it failed)
+  // so the voice loop can read it aloud.
+  const handleSend = async (overrideMsg, mode = 'text') => {
     const msg = (overrideMsg ?? input).trim();
-    if (!msg || loading) return;
+    if (!msg || loading) return null;
 
-    if (msgCount >= MSG_LIMIT) {
+    if (msgCountRef.current >= MSG_LIMIT) {
       setMessages((prev) => [...prev, { role: 'assistant', text: "You've reached the message limit for this session. Refresh the page to start a new chat!" }]);
-      return;
+      return null;
     }
 
-    setInput('');
-    setMsgCount((n) => n + 1);
+    if (mode === 'text') setInput('');
+    msgCountRef.current += 1;
     setMessages((prev) => [...prev, { role: 'user', text: msg }]);
     setLoading(true);
 
     try {
-      const { reply } = await sendMessage(msg, sessionId);
+      const { reply } = await sendMessage(msg, sessionId, mode);
       setMessages((prev) => [...prev, { role: 'assistant', text: reply }]);
       if (!openRef.current) setUnread((n) => n + 1);
+      return reply;
     } catch {
       setMessages((prev) => [...prev, { role: 'assistant', text: 'Sorry, something went wrong. Please try again.' }]);
       if (!openRef.current) setUnread((n) => n + 1);
+      return null;
     } finally {
       setLoading(false);
     }
   };
+
+  const stopVoice = useCallback(() => {
+    voiceGenRef.current += 1;
+    setVoiceMode(false);
+    voice.stop();
+  }, [voice.stop]);
+
+  // Hands-free loop: listen → ask the agent → speak the reply → listen again,
+  // until the user taps stop or goes quiet.
+  const startVoice = async () => {
+    voice.unlock();
+    const gen = ++voiceGenRef.current;
+    const active = () => voiceGenRef.current === gen;
+    setVoiceMode(true);
+
+    while (active()) {
+      const { text, error } = await voice.listen();
+      if (!active()) return;
+      if (!text) {
+        if (error === 'not-allowed' || error === 'service-not-allowed') {
+          setMessages((prev) => [...prev, { role: 'assistant', text: 'I need microphone access to hear you — allow it in your browser settings and tap the mic again.' }]);
+        }
+        break;
+      }
+      const reply = await handleSend(text, 'voice');
+      if (!active() || !reply) break;
+      await voice.speak(reply);
+    }
+    if (active()) setVoiceMode(false);
+  };
+
+  // Stop talking/listening when the panel is minimised
+  useEffect(() => { if (!open) stopVoice(); }, [open, stopVoice]);
 
   const handleKey = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -109,7 +150,9 @@ export default function ChatWidget() {
               <div className="chat-header-avatar"><FaRobot /></div>
               <div className="chat-header-info">
                 <div className="chat-header-title">Arsenal AI Assistant</div>
-                <div className="chat-header-status">{loading ? 'Typing...' : 'Online'}</div>
+                <div className="chat-header-status">
+                  {voice.listening ? 'Listening...' : voice.speaking ? 'Speaking...' : loading ? 'Typing...' : 'Online'}
+                </div>
               </div>
             </div>
             <button className="chat-minimize" onClick={() => setOpen(false)} aria-label="Minimize chat">
@@ -146,17 +189,28 @@ export default function ChatWidget() {
             <input
               ref={inputRef}
               className="chat-input"
-              value={input}
+              value={voiceMode ? voice.interim : input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Ask about Arsenal..."
-              disabled={loading}
+              placeholder={voice.listening ? 'Listening...' : voice.speaking ? 'Speaking...' : 'Ask about Arsenal...'}
+              disabled={loading || voiceMode}
               autoComplete="off"
             />
+            {voice.supported && (
+              <button
+                className={`chat-mic${voiceMode ? ' chat-mic--active' : ''}`}
+                onClick={voiceMode ? stopVoice : startVoice}
+                disabled={loading && !voiceMode}
+                aria-label={voiceMode ? 'Stop voice conversation' : 'Talk to the assistant'}
+                aria-pressed={voiceMode}
+              >
+                {voiceMode ? <FaStop /> : <FaMicrophone />}
+              </button>
+            )}
             <button
               className="chat-send"
-              onClick={handleSend}
-              disabled={loading || !input.trim()}
+              onClick={() => handleSend()}
+              disabled={loading || voiceMode || !input.trim()}
               aria-label="Send message"
             >
               <FaPaperPlane />
