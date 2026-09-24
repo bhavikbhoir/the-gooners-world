@@ -27,6 +27,16 @@ function formatMessage(text) {
   ));
 }
 
+// Shown when a voice turn fails; silence and user-cancelled turns stay quiet.
+const VOICE_ERRORS = {
+  'not-allowed': 'I need microphone access to hear you — allow it for this site in your browser settings and tap the mic again.',
+  'audio-capture': "I couldn't find a microphone to listen with.",
+  'service-not-allowed': "Voice input isn't available in this browser — you can still type your question.",
+  unsupported: "Voice input isn't available in this browser — you can still type your question.",
+  'transcribe-failed': "Sorry, I couldn't make that out. Tap the mic to try again, or type your question.",
+  network: "Voice input needs a connection — check you're online and try again.",
+};
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -47,6 +57,7 @@ export default function ChatWidget() {
   // Only reflect speech-engine state while a voice conversation is running
   const listening = voiceMode && voice.listening;
   const speaking = voiceMode && voice.speaking;
+  const transcribing = voiceMode && voice.transcribing;
 
   // Keep ref in sync so async callbacks see latest value
   useEffect(() => { openRef.current = open; }, [open]);
@@ -115,16 +126,15 @@ export default function ChatWidget() {
       const { text, error } = await voice.listen();
       if (!active()) return;
       if (!text) {
-        if (error === 'not-allowed' || error === 'service-not-allowed') {
-          setMessages((prev) => [...prev, { role: 'assistant', text: 'I need microphone access to hear you — allow it in your browser settings and tap the mic again.' }]);
-        }
+        const hint = VOICE_ERRORS[error];
+        if (hint) setMessages((prev) => [...prev, { role: 'assistant', text: hint }]);
         break;
       }
       const reply = await handleSend(text, 'voice');
       if (!active() || !reply) break;
       await voice.speak(reply);
     }
-    if (active()) setVoiceMode(false);
+    if (active()) stopVoice(); // also releases the mic
   };
 
   // Stop talking/listening when the panel is minimised
@@ -154,7 +164,7 @@ export default function ChatWidget() {
               <div className="chat-header-info">
                 <div className="chat-header-title">Arsenal AI Assistant</div>
                 <div className="chat-header-status">
-                  {listening ? 'Listening...' : speaking ? 'Speaking...' : loading ? 'Typing...' : 'Online'}
+                  {listening ? 'Listening...' : transcribing ? 'Transcribing...' : speaking ? 'Speaking...' : loading ? 'Typing...' : 'Online'}
                 </div>
               </div>
             </div>
@@ -195,7 +205,7 @@ export default function ChatWidget() {
               value={voiceMode ? voice.interim : input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder={listening ? 'Listening... go ahead' : speaking ? 'Speaking...' : 'Ask about Arsenal...'}
+              placeholder={listening ? 'Listening... go ahead' : transcribing ? 'Transcribing...' : speaking ? 'Speaking...' : 'Ask about Arsenal...'}
               disabled={loading || voiceMode}
               autoComplete="off"
             />
