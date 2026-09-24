@@ -388,3 +388,10 @@
 @media (prefers-reduced-motion: reduce) {
   .chat-mic--active { animation: none; }
 }
+/* Recording fallback: a live level ring instead of the pulse, so the user can
+   see whether the mic is actually hearing them */
+.chat-mic--metered {
+  animation: none;
+  box-shadow: 0 0 0 calc(3px + var(--mic-level, 0) * 12px) rgba(220, 53, 69, 0.35);
+  transition: box-shadow 0.08s linear, transform 0.15s;
+}
