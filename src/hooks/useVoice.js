@@ -1,13 +1,21 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { transcribeAudio } from '../api/agent';
+import { canRecord, captureUtterance, createAudioContext } from './recordSpeech';
 
-// Browser-native speech: Web Speech API recognition (Chrome, Edge, Safari)
-// for input, speechSynthesis for output. No audio ever leaves the browser
-// except through the vendor's own recognition service.
+// Speech input: the browser's Web Speech recognizer where it works (Chrome,
+// Edge, Safari). Elsewhere — every non-Safari browser on iOS, Firefox — we
+// record the question ourselves and transcribe it on the backend with Amazon
+// Transcribe. Speech output is always the browser's speechSynthesis.
 const Recognition = typeof window !== 'undefined'
   ? window.SpeechRecognition || window.webkitSpeechRecognition
   : undefined;
 const synth = typeof window !== 'undefined' ? window.speechSynthesis : undefined;
 const SILENCE_MS = 8000;
+
+// Chrome/Firefox/Edge/Opera on iOS expose webkitSpeechRecognition, but it
+// fails to start there, so skip straight to recording.
+const isIOSThirdParty = typeof navigator !== 'undefined' && /CriOS|FxiOS|EdgiOS|OPiOS/.test(navigator.userAgent);
+const nativeUsable = !!Recognition && !isIOSThirdParty;
 
 // Strip anything that sounds wrong read aloud: markdown, URLs, emoji.
 export function toSpeech(text) {
@@ -28,6 +36,7 @@ function pickVoice() {
 
 export default function useVoice() {
   const [listening, setListening] = useState(false);
+  const [transcribing, setTranscribing] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [interim, setInterim] = useState('');
   const recRef = useRef(null);
@@ -36,10 +45,19 @@ export default function useVoice() {
   // because Android Chrome doesn't always fire onend after abort()/cancel().
   const finishListenRef = useRef(null);
   const finishSpeakRef = useRef(null);
+  // Recording fallback state
+  const useRecordingRef = useRef(!nativeUsable);
+  const audioCtxRef = useRef(null);
+  const streamRef = useRef(null);
+  const cancelCaptureRef = useRef(null);
 
-  // Resolves with { text } once the user stops talking, or { text: null, error }.
-  const listen = useCallback(() => new Promise((resolve) => {
-    if (!Recognition) return resolve({ text: null, error: 'unsupported' });
+  const releaseMic = useCallback(() => {
+    streamRef.current?.getTracks().forEach((t) => t.stop());
+    streamRef.current = null;
+  }, []);
+
+  // Web Speech path. Resolves { text } or { text: null, error }.
+  const listenNative = useCallback(() => new Promise((resolve) => {
     synth?.cancel();
 
     const rec = new Recognition();
@@ -93,6 +111,57 @@ export default function useVoice() {
     }
   }), []);
 
+  // Recording + Amazon Transcribe path. Same result shape as listenNative.
+  const listenRecorded = useCallback(async () => {
+    synth?.cancel();
+    if (!audioCtxRef.current) audioCtxRef.current = createAudioContext();
+    const ctx = audioCtxRef.current;
+    if (ctx.state === 'suspended') await ctx.resume().catch(() => {});
+
+    if (!streamRef.current?.active) {
+      try {
+        streamRef.current = await navigator.mediaDevices.getUserMedia({
+          audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 },
+        });
+      } catch (err) {
+        return { text: null, error: err?.name === 'NotAllowedError' ? 'not-allowed' : 'audio-capture' };
+      }
+    }
+
+    setListening(true);
+    const capture = captureUtterance(ctx, streamRef.current, () => setInterim('…'));
+    cancelCaptureRef.current = capture.cancel;
+    const audio = await capture.promise;
+    if (cancelCaptureRef.current === capture.cancel) cancelCaptureRef.current = null;
+    setListening(false);
+    setInterim('');
+    if (!audio) return { text: null, error: 'no-speech' };
+
+    setTranscribing(true);
+    try {
+      const { text } = await transcribeAudio(audio);
+      return text ? { text } : { text: null, error: 'no-speech' };
+    } catch {
+      return { text: null, error: 'transcribe-failed' };
+    } finally {
+      setTranscribing(false);
+    }
+  }, []);
+
+  // Resolves with { text } once the user stops talking, or { text: null, error }.
+  const listen = useCallback(async () => {
+    if (useRecordingRef.current) {
+      return canRecord ? listenRecorded() : { text: null, error: 'unsupported' };
+    }
+    const result = await listenNative();
+    // Recognizer refused to start even though the mic may be allowed — record instead.
+    if (!result.text && canRecord && (result.error === 'service-not-allowed' || result.error === 'not-allowed')) {
+      useRecordingRef.current = true;
+      return listenRecorded();
+    }
+    return result;
+  }, [listenNative, listenRecorded]);
+
   // Resolves when the utterance finishes or is cancelled.
   const speak = useCallback((text) => new Promise((resolve) => {
     const clean = toSpeech(text);
@@ -122,20 +191,31 @@ export default function useVoice() {
     synth.speak(u);
   }), []);
 
-  // iOS Safari only allows speech started from a user gesture — speaking an
-  // empty utterance inside the tap handler unlocks later async replies.
+  // iOS only allows audio started from a user gesture — speaking an empty
+  // utterance and creating/resuming the AudioContext inside the tap handler
+  // unlocks later async replies and recording.
   const unlock = useCallback(() => {
     if (synth) synth.speak(new SpeechSynthesisUtterance(''));
+    if (canRecord) {
+      if (!audioCtxRef.current) audioCtxRef.current = createAudioContext();
+      audioCtxRef.current?.resume().catch(() => {});
+    }
   }, []);
 
   const stop = useCallback(() => {
     recRef.current?.abort();
     synth?.cancel();
+    cancelCaptureRef.current?.();
     finishListenRef.current?.();
     finishSpeakRef.current?.();
-  }, []);
+    releaseMic();
+  }, [releaseMic]);
 
   useEffect(() => stop, [stop]);
 
-  return { supported: !!Recognition, listening, speaking, interim, listen, speak, unlock, stop };
+  return {
+    supported: nativeUsable || canRecord,
+    listening, transcribing, speaking, interim,
+    listen, speak, unlock, stop,
+  };
 }
