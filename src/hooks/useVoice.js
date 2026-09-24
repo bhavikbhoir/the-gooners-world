@@ -27,6 +27,12 @@ export function toSpeech(text) {
     .trim();
 }
 
+// resume() can stay pending forever on iOS outside a user gesture.
+async function resumeContext(ctx) {
+  if (ctx.state === 'running') return;
+  await Promise.race([ctx.resume().catch(() => {}), new Promise((r) => setTimeout(r, 500))]);
+}
+
 function pickVoice() {
   const voices = synth?.getVoices() || [];
   return voices.find((v) => v.lang === 'en-GB' && /natural|neural|google/i.test(v.name))
@@ -39,6 +45,8 @@ export default function useVoice() {
   const [transcribing, setTranscribing] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [interim, setInterim] = useState('');
+  const [level, setLevel] = useState(0); // live mic level 0..1 (recording path only)
+  const [metered, setMetered] = useState(false);
   const recRef = useRef(null);
   const utterRef = useRef(null); // held so Chrome doesn't GC it before onend fires
   // Settles whichever listen/speak is in flight. stop() calls these directly
@@ -116,7 +124,7 @@ export default function useVoice() {
     synth?.cancel();
     if (!audioCtxRef.current) audioCtxRef.current = createAudioContext();
     const ctx = audioCtxRef.current;
-    if (ctx.state === 'suspended') await ctx.resume().catch(() => {});
+    await resumeContext(ctx);
 
     if (!streamRef.current?.active) {
       try {
@@ -126,22 +134,33 @@ export default function useVoice() {
       } catch (err) {
         return { text: null, error: err?.name === 'NotAllowedError' ? 'not-allowed' : 'audio-capture' };
       }
+      // iOS can suspend the context while it switches the audio session to
+      // recording — nudge it back or the processor never receives samples.
+      await resumeContext(ctx);
     }
 
+    setMetered(true);
     setListening(true);
-    const capture = captureUtterance(ctx, streamRef.current, () => setInterim('…'));
+    const capture = captureUtterance(ctx, streamRef.current, {
+      onSpeechStart: () => setInterim('…'),
+      onLevel: setLevel,
+    });
     cancelCaptureRef.current = capture.cancel;
-    const audio = await capture.promise;
+    const { audio, reason, peak } = await capture.promise;
     if (cancelCaptureRef.current === capture.cancel) cancelCaptureRef.current = null;
     setListening(false);
     setInterim('');
-    if (!audio) return { text: null, error: 'no-speech' };
+    if (!audio) {
+      if (reason === 'silent') console.warn('[voice] mic delivered no sound', { peak, contextState: ctx.state, sampleRate: ctx.sampleRate });
+      return { text: null, error: reason === 'silent' ? 'mic-silent' : 'aborted' };
+    }
 
     setTranscribing(true);
     try {
       const { text } = await transcribeAudio(audio);
       return text ? { text } : { text: null, error: 'no-speech' };
-    } catch {
+    } catch (err) {
+      console.warn('[voice] transcribe failed', err);
       return { text: null, error: 'transcribe-failed' };
     } finally {
       setTranscribing(false);
@@ -215,7 +234,7 @@ export default function useVoice() {
 
   return {
     supported: nativeUsable || canRecord,
-    listening, transcribing, speaking, interim,
+    listening, transcribing, speaking, interim, level, metered,
     listen, speak, unlock, stop,
   };
 }

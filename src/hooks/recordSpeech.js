@@ -11,7 +11,8 @@ const TARGET_RATE = 16000;
 const END_SILENCE_S = 1.2; // stop this long after the user stops talking
 const NO_SPEECH_S = 8; // give up if nothing is said
 const MAX_S = 15; // hard cap (backend accepts up to 20s)
-const MIN_THRESHOLD = 0.015; // RMS level that counts as speech
+const MIN_THRESHOLD = 0.01; // RMS level that always counts as speech
+const SIGNAL_FLOOR = 0.003; // below this peak the mic is effectively silent
 
 export function createAudioContext() {
   return AudioCtx ? new AudioCtx() : null;
@@ -48,10 +49,13 @@ export function toPcm16Base64(samples) {
 
 /**
  * Listens on `stream` until the user finishes a sentence. Returns
- * { promise, cancel }; the promise resolves with base64 PCM, or null if
- * nothing was said or it was cancelled.
+ * { promise, cancel }; the promise resolves with
+ *   { audio }                      base64 PCM to transcribe
+ *   { audio: null, reason, peak }  reason: 'silent' (mic delivered ~nothing)
+ *                                  or 'cancelled'
+ * onLevel(0..1) is called for every block so the UI can show a meter.
  */
-export function captureUtterance(ctx, stream, onSpeechStart) {
+export function captureUtterance(ctx, stream, { onSpeechStart, onLevel } = {}) {
   const source = ctx.createMediaStreamSource(stream);
   // ScriptProcessor is deprecated but, unlike AudioWorklet, needs no separate
   // module file and works in every browser this fallback targets.
@@ -61,22 +65,31 @@ export function captureUtterance(ctx, stream, onSpeechStart) {
   let total = 0;
   let heard = false;
   let silent = 0;
-  let noiseFloor = null;
+  let noiseFloor = Infinity;
+  let peak = 0;
   let resolve;
   const promise = new Promise((r) => { resolve = r; });
 
-  const finish = (keep) => {
+  // Timing is driven by incoming audio, so if the context never delivers any
+  // (suspended on iOS) these wall-clock timers still end the capture.
+  const stalledTimer = setTimeout(() => { if (total === 0) finish('silent'); }, 2500);
+  const hardTimer = setTimeout(() => finish(heard || peak > SIGNAL_FLOOR ? 'speech' : 'silent'), (MAX_S + 1) * 1000);
+
+  const finish = (reason) => {
     if (!resolve) return;
+    clearTimeout(stalledTimer);
+    clearTimeout(hardTimer);
     proc.onaudioprocess = null;
     source.disconnect();
     proc.disconnect();
+    onLevel?.(0);
     const done = resolve;
     resolve = null;
-    if (!keep) return done(null);
+    if (reason !== 'speech') return done({ audio: null, reason, peak });
     const all = new Float32Array(total);
     let offset = 0;
     for (const c of chunks) { all.set(c, offset); offset += c.length; }
-    done(toPcm16Base64(downsample(all, rate)));
+    done({ audio: toPcm16Base64(downsample(all, rate)), peak });
   };
 
   proc.onaudioprocess = (e) => {
@@ -87,9 +100,12 @@ export function captureUtterance(ctx, stream, onSpeechStart) {
     let sum = 0;
     for (let i = 0; i < data.length; i++) sum += data[i] * data[i];
     const rms = Math.sqrt(sum / data.length);
-    // The first block sets the room's noise floor; speech must clear it.
-    if (noiseFloor === null) noiseFloor = rms;
-    const threshold = Math.max(MIN_THRESHOLD, noiseFloor * 3);
+    peak = Math.max(peak, rms);
+    onLevel?.(Math.min(1, rms / 0.08));
+    // Noise floor is the quietest block so far — not the first one, which is
+    // already speech when the user starts talking straight after tapping.
+    noiseFloor = Math.min(noiseFloor, rms);
+    const threshold = Math.max(MIN_THRESHOLD, noiseFloor * 2.5);
 
     if (rms > threshold) {
       if (!heard) onSpeechStart?.();
@@ -99,13 +115,16 @@ export function captureUtterance(ctx, stream, onSpeechStart) {
       silent += data.length;
     }
 
+    // If the detector never fired but the mic picked something up, send it
+    // anyway and let Transcribe decide — better than silently dropping it.
+    const hasSignal = heard || peak > SIGNAL_FLOOR;
     const elapsed = total / rate;
-    if (heard && silent / rate >= END_SILENCE_S) finish(true);
-    else if (!heard && elapsed >= NO_SPEECH_S) finish(false);
-    else if (elapsed >= MAX_S) finish(heard);
+    if (heard && silent / rate >= END_SILENCE_S) finish('speech');
+    else if (!heard && elapsed >= NO_SPEECH_S) finish(hasSignal ? 'speech' : 'silent');
+    else if (elapsed >= MAX_S) finish(hasSignal ? 'speech' : 'silent');
   };
 
   source.connect(proc);
   proc.connect(ctx.destination); // Chrome only runs the processor when it's connected
-  return { promise, cancel: () => finish(false) };
+  return { promise, cancel: () => finish('cancelled') };
 }

@@ -29,7 +29,9 @@ function formatMessage(text) {
 
 // Shown when a voice turn fails; silence and user-cancelled turns stay quiet.
 const VOICE_ERRORS = {
-  'not-allowed': 'I need microphone access to hear you — allow it for this site in your browser settings and tap the mic again.',
+  'not-allowed': 'I need microphone access to hear you — allow it for this site in your browser, and on iPhone also turn on Settings → Chrome (or your browser) → Microphone. Then tap the mic again.',
+  'mic-silent': "I can't hear anything from your microphone — check no other app (like a call) is using it, then tap the mic to try again.",
+  'no-speech': "I didn't catch that — tap the mic and try again, or type your question.",
   'audio-capture': "I couldn't find a microphone to listen with.",
   'service-not-allowed': "Voice input isn't available in this browser — you can still type your question.",
   unsupported: "Voice input isn't available in this browser — you can still type your question.",
@@ -122,14 +124,18 @@ export default function ChatWidget() {
     const active = () => voiceGenRef.current === gen;
     setVoiceMode(true);
 
+    let turns = 0;
     while (active()) {
       const { text, error } = await voice.listen();
       if (!active()) return;
       if (!text) {
-        const hint = VOICE_ERRORS[error];
+        // Going quiet after a completed turn just ends the conversation
+        const quietEnd = turns > 0 && (error === 'no-speech' || error === 'mic-silent');
+        const hint = !quietEnd && VOICE_ERRORS[error];
         if (hint) setMessages((prev) => [...prev, { role: 'assistant', text: hint }]);
         break;
       }
+      turns += 1;
       const reply = await handleSend(text, 'voice');
       if (!active() || !reply) break;
       await voice.speak(reply);
@@ -211,7 +217,8 @@ export default function ChatWidget() {
             />
             {voice.supported && (
               <button
-                className={`chat-mic${voiceMode ? ' chat-mic--active' : ''}`}
+                className={`chat-mic${voiceMode ? ' chat-mic--active' : ''}${voiceMode && voice.metered ? ' chat-mic--metered' : ''}`}
+                style={{ '--mic-level': listening ? voice.level : 0 }}
                 onClick={voiceMode ? stopVoice : startVoice}
                 disabled={loading && !voiceMode}
                 aria-label={voiceMode ? 'Stop voice conversation' : 'Talk to the assistant'}
