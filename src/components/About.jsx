@@ -32,6 +32,27 @@ export default function About() {
             </p>
           </div>
         </Col>
+        <Col xs={12} className="mb-2">
+          <h4>Independence &amp; Ownership</h4>
+          <div className="about__independence">
+            <p>
+              The Gooners World is an <strong>independent, non-commercial project</strong>, built and
+              maintained by a single supporter as a personal engineering and learning exercise. It
+              carries no advertising, sells nothing, and accepts no sponsorship or donations.
+            </p>
+            <p>
+              It is <strong>not affiliated with, endorsed by, or associated with</strong> Arsenal
+              Football Club, the Premier League, UEFA, or any of their partners. All club names,
+              crests, badges and trademarks are the property of their respective owners and are used
+              here only to identify the teams and competitions being reported on.
+            </p>
+            <p>
+              Match data and imagery are sourced from the licensed providers listed above. We publish
+              no broadcast footage. Editorial summaries and match reviews are generated with AI from
+              that data and are clearly our own opinion, not reporting on behalf of any club.
+            </p>
+          </div>
+        </Col>
         <Col md={6} sm={12} className="mb-2">
           <h4>Contact Us</h4>
           <div className="contact">

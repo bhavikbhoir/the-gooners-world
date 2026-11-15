@@ -17,8 +17,9 @@ export default function Footer() {
         <FaInstagram style={{color: "#C13584"}} /> <a href="https://www.instagram.com/thegoonersworld/">@thegoonersworld</a>
       </div>
       <p className="footer__disclaimer">
-        This is an independent fan site and is not affiliated with or endorsed by Arsenal Football Club.
-        All club logos and trademarks are property of their respective owners.
+        The Gooners World is an independent, non-commercial project created by supporters, for supporters.
+        It is not affiliated with, endorsed by, or associated with Arsenal Football Club, the Premier League,
+        or UEFA. All club names, crests and trademarks are the property of their respective owners.
       </p>
     </div>
   );
