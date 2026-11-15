@@ -14,8 +14,11 @@ export default function About() {
     <div className="about">
       <Row className="text-center">
         <Col xs={12} className="about_message">
+          {/* The h3 used to sit inside this p. Browsers auto-close a paragraph
+              before a heading, so the markup React rendered never matched the
+              markup written here — and the spacing drifted with it. */}
+          <h3>Your home for all things Arsenal F.C.</h3>
           <p>
-            <h3>Your home for all things Arsenal F.C.</h3>
             Kicked off in September 2020 with passion to bring all the Arsenal Fans around the world,
             the latest team news, transfer updates, match results and reports along with weekly
             stats, trending updates, and matchday polls.
@@ -30,6 +33,16 @@ export default function About() {
             <p><FaNewspaper className="mr-2" />
               <a href="https://newsdata.io/" target="_blank" rel="noopener noreferrer">NewsData.io</a> — Arsenal news feed
             </p>
+          </div>
+        </Col>
+        <Col md={6} sm={12} className="mb-2">
+          <h4>Contact Us</h4>
+          <div className="contact">
+            <FaEnvelope style={{ color: "#0F9D58" }} /> <a href="mailto:thegoonersworld@gmail.com">thegoonersworld@gmail.com</a>
+            <br />
+            <XIcon size={20} /> <a href="https://x.com/TheGoonersWorld">@TheGoonersWorld</a>
+            <br />
+            <FaInstagram style={{ color: "#C13584" }} /> <a href="https://www.instagram.com/thegoonersworld/">@thegoonersworld</a>
           </div>
         </Col>
         <Col xs={12} className="mb-2">
@@ -51,16 +64,6 @@ export default function About() {
               no broadcast footage. Editorial summaries and match reviews are generated with AI from
               that data and are clearly our own opinion, not reporting on behalf of any club.
             </p>
-          </div>
-        </Col>
-        <Col md={6} sm={12} className="mb-2">
-          <h4>Contact Us</h4>
-          <div className="contact">
-            <FaEnvelope style={{ color: "#0F9D58" }} /> <a href="mailto:thegoonersworld@gmail.com">thegoonersworld@gmail.com</a>
-            <br />
-            <XIcon size={20} /> <a href="https://x.com/TheGoonersWorld">@TheGoonersWorld</a>
-            <br />
-            <FaInstagram style={{ color: "#C13584" }} /> <a href="https://www.instagram.com/thegoonersworld/">@thegoonersworld</a>
           </div>
         </Col>
       </Row>
