@@ -3,6 +3,7 @@ import {
   AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile,
   useCurrentFrame, useVideoConfig,
 } from 'remotion';
+import { loadFont as loadOswald } from '@remotion/google-fonts/Oswald';
 
 /**
  * Full-time match review — 1080x1920, narration-led.
@@ -20,9 +21,15 @@ import {
  * is reliably visible to a viewer. Everything lives inside it.
  */
 
+// Oswald must be loaded by the composition, not assumed from the host. It is
+// installed locally so renders on this machine looked correct, but a Remotion
+// Lambda container has no system fonts and would silently fall back to a
+// default sans — every video shipped in the wrong typeface.
+const { fontFamily: OSWALD } = loadOswald();
+
 const RED = '#EF0107';
 const INK = '#07070c';
-const FONT = "Oswald, 'Helvetica Neue', sans-serif";
+const FONT = `${OSWALD}, 'Helvetica Neue', sans-serif`;
 
 const W = 1080;
 const SAFE_TOP = 250;
@@ -192,7 +199,21 @@ function Chrome({ match, accent, scoreRevealed }) {
   );
 }
 
-const shortName = (n) => String(n || '').replace(/\s*(FC|AFC|CF)$/i, '').slice(0, 14);
+/**
+ * Fit a club name to the score row without cutting mid-word — a hard slice
+ * turned "Tottenham Hotspur" into "Tottenham Hots". Drops trailing words first,
+ * and only falls back to truncation for a single over-long word.
+ */
+function shortName(n, max = 15) {
+  const clean = String(n || '').replace(/\s*(FC|AFC|CF|SC)$/i, '').trim();
+  if (clean.length <= max) return clean;
+
+  const words = clean.split(/\s+/);
+  while (words.length > 1 && words.join(' ').length > max) words.pop();
+
+  const fitted = words.join(' ');
+  return fitted.length <= max ? fitted : fitted.slice(0, max - 1) + '.';
+}
 
 // ── scenes ─────────────────────────────────────────────────────────
 /** Opens on the most surprising number, not the scoreline — viewers know the score. */
