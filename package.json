@@ -30,8 +30,8 @@
     "build": "vite build && node scripts/seo.js",
     "preview": "vite preview",
     "seo": "node scripts/seo.js",
-    "video:studio": "remotion studio src/remotion/index.js",
-    "video:render": "remotion render src/remotion/index.js MatchReview out/match-review.mp4"
+    "video:studio": "remotion studio src/remotion/index.js --chrome-mode=chrome-for-testing",
+    "video:render": "remotion render src/remotion/index.js MatchReview out/match-review.mp4 --chrome-mode=chrome-for-testing"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -37,3 +37,4 @@ debug.log
 *.cache
 *.cache
 *.log
+out/
