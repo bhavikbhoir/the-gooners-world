@@ -146,7 +146,7 @@ export default function DraftsQueue() {
   if (!drafts.length) return (
     <div className="drafts drafts__empty">
       <p>No drafts waiting. 🎉</p>
-      <p className="drafts__hint">The autopilot generates a draft ~3h before kickoff and again at full-time. Check back on matchday.</p>
+      <p className="drafts__hint">The autopilot generates a draft at full-time. Check back after the whistle.</p>
       <button className="drafts__link" onClick={load}>Refresh</button>
     </div>
   );
@@ -170,7 +170,7 @@ export default function DraftsQueue() {
           : `${d.home} vs ${d.away} · ${d.competition}`;
         const badge = isStatement
           ? (d.tag || d.type || 'POST').toUpperCase()
-          : (d.type === 'prematch' ? 'MATCHDAY' : 'FULL-TIME');
+          : 'FULL-TIME';
         const filename = (isStatement ? `${d.type}-${d.headline}` : `${d.type}-${d.home}-vs-${d.away}`)
           .toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.jpg';
         return (

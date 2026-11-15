@@ -529,7 +529,6 @@
   font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2rem 0.5rem;
   border-radius: 4px; color: #fff;
 }
-.drafts__type--prematch { background: #2563eb; }
 .drafts__type--fulltime { background: #dc3545; }
 .drafts__fixture { color: #d0d0d0; font-size: 0.9rem; font-weight: 600; }
 

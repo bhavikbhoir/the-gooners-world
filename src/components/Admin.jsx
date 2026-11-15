@@ -422,7 +422,7 @@ export default function Admin() {
                         {publishResult.x === 'posted' ? '✅ Posted!' : publishResult.x}
                       </span>
                     )}
-                    <span className="admin__post-hint">Requires X Basic plan ($100/mo) for API posting</span>
+                    <span className="admin__post-hint">Requires a paid X API plan — otherwise use Share on X above</span>
                   </div>
                 </div>
               )}

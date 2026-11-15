@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@remotion/player": "^4.0.543",
     "bootstrap": "^4.5.3",
     "canvas-confetti": "^1.9.4",
     "firebase": "^12.9.0",
+    "framer-motion": "^14.14.0",
+    "gsap": "^3.15.1",
     "react": "^18.3.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^18.3.1",
@@ -13,17 +16,22 @@
     "react-player": "^2.15.0",
     "react-router-dom": "^5.2.0",
     "react-tweet-embed": "^1.2.2",
-    "react-twitter-widgets": "^1.10.0"
+    "react-twitter-widgets": "^1.10.0",
+    "remotion": "^4.0.543"
   },
   "devDependencies": {
+    "@remotion/cli": "^4.0.543",
     "@vitejs/plugin-react": "^4.3.1",
     "sass": "^1.99.0",
     "vite": "^5.4.0"
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && node scripts/seo.js",
+    "preview": "vite preview",
+    "seo": "node scripts/seo.js",
+    "video:studio": "remotion studio src/remotion/index.js",
+    "video:render": "remotion render src/remotion/index.js MatchReview out/match-review.mp4"
   },
   "eslintConfig": {
     "extends": "react-app"

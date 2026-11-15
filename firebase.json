@@ -6,6 +6,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "trailingSlash": false,
     "rewrites": [
       {
         "source": "**",
@@ -27,6 +28,14 @@
       {
         "source": "/service-worker.js",
         "headers": [{"key": "Cache-Control", "value": "no-cache"}]
+      },
+      {
+        "source": "/admin",
+        "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]
+      },
+      {
+        "source": "/sitemap.xml",
+        "headers": [{"key": "Cache-Control", "value": "max-age=3600"}]
       },
       {
         "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|ico)",
