@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  AbsoluteFill, Audio, Sequence, interpolate, spring,
+  AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile,
   useCurrentFrame, useVideoConfig,
 } from 'remotion';
 
@@ -28,7 +28,7 @@ const W = 1080;
 const SAFE_TOP = 250;
 const SAFE_BOTTOM = 420;      // caption + action rail on both platforms
 const STAGE_TOP = SAFE_TOP + 40;
-const STAGE_BOTTOM = 1920 - SAFE_BOTTOM - 40;
+const STAGE_BOTTOM = 1920 - SAFE_BOTTOM - 130;  // room for the caption line
 const STAGE_H = STAGE_BOTTOM - STAGE_TOP;
 const GUTTER = 86;
 
@@ -39,11 +39,68 @@ function useEnter(delay = 0, damping = 200) {
   return spring({ frame: frame - delay, fps, config: { damping } });
 }
 
-function Rise({ children, delay = 0, distance = 54 }) {
-  const e = useEnter(delay);
+/** Overshoot spring — snappier than a settle, which reads as more energetic. */
+function Rise({ children, delay = 0, distance = 54, punch = false }) {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const e = spring({
+    frame: frame - delay, fps,
+    config: punch ? { damping: 11, mass: 0.5, stiffness: 180 } : { damping: 200 },
+  });
   return (
-    <div style={{ opacity: e, transform: `translateY(${interpolate(e, [0, 1], [distance, 0])}px)` }}>
+    <div style={{ opacity: Math.min(1, e * 1.6), transform: `translateY(${interpolate(e, [0, 1], [distance, 0])}px)` }}>
       {children}
+    </div>
+  );
+}
+
+/** Numbers count up rather than appear — the cheapest way to hold an eye. */
+function CountUp({ value, frames = 22 }) {
+  const frame = useCurrentFrame();
+  const n = parseInt(String(value).replace(/\D/g, ''), 10);
+  if (Number.isNaN(n)) return <>{value}</>;
+  const suffix = String(value).replace(/^\d+/, '');
+  const shown = Math.round(interpolate(frame, [0, frames], [0, n], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+  }));
+  return <>{shown}{suffix}</>;
+}
+
+/**
+ * Word-synced captions.
+ *
+ * Burned-in captions are the strongest retention lever on muted autoplay feeds,
+ * and Polly's word marks give exact timings for free. Sits just above the
+ * platform caption zone so it never collides with the native UI.
+ */
+function Captions({ words, accent }) {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (!words || !words.length) return null;
+
+  const nowMs = (frame / fps) * 1000;
+  // Show a rolling window of up to 4 words around the current one.
+  const idx = words.findIndex((w, i) => nowMs < (words[i + 1]?.t ?? Infinity));
+  if (idx < 0) return null;
+  const start = Math.max(0, idx - (idx % 4));
+  const group = words.slice(start, start + 4);
+
+  return (
+    <div style={{
+      position: 'absolute', left: GUTTER, right: GUTTER, bottom: SAFE_BOTTOM + 10,
+      display: 'flex', flexWrap: 'wrap', gap: '0 16px', justifyContent: 'center',
+    }}>
+      {group.map((w, i) => {
+        const active = start + i === idx;
+        return (
+          <span key={`${w.t}-${i}`} style={{
+            fontFamily: FONT, fontSize: 46, fontWeight: 600, letterSpacing: 1,
+            color: active ? accent : 'rgba(255,255,255,0.72)',
+            transform: active ? 'scale(1.06)' : 'scale(1)',
+            textShadow: '0 2px 14px rgba(0,0,0,0.85)',
+          }}>{w.w}</span>
+        );
+      })}
     </div>
   );
 }
@@ -143,12 +200,12 @@ function HookScene({ hook, accent }) {
   const e = useEnter(4, 120);
   return (
     <Stage>
-      <Rise delay={0}><Label accent={accent}>{hook.label}</Label></Rise>
+      <Rise delay={0} punch><Label accent={accent}>{hook.label}</Label></Rise>
       <div style={{
         fontFamily: FONT, fontSize: 340, fontWeight: 700, color: '#fff', lineHeight: 0.95,
         margin: '30px 0 24px', opacity: e,
         transform: `scale(${interpolate(e, [0, 1], [0.72, 1])})`,
-      }}>{hook.value}</div>
+      }}><CountUp value={hook.value} /></div>
       <Rise delay={14}>
         <div style={{
           fontFamily: FONT, fontSize: 58, fontWeight: 400, color: 'rgba(255,255,255,0.84)',
@@ -161,7 +218,7 @@ function HookScene({ hook, accent }) {
 
 function ScoreScene({ match, accent }) {
   const Team = ({ name, score, delay }) => (
-    <Rise delay={delay} distance={36}>
+    <Rise delay={delay} distance={36} punch>
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         width: W - GUTTER * 2, padding: '18px 0',
@@ -173,11 +230,11 @@ function ScoreScene({ match, accent }) {
   );
   return (
     <Stage align="left">
-      <Rise delay={0}><Label accent={accent}>Full time</Label></Rise>
+      <Rise delay={0} punch><Label accent={accent}>Full time</Label></Rise>
       <div style={{ marginTop: 56, width: '100%' }}>
-        <Team name={shortName(match.home)} score={match.homeScore} delay={8} />
+        <Team name={shortName(match.home)} score={match.homeScore} delay={6} />
         <div style={{ height: 3, backgroundColor: 'rgba(255,255,255,0.14)' }} />
-        <Team name={shortName(match.away)} score={match.awayScore} delay={16} />
+        <Team name={shortName(match.away)} score={match.awayScore} delay={12} />
       </div>
     </Stage>
   );
@@ -186,10 +243,10 @@ function ScoreScene({ match, accent }) {
 function MomentsScene({ goals, accent }) {
   return (
     <Stage align="left">
-      <Rise delay={0}><Label accent={accent}>How it happened</Label></Rise>
+      <Rise delay={0} punch><Label accent={accent}>How it happened</Label></Rise>
       <div style={{ marginTop: 50, width: '100%' }}>
         {goals.slice(0, 5).map((g, i) => (
-          <Rise key={`${g.minute}-${g.scorer}`} delay={8 + i * 9} distance={36}>
+          <Rise key={`${g.minute}-${g.scorer}`} delay={6 + i * 6} distance={36} punch>
             <div style={{
               display: 'flex', alignItems: 'baseline', gap: 32, padding: '26px 0',
               borderBottom: '2px solid rgba(255,255,255,0.1)',
@@ -215,7 +272,7 @@ function MomentsScene({ goals, accent }) {
 function VerdictScene({ verdict, accent }) {
   return (
     <Stage align="left">
-      <Rise delay={0}><Label accent={accent}>The verdict</Label></Rise>
+      <Rise delay={0} punch><Label accent={accent}>The verdict</Label></Rise>
       <Rise delay={10} distance={44}>
         <div style={{ width: 96, height: 6, backgroundColor: accent, margin: '44px 0 36px' }} />
       </Rise>
@@ -231,8 +288,8 @@ function VerdictScene({ verdict, accent }) {
 function TableScene({ table, accent }) {
   return (
     <Stage>
-      <Rise delay={0}><Label accent={accent}>Where it leaves us</Label></Rise>
-      <Rise delay={8} distance={34}>
+      <Rise delay={0} punch><Label accent={accent}>Where it leaves us</Label></Rise>
+      <Rise delay={8} distance={34} punch>
         <div style={{
           fontFamily: FONT, fontSize: 280, fontWeight: 700, color: '#fff',
           lineHeight: 1, margin: '26px 0 14px',
@@ -298,26 +355,42 @@ export const matchReviewSchema = {
 };
 
 export default function MatchReview({
-  variant = 'hookFirst', accent = RED, narrationUrl,
+  variant = 'hookFirst', accent = RED, narrationUrl, segments,
   match, hook, goals = [], verdict, table,
 }) {
   const { fps, durationInFrames } = useVideoConfig();
   const order = VARIANTS[variant] || VARIANTS.hookFirst;
 
-  // Weight scenes by how much each has to say, then fit them to the audio length.
-  const weights = {
-    hook: 3, score: 3, moments: Math.max(2, goals.length) * 1.1,
-    verdict: 4, table: 2.5, outro: 1.6,
-  };
-  const total = order.reduce((sum, k) => sum + weights[k], 0);
-
+  // Each scene lasts exactly as long as its own narration line. Weights are
+  // only a fallback for silent preview renders — with audio, nothing is guessed.
   const spans = [];
-  let cursor = 0;
-  for (const key of order) {
-    const length = Math.round((weights[key] / total) * durationInFrames);
-    spans.push({ key, from: cursor, length });
-    cursor += length;
+  if (segments && segments.length) {
+    for (const seg of segments) {
+      if (!SCENES[seg.key]) continue;
+      spans.push({
+        key: seg.key,
+        from: Math.round((seg.startMs / 1000) * fps),
+        length: Math.round((seg.durationMs / 1000) * fps),
+      });
+    }
+    // The trailing pad belongs to the last scene, not spread across all of them.
+    const last = spans[spans.length - 1];
+    if (last) last.length = Math.max(last.length, durationInFrames - last.from);
+  } else {
+    const weights = {
+      hook: 3, score: 3, moments: Math.max(2, goals.length) * 1.1,
+      verdict: 4, table: 2.5, outro: 1.6,
+    };
+    const total = order.reduce((sum, k) => sum + weights[k], 0);
+    let cursor = 0;
+    for (const key of order) {
+      const length = Math.round((weights[key] / total) * durationInFrames);
+      spans.push({ key, from: cursor, length });
+      cursor += length;
+    }
   }
+
+  const allWords = (segments || []).flatMap((s) => s.words || []);
 
   // The chip carries the score for anyone joining mid-scroll, so it starts only
   // once the score scene has handed off — showing both at once is redundant.
@@ -326,21 +399,31 @@ export default function MatchReview({
 
   const props = { match, hook, goals, verdict, table, accent };
 
+  // In production the orchestrator passes a presigned S3 URL; locally it's a
+  // filename inside the Remotion public dir, so review renders need no upload.
+  const audioSrc = narrationUrl
+    ? (/^https?:\/\//.test(narrationUrl) ? narrationUrl : staticFile(narrationUrl))
+    : null;
+
   return (
     <AbsoluteFill>
       <Backdrop accent={accent} />
-      {narrationUrl && <Audio src={narrationUrl} />}
+      {audioSrc && <Audio src={audioSrc} />}
 
       {spans.map(({ key, from, length }) => {
         const Scene = SCENES[key];
+        // No overlap when timings are measured — an overhang would show the
+        // previous scene while the next line is already being spoken.
+        const pad = segments && segments.length ? 0 : Math.round(fps * 0.2);
         return (
-          <Sequence key={key} from={from} durationInFrames={length + Math.round(fps * 0.2)}>
+          <Sequence key={key} from={from} durationInFrames={length + pad}>
             <Scene {...props} />
           </Sequence>
         );
       })}
 
       <Chrome match={match} accent={accent} scoreRevealed={scoreRevealed} />
+      <Captions words={allWords} accent={accent} />
     </AbsoluteFill>
   );
 }

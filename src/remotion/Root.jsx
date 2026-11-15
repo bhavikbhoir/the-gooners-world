@@ -13,17 +13,29 @@ import MatchReview, { matchReviewSchema } from './MatchReview';
  */
 
 const FPS = 30;
+const FALLBACK_SECONDS = 32;
+
+/**
+ * The narration decides the length, not the other way round. The orchestrator
+ * measures the Polly MP3 and passes durationMs; a tail is added so the outro
+ * is not cut off the instant the voice stops.
+ */
+const calculateMetadata = ({ props }) => {
+  const seconds = props.durationMs ? props.durationMs / 1000 + 1.4 : FALLBACK_SECONDS;
+  return { durationInFrames: Math.round(seconds * FPS) };
+};
 
 export const RemotionRoot = () => (
   <>
     <Composition
       id="MatchReview"
       component={MatchReview}
-      durationInFrames={FPS * 32}
+      durationInFrames={FPS * FALLBACK_SECONDS}
       fps={FPS}
       width={1080}
       height={1920}
       defaultProps={matchReviewSchema}
+      calculateMetadata={calculateMetadata}
     />
   </>
 );
