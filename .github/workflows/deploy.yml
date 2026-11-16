@@ -54,3 +54,21 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           channelId: live
           projectId: the-gooners-world
+
+      # The Remotion composition ships to S3 as a "site" bundle that Remotion
+      # Lambda renders from. It is versioned by site name, so redeploying here
+      # keeps the renderer in step with the composition in this commit —
+      # otherwise a design change would never reach production video.
+      #
+      # Skipped unless AWS credentials are present, so forks and PR builds
+      # still pass. The Lambda function itself is provisioned once, out of band.
+      - name: Deploy Remotion site
+        if: ${{ env.AWS_ACCESS_KEY_ID != '' }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        run: |
+          npx remotion lambda sites create src/remotion/index.js \
+            --site-name=tgw-match-review \
+            --log=info
