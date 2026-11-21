@@ -199,6 +199,23 @@ export default function DraftsQueue() {
                 </div>
               </div>
 
+              {d.videoPreviewUrl && (
+                <div className="drafts__video">
+                  <video src={d.videoPreviewUrl} controls playsInline preload="metadata" />
+                  <div className="drafts__video-meta">
+                    <span>Reel / Short · {Math.round((d.videoDurationMs || 0) / 1000)}s</span>
+                    {d.videoVoice && <span>· {d.videoVoice}</span>}
+                  </div>
+                  <button
+                    className="drafts__photo-btn"
+                    onClick={() => downloadImage(d.videoPreviewUrl, `${filename.replace(/\.jpg$/, '')}.mp4`)}
+                  >⬇ Download video</button>
+                </div>
+              )}
+              {d.videoError && (
+                <p className="drafts__flash">Video failed: {d.videoError}</p>
+              )}
+
               <div className="drafts__copy">
                 <label className="drafts__label">
                   Instagram caption
@@ -218,9 +235,37 @@ export default function DraftsQueue() {
                 <textarea className="drafts__text" rows={3} value={c.x}
                   onChange={(e) => setCopy(d.draftId, 'x', e.target.value)} />
 
+                {d.videoPreviewUrl && (
+                  <div className="drafts__video-copy">
+                    <label className="drafts__label">
+                      YouTube title
+                      <button className="drafts__copybtn" onClick={() => copyText(d.draftId, 'ytTitle', d.youtubeTitle || '')}>
+                        {copied === `${d.draftId}:ytTitle` ? '✓ Copied' : 'Copy'}
+                      </button>
+                    </label>
+                    <p className="drafts__readonly">{d.youtubeTitle || '—'}</p>
+
+                    <label className="drafts__label">
+                      YouTube description
+                      <button className="drafts__copybtn" onClick={() => copyText(d.draftId, 'ytDesc', d.youtubeDescription || '')}>
+                        {copied === `${d.draftId}:ytDesc` ? '✓ Copied' : 'Copy'}
+                      </button>
+                    </label>
+                    <p className="drafts__readonly">{d.youtubeDescription || '—'}</p>
+
+                    <label className="drafts__label">
+                      Reel caption
+                      <button className="drafts__copybtn" onClick={() => copyText(d.draftId, 'reelCap', d.instagramReelCaption || '')}>
+                        {copied === `${d.draftId}:reelCap` ? '✓ Copied' : 'Copy'}
+                      </button>
+                    </label>
+                    <p className="drafts__readonly">{d.instagramReelCaption || '—'}</p>
+                  </div>
+                )}
+
                 <p className="drafts__manual-hint">
-                  Manual route: copy the text, download the image, post it, then <strong>Mark as posted</strong>.
-                  X is always manual; Instagram auto-publishes once its token is set up.
+                  Manual route: copy the text, download the image or video, post it, then <strong>Mark as posted</strong>.
+                  X and YouTube are always manual; Instagram auto-publishes once its token is set up.
                 </p>
 
                 {flash[d.draftId] && <p className="drafts__flash">{flash[d.draftId]}</p>}

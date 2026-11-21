@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@remotion/google-fonts": "^4.0.543",
+    "@remotion/lambda": "^4.0.543",
     "@remotion/player": "^4.0.543",
     "bootstrap": "^4.5.3",
     "canvas-confetti": "^1.9.4",

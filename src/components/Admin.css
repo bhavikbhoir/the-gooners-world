@@ -533,6 +533,29 @@
 .drafts__fixture { color: #d0d0d0; font-size: 0.9rem; font-weight: 600; }
 
 .drafts__grid { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; }
+
+/* Video sits under the card in the left column — the admin reviews the still
+   and the Reel together before deciding. */
+.drafts__video { margin-top: 1rem; }
+.drafts__video video {
+  width: 100%; max-height: 420px; border-radius: 8px;
+  background: #000; display: block;
+}
+.drafts__video-meta {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  font-size: 0.72rem; color: #9a9aa8; margin: 0.4rem 0 0.5rem;
+}
+.drafts__video-copy {
+  margin-top: 0.75rem; padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Read-only: these are generated per platform and edited by regenerating,
+   not by hand — an editable box would imply changes are saved. */
+.drafts__readonly {
+  font-size: 0.82rem; line-height: 1.45; color: #d6d6e0;
+  background: #1b1b2e; border: 1px solid #2a2a45; border-radius: 6px;
+  padding: 0.5rem 0.65rem; margin: 0 0 0.6rem; white-space: pre-wrap;
+}
 .drafts__image { display: flex; flex-direction: column; gap: 0.5rem; }
 .drafts__image img { width: 100%; border-radius: 8px; border: 1px solid #2a2a2a; }
 .drafts__photo-nudge { font-size: 0.72rem; color: #f5a623; }
