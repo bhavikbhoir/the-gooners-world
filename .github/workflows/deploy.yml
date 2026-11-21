@@ -8,6 +8,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Declared at job level on purpose: a step's `if` is evaluated before its
+    # own env: block exists, so gating on it there always reads empty and
+    # silently skips the step while the workflow still reports success.
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: us-east-1
     steps:
       - uses: actions/checkout@v4
 
@@ -64,10 +71,6 @@ jobs:
       # still pass. The Lambda function itself is provisioned once, out of band.
       - name: Deploy Remotion site
         if: ${{ env.AWS_ACCESS_KEY_ID != '' }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
         run: |
           npx remotion lambda sites create src/remotion/index.js \
             --site-name=tgw-match-review \
