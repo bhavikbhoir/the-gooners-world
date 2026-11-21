@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@remotion/google-fonts": "^4.0.543",
-    "@remotion/lambda": "^4.0.543",
     "@remotion/player": "^4.0.543",
     "bootstrap": "^4.5.3",
     "canvas-confetti": "^1.9.4",
@@ -23,6 +22,7 @@
   },
   "devDependencies": {
     "@remotion/cli": "^4.0.543",
+    "@remotion/lambda": "^4.0.543",
     "@vitejs/plugin-react": "^4.3.1",
     "sass": "^1.99.0",
     "vite": "^5.4.0"
