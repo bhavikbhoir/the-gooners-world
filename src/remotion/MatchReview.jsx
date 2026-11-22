@@ -35,7 +35,7 @@ const W = 1080;
 const SAFE_TOP = 250;
 const SAFE_BOTTOM = 420;      // caption + action rail on both platforms
 const STAGE_TOP = SAFE_TOP + 40;
-const STAGE_BOTTOM = 1920 - SAFE_BOTTOM - 130;  // room for the caption line
+const STAGE_BOTTOM = 1920 - SAFE_BOTTOM - 40;
 const STAGE_H = STAGE_BOTTOM - STAGE_TOP;
 const GUTTER = 86;
 
@@ -71,45 +71,6 @@ function CountUp({ value, frames = 22 }) {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   }));
   return <>{shown}{suffix}</>;
-}
-
-/**
- * Word-synced captions.
- *
- * Burned-in captions are the strongest retention lever on muted autoplay feeds,
- * and Polly's word marks give exact timings for free. Sits just above the
- * platform caption zone so it never collides with the native UI.
- */
-function Captions({ words, accent }) {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  if (!words || !words.length) return null;
-
-  const nowMs = (frame / fps) * 1000;
-  // Show a rolling window of up to 4 words around the current one.
-  const idx = words.findIndex((w, i) => nowMs < (words[i + 1]?.t ?? Infinity));
-  if (idx < 0) return null;
-  const start = Math.max(0, idx - (idx % 4));
-  const group = words.slice(start, start + 4);
-
-  return (
-    <div style={{
-      position: 'absolute', left: GUTTER, right: GUTTER, bottom: SAFE_BOTTOM + 10,
-      display: 'flex', flexWrap: 'wrap', gap: '0 16px', justifyContent: 'center',
-    }}>
-      {group.map((w, i) => {
-        const active = start + i === idx;
-        return (
-          <span key={`${w.t}-${i}`} style={{
-            fontFamily: FONT, fontSize: 46, fontWeight: 600, letterSpacing: 1,
-            color: active ? accent : 'rgba(255,255,255,0.72)',
-            transform: active ? 'scale(1.06)' : 'scale(1)',
-            textShadow: '0 2px 14px rgba(0,0,0,0.85)',
-          }}>{w.w}</span>
-        );
-      })}
-    </div>
-  );
 }
 
 /** Scene content is vertically centred inside the safe stage, never the raw frame. */
@@ -411,7 +372,6 @@ export default function MatchReview({
     }
   }
 
-  const allWords = (segments || []).flatMap((s) => s.words || []);
 
   // The chip carries the score for anyone joining mid-scroll, so it starts only
   // once the score scene has handed off — showing both at once is redundant.
@@ -444,7 +404,6 @@ export default function MatchReview({
       })}
 
       <Chrome match={match} accent={accent} scoreRevealed={scoreRevealed} />
-      <Captions words={allWords} accent={accent} />
     </AbsoluteFill>
   );
 }
